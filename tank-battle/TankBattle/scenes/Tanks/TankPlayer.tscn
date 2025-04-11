@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://d3htecvmok7f5"]
+
+[node name="TankPlayer" type="Node2D"]

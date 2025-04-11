@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://due4xehmb6dbu"]
+
+[ext_resource type="Script" uid="uid://dpn7i588jukig" path="res://unit_display.gd" id="1_1qgk5"]
+[ext_resource type="Texture2D" uid="uid://cf816jc1a1djs" path="res://TankBattle/kenney_top-down-tanks/PNG/mauday.png" id="2_8wur7"]
+
+[node name="UnitDisplay" type="Node2D"]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_1qgk5")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+value = 100.0
+texture_progress = ExtResource("2_8wur7")

@@ -1,0 +1,16 @@
+res://TankBattle/scenes/Tanks/Player.tscn
+res://TankBattle/scenes/Bullet/Bullet.tscn
+res://TankBattle/scenes/Tanks/enemy_tank.tscn
+res://TankBattle/scenes/UI/unit_display.tscn
+res://TankBattle/scenes/effects/explosion.tscn
+res://TankBattle/scenes/Maps/map_01.tscn
+res://TankBattle/scenes/Bullet/PlayerBullet.tscn
+res://TankBattle/scenes/Tanks/Enemy_Tank.tscn
+res://TankBattle/scenes/Tanks/enemy_tank.gd
+res://TankBattle/scenes/Bullet/EnemyBullet.tscn
+res://TankBattle/scenes/Maps/map.gd
+res://TankBattle/scenes/Bullet/bullet.gd
+res://TankBattle/scenes/Bullet/Player_Bullet.tscn
+res://TankBattle/scenes/Bullet/Enemy_Bullet.tscn
+res://TankBattle/scenes/Tanks/player.gd
+res://TankBattle/scenes/Tanks/Tank.gd

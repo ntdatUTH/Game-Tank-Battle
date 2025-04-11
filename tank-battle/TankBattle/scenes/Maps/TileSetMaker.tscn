@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://cixo1lnciqbsg"]
+
+[ext_resource type="Texture2D" uid="uid://cil8tcvmyi4gk" path="res://TankBattle/kenney_top-down-tanks/terrainTiles_retina.png" id="2_mf8fl"]
+
+[sub_resource type="GDScript" id="GDScript_r1leg"]
+script/source = "extends Node
+
+var tile_size = Vector2i(128, 128)
+@onready var texture = $Sprite2D.texture
+
+func _ready():
+	var tex_width = texture.get_width() / tile_size.x
+	var tex_height = texture.get_height() / tile_size.y
+	var ts = TileSet.new()
+	var atlas_source = TileSetAtlasSource.new()
+	atlas_source.texture = texture
+	atlas_source.texture_region_size = tile_size  # Required in Godot 4.4
+
+	for x in range(tex_width):
+		for y in range(tex_height):
+			var tile_coord = Vector2i(x*tile_size.x, y*tile_size.y)
+			var tile_id = Vector2i(x, y)  # In Godot 4.4, tile IDs are Vector2i
+			atlas_source.create_tile(tile_coord)
+			 #No need to set atlas coord separately as it's set by create_tile
+	
+	ts.add_source(atlas_source, 0)  # Must provide a source_id in Godot 4.4
+
+	# Save TileSet
+	var error = ResourceSaver.save(ts, \"res://TankBattle/scenes/Maps/terrain_tiles.tres\")
+
+	# Check for errors
+	if error != OK:
+		print(\"Lưu tileset thất bại với mã lỗi: \", error)
+	else:
+		print(\"Lưu tileset thành công!\")
+"
+
+[node name="TileSetMaker" type="Node"]
+script = SubResource("GDScript_r1leg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_mf8fl")

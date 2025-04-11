@@ -1,0 +1,11 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cv4c3ihhn33hn"]
+
+[ext_resource type="Texture2D" uid="uid://cil8tcvmyi4gk" path="res://TankBattle/kenney_top-down-tanks/terrainTiles_retina.png" id="1_pkhiq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k6uhd"]
+texture = ExtResource("1_pkhiq")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_k6uhd")

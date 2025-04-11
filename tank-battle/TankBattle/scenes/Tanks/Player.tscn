@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://4ph4tqhwdtng"]
+
+[ext_resource type="PackedScene" uid="uid://d06dw68cht31b" path="res://TankBattle/scenes/Tanks/tank.tscn" id="1_tjheg"]
+[ext_resource type="Script" uid="uid://c2tayfaxfylmt" path="res://TankBattle/scenes/Tanks/player.gd" id="2_fw815"]
+[ext_resource type="Texture2D" uid="uid://blyrl45qmoqth" path="res://TankBattle/kenney_top-down-tanks/Vector/preview.png" id="2_pt20k"]
+[ext_resource type="PackedScene" uid="uid://b4lcfammdn2ly" path="res://TankBattle/scenes/Bullet/PlayerBullet.tscn" id="3_una4e"]
+[ext_resource type="Texture2D" uid="uid://j2haaqxeh8b8" path="res://TankBattle/kenney_top-down-tanks/PNG/Tanks/Nong.png" id="4_rory0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pt20k"]
+size = Vector2(39, 39)
+
+[node name="Player" instance=ExtResource("1_tjheg")]
+rotation = -1.57587
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("2_fw815")
+Bullet = ExtResource("3_una4e")
+gun_cooldown = 0.4
+
+[node name="Body" parent="." index="0"]
+texture = ExtResource("2_pt20k")
+region_enabled = true
+region_rect = Rect2(221, 109, 36, 35)
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_pt20k")
+metadata/_edit_group_ = true
+
+[node name="Turret" parent="." index="2"]
+position = Vector2(1.8581e-09, 0)
+rotation = 0.00914076
+scale = Vector2(0.145951, 0.16219)
+texture = ExtResource("4_rory0")
+offset = Vector2(0, 70)
+region_enabled = true
+region_rect = Rect2(-3, 0, 128, 242)
+
+[node name="Muzzle" parent="Turret" index="0"]
+position = Vector2(-1.24656, 221.959)
+
+[node name="Camera2D" type="Camera2D" parent="." index="4"]
+zoom = Vector2(1.4, 1.4)

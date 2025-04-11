@@ -1,0 +1,59 @@
+[gd_scene load_steps=12 format=3 uid="uid://3bst80cqf1sg"]
+
+[ext_resource type="Texture2D" uid="uid://c38240misw03i" path="res://TankBattle/kenney_top-down-tanks/PNG/fire/fire01.png" id="1_e51wl"]
+[ext_resource type="Texture2D" uid="uid://bpjdyfjnx8w23" path="res://TankBattle/kenney_top-down-tanks/PNG/fire/fire02.png" id="2_npiiv"]
+[ext_resource type="Texture2D" uid="uid://b1mkuj2rqc3rd" path="res://TankBattle/kenney_top-down-tanks/PNG/fire/fire03.png" id="3_l0wyv"]
+[ext_resource type="Texture2D" uid="uid://y1671oyn56f7" path="res://TankBattle/kenney_top-down-tanks/PNG/fire/fire04.png" id="4_i1car"]
+[ext_resource type="Texture2D" uid="uid://bsi4j6obdx0th" path="res://TankBattle/kenney_top-down-tanks/PNG/fire/fire05.png" id="5_m8fx6"]
+[ext_resource type="Texture2D" uid="uid://db2ohocx8s3si" path="res://TankBattle/kenney_top-down-tanks/PNG/fire/fire06.png" id="6_pk4su"]
+[ext_resource type="Texture2D" uid="uid://cof5gqbryydey" path="res://TankBattle/kenney_top-down-tanks/PNG/fire/fire07.png" id="7_6q17i"]
+[ext_resource type="Texture2D" uid="uid://ckbmkxseb6bqd" path="res://TankBattle/kenney_top-down-tanks/PNG/fire/fire08.png" id="8_v7vht"]
+[ext_resource type="Texture2D" uid="uid://c3vm4nx7jk7f4" path="res://TankBattle/kenney_top-down-tanks/PNG/fire/fire09.png" id="9_5qrxt"]
+[ext_resource type="Texture2D" uid="uid://chvjefv20p5dp" path="res://TankBattle/kenney_top-down-tanks/PNG/fire/fire010.png" id="10_siibs"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rfbi7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_e51wl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_npiiv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_l0wyv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i1car")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_m8fx6")
+}],
+"loop": false,
+"name": &"fire",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_pk4su")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6q17i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_v7vht")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5qrxt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_siibs")
+}],
+"loop": false,
+"name": &"smoke",
+"speed": 15.0
+}]
+
+[node name="Explosion" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_rfbi7")
+animation = &"smoke"

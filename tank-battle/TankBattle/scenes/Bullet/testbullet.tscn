@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdiwas4g08sq7"]
+
+[ext_resource type="PackedScene" uid="uid://c7fyt5hlcx4jv" path="res://TankBattle/scenes/Bullet/Bullet.tscn" id="1_mcdh7"]
+
+[node name="Bullet" instance=ExtResource("1_mcdh7")]
