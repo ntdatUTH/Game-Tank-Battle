@@ -41,10 +41,8 @@ func control(delta):
 	# Nếu có nhấn phím di chuyển
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * max_speed  # Bình thường hóa vector và nhân với tốc độ
-		velocity = velocity.rotated(rotation)  # Xoay vector theo hướng `rotation`
-
-	# Di chuyển đối tượng
-	position += velocity * delta
+		rotation = velocity.angle()  # Cập nhật góc quay theo hướng di chuyển
+		position += velocity * delta
 	move_and_slide()
 	
 	if Input.is_action_just_pressed('click'):
