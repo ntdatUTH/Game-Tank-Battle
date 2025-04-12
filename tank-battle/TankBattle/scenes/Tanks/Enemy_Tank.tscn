@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyccaoc4pd3kc"]
+[gd_scene load_steps=7 format=3 uid="uid://cyccaoc4pd3kc"]
 
 [ext_resource type="PackedScene" uid="uid://d06dw68cht31b" path="res://TankBattle/scenes/Tanks/tank.tscn" id="1_pyrxt"]
 [ext_resource type="Script" uid="uid://cewlhwr5sp0qr" path="res://TankBattle/scenes/Tanks/enemy_tank.gd" id="2_rthuk"]
 [ext_resource type="Texture2D" uid="uid://df0ogi7m2ry5c" path="res://TankBattle/kenney_top-down-tanks/Spritesheet/sheet_tanks.png" id="2_y02es"]
+[ext_resource type="Texture2D" uid="uid://bgvqm3s3jh8r8" path="res://TankBattle/kenney_top-down-tanks/PNG/Smoke/smokeWhite3.png" id="4_ghvxc"]
 [ext_resource type="PackedScene" uid="uid://due4xehmb6dbu" path="res://TankBattle/scenes/UI/unit_display.tscn" id="4_rthuk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y02es"]
@@ -38,6 +39,12 @@ region_filter_clip_enabled = true
 
 [node name="Muzzle" parent="Turret" index="0"]
 position = Vector2(-0.555018, 68.0051)
+
+[node name="Flash" parent="Turret" index="1"]
+position = Vector2(0.293068, 63.4826)
+texture = ExtResource("4_ghvxc")
+offset = Vector2(-0.5, -0.5)
+region_rect = Rect2(0, 0, 100, 100)
 
 [node name="DetectRadius" type="Area2D" parent="." index="4"]
 collision_mask = 2
