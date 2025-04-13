@@ -6,5 +6,3 @@ res://TankBattle/scenes/Bullet/Player_Bullet.tscn
 res://TankBattle/scenes/Bullet/Enemy_Bullet.tscn
 res://TankBattle/scenes/effects/explosion.tscn
 res://TankBattle/scenes/Tanks/tank.tscn
-res://TankBattle/scenes/Tanks/Tank.gd
-res://TankBattle/scenes/Tanks/player.gd
