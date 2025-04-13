@@ -6,3 +6,15 @@ res://TankBattle/scenes/Bullet/Player_Bullet.tscn
 res://TankBattle/scenes/Bullet/Enemy_Bullet.tscn
 res://TankBattle/scenes/effects/explosion.tscn
 res://TankBattle/scenes/Tanks/tank.tscn
+res://TankBattle/scenes/Tanks/player.gd
+res://TankBattle/scenes/UI/hud.tscn
+res://unit_display.gd
+res://TankBattle/scenes/UI/unit_display.tscn
+res://TankBattle/scenes/Tanks/GunTurret.tscn
+res://TankBattle/scenes/Tanks/Tank.gd
+res://TankBattle/scenes/Bullet/Gun_ Bullet.tscn
+res://TankBattle/scenes/Maps/map.gd
+res://TankBattle/scenes/Tanks/enemy_tank.gd
+res://TankBattle/kenney_top-down-tanks-redux/Spritesheet/onlyObjects_default.xml
+res://TankBattle/scenes/Enviroment/Obstacle.tscn
+res://TankBattle/scenes/Enviroment/Obstacle.gd

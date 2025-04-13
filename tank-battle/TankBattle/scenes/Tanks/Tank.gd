@@ -33,7 +33,6 @@ func _physics_process(delta):
 	if not alive:
 		return
 	control(delta)
-	move_and_slide()
 
 func take_damage(amount):
 	health -= amount
@@ -41,6 +40,7 @@ func take_damage(amount):
 	if health <=0:
 		explode()
 	 #hàm chết
+	
 func explode():
 	$CollisionShape2D.disabled=true
 	alive =false
@@ -48,6 +48,8 @@ func explode():
 	$Body.hide()
 	$Explosion.show()
 	$Explosion.play()
+	emit_signal('dead')
+	
 func _on_gun_timer_timeout() -> void:
 	can_shoot = true
 

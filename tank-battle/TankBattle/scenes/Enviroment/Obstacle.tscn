@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctkjc247jws16"]
+
+[ext_resource type="Script" uid="uid://n3mqpnmepmmy" path="res://TankBattle/scenes/Enviroment/Obstacle.gd" id="1_ovyd6"]
+[ext_resource type="Texture2D" uid="uid://c2s15yy54f6ru" path="res://TankBattle/kenney_top-down-tanks-redux/Spritesheet/onlyObjects_retina(1).png" id="2_ovyd6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ovyd6"]
+size = Vector2(56, 40)
+
+[node name="Obstacle" type="StaticBody2D"]
+scale = Vector2(0.5, 0.5)
+collision_mask = 3
+script = ExtResource("1_ovyd6")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_ovyd6")
+region_enabled = true
+region_rect = Rect2(476, 90, 56, 40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ovyd6")

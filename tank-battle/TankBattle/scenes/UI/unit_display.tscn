@@ -4,11 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://cf816jc1a1djs" path="res://TankBattle/kenney_top-down-tanks/PNG/mauday.png" id="2_8wur7"]
 
 [node name="UnitDisplay" type="Node2D"]
+rotation = 3.14159
 scale = Vector2(0.3, 0.3)
 script = ExtResource("1_1qgk5")
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 233.0
+offset_bottom = 70.0
 value = 100.0
 texture_progress = ExtResource("2_8wur7")
+texture_progress_offset = Vector2(-115, 143)

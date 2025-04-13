@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwoucsf351etn"]
+[gd_scene load_steps=5 format=3 uid="uid://cwoucsf351etn"]
 
 [ext_resource type="PackedScene" uid="uid://c7fyt5hlcx4jv" path="res://TankBattle/scenes/Bullet/Bullet.tscn" id="1_rh63i"]
 [ext_resource type="Script" uid="uid://bbufro0vlv45e" path="res://TankBattle/scenes/Bullet/PlayerBullet.gd" id="2_kuuh8"]
 [ext_resource type="Texture2D" uid="uid://b7c20sfxximkg" path="res://TankBattle/kenney_top-down-tanks/Vector/vector_tanks.svg" id="3_k8sdm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8sdm"]
+size = Vector2(17, 10)
 
 [node name="Player_Bullet" instance=ExtResource("1_rh63i")]
 collision_layer = 8
@@ -14,3 +17,7 @@ rotation = 1.5708
 texture = ExtResource("3_k8sdm")
 region_enabled = true
 region_rect = Rect2(151, 196, 10, 17)
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_k8sdm")
