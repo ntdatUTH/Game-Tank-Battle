@@ -1,15 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2fa88gj7dh4x"]
+[gd_scene load_steps=4 format=3 uid="uid://b2fa88gj7dh4x"]
 
 [ext_resource type="PackedScene" uid="uid://c7fyt5hlcx4jv" path="res://TankBattle/scenes/Bullet/Bullet.tscn" id="1_44g61"]
 [ext_resource type="Texture2D" uid="uid://b7c20sfxximkg" path="res://TankBattle/kenney_top-down-tanks/Vector/vector_tanks.svg" id="2_4dws7"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dws7"]
+size = Vector2(18, 10)
+
 [node name="Enemy_Bullet" instance=ExtResource("1_44g61")]
 collision_layer = 8
 collision_mask = 3
-speed = 750
+speed = 200
 
 [node name="Sprite" parent="." index="0"]
 rotation = 1.5708
 texture = ExtResource("2_4dws7")
 region_enabled = true
 region_rect = Rect2(171, 196, 10, 17)
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_4dws7")

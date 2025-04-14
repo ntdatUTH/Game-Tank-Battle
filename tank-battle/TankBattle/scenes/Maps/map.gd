@@ -22,7 +22,10 @@ func set_camera_limits():
 	camera.limit_top = int(map_limits.position.y * tile_size.y)
 	camera.limit_bottom = int(map_limits.end.y * tile_size.y)
 
-func _on_Tank_shoot(bullet, _position, _direction):
+func _on_Tank_shoot(bullet, _position, _direction,_target=null):
 	var b = bullet.instantiate()
 	add_child(b)
-	b.start(_position, _direction)
+	b.start(_position, _direction,_target)
+
+func _on_Player_dead():
+	get_tree().reload_current_scene()

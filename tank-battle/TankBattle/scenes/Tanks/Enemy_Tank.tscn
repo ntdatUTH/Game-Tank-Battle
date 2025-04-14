@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyccaoc4pd3kc"]
+[gd_scene load_steps=8 format=3 uid="uid://cyccaoc4pd3kc"]
 
 [ext_resource type="PackedScene" uid="uid://d06dw68cht31b" path="res://TankBattle/scenes/Tanks/tank.tscn" id="1_pyrxt"]
 [ext_resource type="Script" uid="uid://cewlhwr5sp0qr" path="res://TankBattle/scenes/Tanks/enemy_tank.gd" id="2_rthuk"]
 [ext_resource type="Texture2D" uid="uid://df0ogi7m2ry5c" path="res://TankBattle/kenney_top-down-tanks/Spritesheet/sheet_tanks.png" id="2_y02es"]
+[ext_resource type="PackedScene" uid="uid://b2fa88gj7dh4x" path="res://TankBattle/scenes/Bullet/Enemy_Bullet.tscn" id="3_u7a24"]
 [ext_resource type="Texture2D" uid="uid://bgvqm3s3jh8r8" path="res://TankBattle/kenney_top-down-tanks/PNG/Smoke/smokeWhite3.png" id="4_ghvxc"]
 [ext_resource type="PackedScene" uid="uid://due4xehmb6dbu" path="res://TankBattle/scenes/UI/unit_display.tscn" id="4_rthuk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y02es"]
-size = Vector2(83, 80)
+size = Vector2(83.2099, 86.5432)
 
 [node name="Enemy_Tank" instance=ExtResource("1_pyrxt")]
 scale = Vector2(0.162, 0.162)
@@ -15,9 +16,9 @@ collision_layer = 4
 collision_mask = 11
 script = ExtResource("2_rthuk")
 turret_speed = 50.0
-detect_radius = 300
+detect_radius = 350
+Bullet = ExtResource("3_u7a24")
 max_speed = 100.0
-max_health = 500000000
 
 [node name="Body" parent="." index="0"]
 texture = ExtResource("2_y02es")
@@ -25,7 +26,7 @@ region_enabled = true
 region_rect = Rect2(588, -1, 79, 77)
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0.5, -1)
+position = Vector2(-7.3586e-07, 3.31137e-06)
 shape = SubResource("RectangleShape2D_y02es")
 
 [node name="Turret" parent="." index="2"]
@@ -62,7 +63,9 @@ target_position = Vector2(93, 0)
 collision_mask = 7
 
 [node name="UnitDisplay" parent="." index="7" instance=ExtResource("4_rthuk")]
-position = Vector2(-37.037, -61.7284)
+position = Vector2(1.03478e-09, -3.8147e-06)
+rotation = -9.43002
 
+[connection signal="health_changed" from="." to="UnitDisplay" method="update_healthbar"]
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_detect_radius_body_entered"]
 [connection signal="body_exited" from="DetectRadius" to="." method="_on_detect_radius_body_exited"]

@@ -2,9 +2,9 @@ extends "res://TankBattle/scenes/Tanks/Tank.gd"
 
 @onready var parent = get_parent()
 
-@export var turret_speed: float = 50
-@export var detect_radius: int = 300
-var speed:float = 0
+@export var turret_speed: float
+@export var detect_radius: int
+var speed: float
 var target = null
 
 func _ready():
@@ -14,16 +14,17 @@ func _ready():
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
 
 func control(delta):
-	if $LookAhead1.is_colliding() or $LookAhead2.is_colliding():
-		speed = lerp(speed, 0.0, 0.1)
-	else:
-		speed = lerp(speed, max_speed, 0.1)
 	if parent is PathFollow2D:
+		if $LookAhead1.is_colliding() or $LookAhead2.is_colliding():
+			speed = lerp(speed, 0.0, 0.1)
+		else:
+			speed = lerp(speed, max_speed, 0.05)
 		parent.progress += speed*delta
 		# Reset vị trí local để tránh lệch khỏi PathFollow2D
 		position = Vector2i.ZERO
 	else:
-		#other movement code
+		
+		speed = 0
 		pass
 
 func _process(delta):
@@ -37,7 +38,7 @@ func _process(delta):
 		# Kiểm tra hướng bằng góc thay vì dot product
 		if abs(current_angle - target_angle) > 0.9:  # ~5.7 độ
 			print("HP bot: ", health)
-			shoot()
+			shoot(gun_shots,gun_spread,target)
 func _on_detect_radius_body_entered(body: Node2D) -> void:
 	print(body.name)
 	target = body
