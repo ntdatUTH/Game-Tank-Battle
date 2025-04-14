@@ -50,4 +50,4 @@ func control(delta):
 	
 	if Input.is_action_just_pressed('click'):
 		print("HP player: ", health)
-		shoot()
+		shoot(gun_shots, gun_spread)

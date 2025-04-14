@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b1wlpxh1c0p56"]
+[gd_scene load_steps=14 format=3 uid="uid://b1wlpxh1c0p56"]
 
 [ext_resource type="Script" uid="uid://f6g4nn8fd1ty" path="res://TankBattle/scenes/Maps/map.gd" id="1_2kgsp"]
 [ext_resource type="Texture2D" uid="uid://cil8tcvmyi4gk" path="res://TankBattle/kenney_top-down-tanks/terrainTiles_retina.png" id="1_fkvks"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cyccaoc4pd3kc" path="res://TankBattle/scenes/Tanks/Enemy_Tank.tscn" id="4_2vvdr"]
 [ext_resource type="PackedScene" uid="uid://cwoucsf351etn" path="res://TankBattle/scenes/Bullet/Player_Bullet.tscn" id="4_ndnf7"]
 [ext_resource type="PackedScene" uid="uid://bch84mxihyu8u" path="res://TankBattle/scenes/UI/hud.tscn" id="5_2vvdr"]
+[ext_resource type="PackedScene" uid="uid://vr263y4nmw7h" path="res://TankBattle/scenes/Bullet/missile.tscn" id="6_o7vqr"]
 [ext_resource type="PackedScene" uid="uid://dgo0pub76igoa" path="res://TankBattle/scenes/Tanks/GunTurret.tscn" id="8_g28ee"]
 [ext_resource type="PackedScene" uid="uid://ctkjc247jws16" path="res://TankBattle/scenes/Enviroment/Obstacle.tscn" id="8_o7vqr"]
 
@@ -2582,6 +2583,12 @@ _data = {
 }
 point_count = 9
 
+[sub_resource type="Curve2D" id="Curve2D_g28ee"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 216, 90, 0, 0, 0, 0, 1112, 65, 0, 0, 0, 0, 1106, 569, 0, 0, 0, 0, 223, 548, 0, 0, 0, 0, 217, 90)
+}
+point_count = 5
+
 [node name="Map01" type="Node"]
 script = ExtResource("1_2kgsp")
 
@@ -2615,6 +2622,24 @@ rotation = 1.56687
 rotation = -0.0495546
 scale = Vector2(0.4, 0.4)
 
+[node name="Path2D2" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_g28ee")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Paths/Path2D2"]
+position = Vector2(216, 90)
+rotation = -0.0278945
+
+[node name="Enemy_Tank" parent="Paths/Path2D2/PathFollow2D" instance=ExtResource("4_2vvdr")]
+rotation = -0.0495546
+scale = Vector2(0.4, 0.4)
+turret_speed = 3.0
+detect_radius = 500
+Bullet = ExtResource("6_o7vqr")
+max_speed = 175.0
+rotation_speed = 0.0
+max_health = 50
+gun_shots = 3
+
 [node name="HUD" parent="." instance=ExtResource("5_2vvdr")]
 
 [node name="GunTurret" parent="." instance=ExtResource("8_g28ee")]
@@ -2640,4 +2665,5 @@ type = 11
 [connection signal="health_changed" from="Player" to="HUD" method="update_healthbar"]
 [connection signal="shoot_" from="Player" to="." method="_on_Tank_shoot"]
 [connection signal="shoot_" from="Paths/Path2D/PathFollow2D/Enemy_Tank" to="." method="_on_Tank_shoot"]
+[connection signal="shoot_" from="Paths/Path2D2/PathFollow2D/Enemy_Tank" to="." method="_on_Tank_shoot"]
 [connection signal="shoot_" from="GunTurret" to="." method="_on_Tank_shoot"]

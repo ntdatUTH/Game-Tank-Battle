@@ -14,7 +14,7 @@ script = ExtResource("1_ovyd6")
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_ovyd6")
 region_enabled = true
-region_rect = Rect2(476, 90, 56, 40)
+region_rect = Rect2(532, 90, 56, 40)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ovyd6")

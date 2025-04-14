@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=3 uid="uid://vr263y4nmw7h"]
+
+[ext_resource type="PackedScene" uid="uid://c7fyt5hlcx4jv" path="res://TankBattle/scenes/Bullet/Bullet.tscn" id="1_qjjaq"]
+[ext_resource type="Script" uid="uid://cio5wbyke0sx3" path="res://TankBattle/scenes/Bullet/missile.gd" id="2_68vo5"]
+[ext_resource type="Texture2D" uid="uid://8kvuogvtgl0w" path="res://TankBattle/kenney_top-down-tanks-redux/Vector/topdownTanks_vector.svg" id="2_tno8u"]
+[ext_resource type="Texture2D" uid="uid://cl8jgubt3h46m" path="res://TankBattle/kenney_top-down-tanks/PNG/Smoke/spr_smoke_strip24.png" id="4_68vo5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68vo5"]
+size = Vector2(8, 18)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_68vo5"]
+particles_animation = true
+particles_anim_h_frames = 24
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_6c14b"]
+_limits = [0.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1gjbw"]
+curve = SubResource("Curve_6c14b")
+
+[sub_resource type="Curve" id="Curve_t456y"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8y6o4"]
+curve = SubResource("Curve_t456y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n5q1a"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+scale_min = 0.3
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_8y6o4")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+anim_speed_curve = SubResource("CurveTexture_1gjbw")
+
+[node name="Missile" instance=ExtResource("1_qjjaq")]
+collision_mask = 11
+script = ExtResource("2_68vo5")
+speed = 200
+damage = 15
+lifetime = 1.05
+steer_force = 50.0
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2(16, 1)
+rotation = 1.60392
+texture = ExtResource("2_tno8u")
+region_enabled = true
+region_rect = Rect2(50, 288, 8, 18)
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(16, 1)
+rotation = 1.59784
+shape = SubResource("RectangleShape2D_68vo5")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." index="4"]
+material = SubResource("CanvasItemMaterial_68vo5")
+position = Vector2(6, 1)
+scale = Vector2(0.1, 0.1)
+amount = 30
+texture = ExtResource("4_68vo5")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_n5q1a")
