@@ -1,5 +1,4 @@
 res://TankBattle/scenes/Maps/map_01.tscn
-res://pickup.gdshader
 res://TankBattle/scenes/Tanks/Player.tscn
 res://TankBattle/scenes/Tanks/Enemy_Tank.tscn
 res://TankBattle/scenes/Tanks/GunTurret.tscn
@@ -9,4 +8,10 @@ res://TankBattle/scenes/Bullet/Gun_ Bullet.tscn
 res://TankBattle/scenes/Tanks/tank.tscn
 res://TankBattle/scenes/Enviroment/Obstacle.tscn
 res://TankBattle/scenes/Bullet/missile.tscn
-res://pickup.tscn
+res://TankBattle/scenes/Items_Pickup/pickup.tscn
+res://TankBattle/scenes/Items_Pickup/pickup.gd
+res://TankBattle/scenes/Tanks/Tank.gd
+res://TankBattle/scenes/UI/hud.tscn
+res://TankBattle/scenes/UI/unit_display.tscn
+res://hud.gd
+res://TankBattle/scenes/Tanks/enemy_tank.gd

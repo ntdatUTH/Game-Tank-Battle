@@ -1,3 +1,5 @@
+TextureProgressBar
+VSeparator
 Sprite2D
 AnimationPlayer
 Node2D
@@ -11,4 +13,3 @@ StaticBody2D
 CollisionPolygon2D
 TileMapLayer
 AnimatedSprite2D
-RayCast2D

@@ -3,6 +3,11 @@ var bar_red = preload("res://TankBattle/kenney_top-down-tanks/PNG/maudo.png")
 var bar_green = preload("res://TankBattle/kenney_top-down-tanks/PNG/mauday.png")
 var bar_yellow = preload("res://TankBattle/kenney_top-down-tanks/PNG/mauvang.png")
 var bar_texture
+
+func update_ammo(value):
+	$Margin/Container/AmmoGauge.value=value
+
+
 func update_healthbar(value):
 	bar_texture = bar_green
 	if value < 60:

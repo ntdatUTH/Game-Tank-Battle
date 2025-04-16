@@ -12,6 +12,21 @@ func _ready():
 	var circle = CircleShape2D.new()
 	$DetectRadius/CollisionShape2D.shape = circle
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
+func shoot(num, spread, target = null):
+	if not can_shoot:
+		return
+	can_shoot = false
+	$GunTimer.start()
+	
+	var dir = Vector2(1, 0).rotated($Turret.global_rotation + deg_to_rad(90))
+	if num > 1:
+		for i in range(num):
+			var a = -spread + i * (2 * spread) / (num - 1)
+			shoot_.emit(Bullet, $Turret/Muzzle.global_position, dir.rotated(a), target)
+	else:
+		shoot_.emit(Bullet, $Turret/Muzzle.global_position, dir, target)
+
+	$AnimationPlayer.play("muzzle_flash")
 
 func control(delta):
 	if parent is PathFollow2D:
