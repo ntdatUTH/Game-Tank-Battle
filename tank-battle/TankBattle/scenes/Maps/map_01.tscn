@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b1wlpxh1c0p56"]
+[gd_scene load_steps=15 format=3 uid="uid://b1wlpxh1c0p56"]
 
 [ext_resource type="Script" uid="uid://f6g4nn8fd1ty" path="res://TankBattle/scenes/Maps/map.gd" id="1_2kgsp"]
 [ext_resource type="Texture2D" uid="uid://cil8tcvmyi4gk" path="res://TankBattle/kenney_top-down-tanks/terrainTiles_retina.png" id="1_fkvks"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://vr263y4nmw7h" path="res://TankBattle/scenes/Bullet/missile.tscn" id="6_o7vqr"]
 [ext_resource type="PackedScene" uid="uid://dgo0pub76igoa" path="res://TankBattle/scenes/Tanks/GunTurret.tscn" id="8_g28ee"]
 [ext_resource type="PackedScene" uid="uid://ctkjc247jws16" path="res://TankBattle/scenes/Enviroment/Obstacle.tscn" id="8_o7vqr"]
+[ext_resource type="PackedScene" uid="uid://xbxl5tu0lwsu" path="res://pickup.tscn" id="10_r3o64"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c2wl0"]
 texture = ExtResource("1_fkvks")
@@ -2612,6 +2613,7 @@ max_health = 120
 [node name="Paths" type="Node2D" parent="."]
 
 [node name="Path2D" type="Path2D" parent="Paths"]
+scale = Vector2(0.999344, 1.00416)
 curve = SubResource("Curve2D_2kgsp")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Paths/Path2D"]
@@ -2660,6 +2662,16 @@ type = 18
 position = Vector2(578, 430)
 rotation = 0.0968298
 type = 11
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Pickup2" parent="Items" instance=ExtResource("10_r3o64")]
+position = Vector2(766, 486)
+scale = Vector2(0.490183, 0.399698)
+
+[node name="Pickup" parent="Items" instance=ExtResource("10_r3o64")]
+position = Vector2(798, 374)
+scale = Vector2(0.484833, 0.389447)
 
 [connection signal="dead" from="Player" to="." method="_on_Player_dead"]
 [connection signal="health_changed" from="Player" to="HUD" method="update_healthbar"]
