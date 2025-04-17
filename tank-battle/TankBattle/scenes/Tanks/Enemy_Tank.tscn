@@ -29,7 +29,12 @@ region_rect = Rect2(588, -1, 79, 77)
 position = Vector2(-7.3586e-07, 3.31137e-06)
 shape = SubResource("RectangleShape2D_y02es")
 
-[node name="Turret" parent="." index="2"]
+[node name="Smoke" parent="." index="2"]
+position = Vector2(-55.5556, -18.5185)
+rotation = -3.49995
+scale = Vector2(4, 4)
+
+[node name="Turret" parent="." index="3"]
 position = Vector2(-0.293069, -1)
 scale = Vector2(1, 0.988119)
 texture = ExtResource("2_y02es")

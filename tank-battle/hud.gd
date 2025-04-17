@@ -7,7 +7,6 @@ var bar_texture
 func update_ammo(value):
 	$Margin/Container/AmmoGauge.value=value
 
-
 func update_healthbar(value):
 	bar_texture = bar_green
 	if value < 60:

@@ -29,7 +29,10 @@ visible = false
 shape = SubResource("RectangleShape2D_pt20k")
 metadata/_edit_group_ = true
 
-[node name="Turret" parent="." index="2"]
+[node name="Smoke" parent="." index="2"]
+position = Vector2(-0.908661, -18.0048)
+
+[node name="Turret" parent="." index="3"]
 position = Vector2(1.8581e-09, 0)
 rotation = 0.00914076
 scale = Vector2(0.145951, 0.16219)

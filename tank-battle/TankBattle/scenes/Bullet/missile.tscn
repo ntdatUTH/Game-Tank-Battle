@@ -61,6 +61,7 @@ rotation = 1.59784
 shape = SubResource("RectangleShape2D_68vo5")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." index="4"]
+show_behind_parent = true
 material = SubResource("CanvasItemMaterial_68vo5")
 position = Vector2(6, 1)
 scale = Vector2(0.1, 0.1)

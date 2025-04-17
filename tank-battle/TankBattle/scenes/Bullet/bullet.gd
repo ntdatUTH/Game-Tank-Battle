@@ -16,6 +16,7 @@ func start(_position, _direction,_target=null):
 	velocity = _direction * speed
 	$Lifetime.start()
 	target=_target
+
 func seek():
 	var desired = (target.position - position).normalized() * speed
 	var steer = desired - velocity
@@ -33,10 +34,11 @@ func _process(delta):
 
 #Hàm phát nổ
 func explode():
-	velocity = Vector2()
+	velocity = Vector2()	
 	$Sprite.hide()
 	$Explosion.show()
 	$Explosion.play("smoke")
+
 func _on_Bullet_body_entered(body: Node2D) -> void:
 	print("trung enemy")
 	explode()
@@ -45,5 +47,6 @@ func _on_Bullet_body_entered(body: Node2D) -> void:
 
 func _on_lifetime_timeout() -> void:
 	explode()
+
 func _on_explosion_animation_finished() -> void:
 	queue_free() # Replace with function body.

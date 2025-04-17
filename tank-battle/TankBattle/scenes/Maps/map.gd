@@ -3,6 +3,7 @@ extends Node
 func _ready():
 	set_camera_limits()
 	Input.set_custom_mouse_cursor(load("res://TankBattle/kenney_top-down-tanks/PNG/Tanks/ngắm.png"),Input.CURSOR_ARROW,Vector2(16,16))
+	$Player.map = $Ground
 func set_camera_limits():
 	# Kiểm tra node tồn tại
 	if not has_node("Ground") or not has_node("Player/Camera2D"):
