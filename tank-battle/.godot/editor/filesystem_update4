@@ -6,3 +6,10 @@ res://TankBattle/scenes/Bullet/Player_Bullet.tscn
 res://TankBattle/scenes/Bullet/Enemy_Bullet.tscn
 res://TankBattle/scenes/effects/explosion.tscn
 res://TankBattle/scenes/Tanks/tank.tscn
+<<<<<<< Updated upstream
+=======
+res://TankBattle/scenes/Maps/TileSetMaker.tscn
+res://TankBattle/scenes/effects/smoke.tscn
+res://TankBattle/scenes/UI/title_screen.tscn
+res://TankBattle/scenes/Maps/map_02.tscn
+>>>>>>> Stashed changes
