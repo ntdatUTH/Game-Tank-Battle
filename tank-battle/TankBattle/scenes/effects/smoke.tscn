@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://tt456uu4n6vc"]
+
+[sub_resource type="Gradient" id="Gradient_ghdqa"]
+offsets = PackedFloat32Array(0, 0.183908, 0.310345, 1)
+colors = PackedColorArray(0.795536, 0.329042, 0.24596, 0.603922, 0.486208, 0.234509, 0.179016, 0.797386, 0.509286, 0.509286, 0.509286, 0.447059, 0, 0, 0, 0.113725)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5fqmq"]
+gradient = SubResource("Gradient_ghdqa")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ghdqa"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 10, 1)
+spread = 15.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = 50.0
+tangential_accel_max = 50.0
+scale_min = 10.0
+scale_max = 10.0
+color_ramp = SubResource("GradientTexture1D_5fqmq")
+
+[node name="Smoke" type="GPUParticles2D"]
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_ghdqa")

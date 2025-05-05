@@ -1,3 +1,4 @@
+GPUParticles2D
 TextureProgressBar
 VSeparator
 Sprite2D
@@ -6,10 +7,8 @@ Node2D
 CollisionShape2D
 Area2D
 Node
-GPUParticles2D
 PathFollow2D
 Path2D
 StaticBody2D
 CollisionPolygon2D
 TileMapLayer
-AnimatedSprite2D

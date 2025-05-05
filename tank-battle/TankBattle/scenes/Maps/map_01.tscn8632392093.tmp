@@ -2606,10 +2606,9 @@ polygon = PackedVector2Array(-6, -6, 1175, -7, 1174, 678, -7, 678, -6, 0, -15, 6
 [node name="Player" parent="." instance=ExtResource("2_c2wl0")]
 position = Vector2(563, 305)
 Bullet = ExtResource("4_ndnf7")
-max_speed = 70.0
+max_speed = 100.0
 gun_cooldown = 0.5
 max_health = 120
-offroad_friction = 0.3
 
 [node name="Paths" type="Node2D" parent="."]
 
@@ -2648,6 +2647,10 @@ gun_shots = 3
 
 [node name="GunTurret" parent="." instance=ExtResource("8_g28ee")]
 position = Vector2(1015, 334)
+gun_shots = 1
+gun_spread = 0.2
+max_ammo = 20
+ammo = -1
 
 [node name="Obstacle" type="Node2D" parent="."]
 
