@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d06dw68cht31b" path="res://TankBattle/scenes/Tanks/tank.tscn" id="1_pyrxt"]
 [ext_resource type="Script" uid="uid://cewlhwr5sp0qr" path="res://TankBattle/scenes/Tanks/enemy_tank.gd" id="2_rthuk"]
-[ext_resource type="Texture2D" uid="uid://df0ogi7m2ry5c" path="res://TankBattle/kenney_top-down-tanks/Spritesheet/sheet_tanks.png" id="2_y02es"]
+[ext_resource type="Texture2D" uid="uid://df0ogi7m2ry5c" path="res://TankBattle/kenney_top-down-tanks/PNG/sheet_tanks.png" id="2_y02es"]
 [ext_resource type="PackedScene" uid="uid://b2fa88gj7dh4x" path="res://TankBattle/scenes/Bullet/Enemy_Bullet.tscn" id="3_u7a24"]
 [ext_resource type="Texture2D" uid="uid://bgvqm3s3jh8r8" path="res://TankBattle/kenney_top-down-tanks/PNG/Smoke/smokeWhite3.png" id="4_ghvxc"]
 [ext_resource type="PackedScene" uid="uid://due4xehmb6dbu" path="res://TankBattle/scenes/UI/unit_display.tscn" id="4_rthuk"]

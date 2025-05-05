@@ -1,0 +1,134 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0a2ie7at1txf"]
+
+[ext_resource type="Texture2D" uid="uid://dtfimajyh7j6p" path="res://TankBattle/kenney_top-down-tanks/sample-removebg-preview.png" id="1_1fys7"]
+[ext_resource type="FontFile" uid="uid://dsea3nsc6vruv" path="res://TankBattle/kenney_top-down-tanks/font/Xolonium-Bold.ttf" id="1_uf0ll"]
+[ext_resource type="Script" uid="uid://ms5xrpja7gwi" path="res://TankBattle/scenes/UI/title_screen.gd" id="1_yb38r"]
+[ext_resource type="FontFile" uid="uid://37afx47vlvie" path="res://TankBattle/kenney_top-down-tanks/font/Xolonium-Regular.ttf" id="2_yb38r"]
+
+[sub_resource type="Animation" id="Animation_uf0ll"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(393, 227)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_2c588"]
+resource_name = "nhay"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(0.482968, 0.615572),
+"update": 0,
+"values": [Vector2(393, -70), Vector2(393, 227)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.866667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_duegn"]
+_data = {
+&"RESET": SubResource("Animation_uf0ll"),
+&"nhay": SubResource("Animation_2c588")
+}
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+script = ExtResource("1_yb38r")
+
+[node name="Sample-removebg-preview" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.541176)
+z_index = -1
+position = Vector2(596, 405)
+scale = Vector2(1.11953, 1.8273)
+texture = ExtResource("1_1fys7")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.330583
+anchor_top = 0.325729
+anchor_right = 0.671875
+anchor_bottom = 0.439038
+offset_left = 12.1684
+offset_top = 15.9276
+offset_right = 192.0
+offset_bottom = 46.5036
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("1_uf0ll")
+theme_override_font_sizes/font_size = 86
+text = "Tank Battle "
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayMessage" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.218761
+anchor_top = 0.529578
+anchor_right = 0.891504
+anchor_bottom = 0.759516
+offset_left = 1.98785
+offset_top = 23.8333
+offset_right = 41.9878
+offset_bottom = 46.8333
+theme_override_colors/font_color = Color(1, 0.972656, 0.972656, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("2_yb38r")
+theme_override_font_sizes/font_size = 53
+text = "Press Space to play
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../PlayMessage")
+libraries = {
+&"": SubResource("AnimationLibrary_duegn")
+}
+autoplay = "nhay"
