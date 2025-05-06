@@ -7,7 +7,8 @@ var slow_terrain = [
 var current_level = 0
 var levels = [
 	"res://TankBattle/scenes/UI/title_screen.tscn",
-	"res://TankBattle/scenes/Maps/map_01.tscn"
+	"res://TankBattle/scenes/Maps/map_01.tscn",
+	"res://TankBattle/scenes/Maps/map_02.tscn"
 ]
 
 func restart():

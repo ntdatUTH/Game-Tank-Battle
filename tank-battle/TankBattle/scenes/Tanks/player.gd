@@ -1,28 +1,5 @@
 extends "res://TankBattle/scenes/Tanks/Tank.gd"
 
-#func control(delta):
-	#$Turret.look_at(get_global_mouse_position())
-#
-	#var rot_dir = 0
-	#if Input.is_action_pressed("turn_right"):
-		#rot_dir += 1
-#
-	#if Input.is_action_pressed("turn_left"):
-		#rot_dir -= 1
-	
-	#rotation += rotation_speed * rot_dir * delta
-	
-	## Xóa `velocity=Vector2()` để tránh lỗi
-	#velocity = Vector2.ZERO
-	
-	#if Input.is_action_pressed("forward"):
-		#velocity = Vector2(speed, 0)
-	#if Input.is_action_pressed("back"):
-		#velocity = Vector2(-speed / 2, 0)
-	
-	## Di chuyển nhân vật
-	#print("Velocity: ", velocity)
-	#move_and_slide()
 func control(delta):
 	$Turret.look_at(get_global_mouse_position())
 	$Turret.rotation += deg_to_rad(-90)

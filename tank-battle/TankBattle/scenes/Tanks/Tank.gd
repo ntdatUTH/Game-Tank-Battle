@@ -12,6 +12,7 @@ signal ammo_changed
 @export var max_health: int
 @export var offroad_friction: float
 
+
 @export var gun_shots: int = 1
 @export_range(0, 1.5) var gun_spread: float = 0.2
 @export var max_ammo: int = 20

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://d06dw68cht31b" path="res://TankBattle/scenes/Tanks/tank.tscn" id="1_tjheg"]
 [ext_resource type="Script" uid="uid://c2tayfaxfylmt" path="res://TankBattle/scenes/Tanks/player.gd" id="2_fw815"]
 [ext_resource type="Texture2D" uid="uid://blyrl45qmoqth" path="res://TankBattle/kenney_top-down-tanks/Vector/preview.png" id="2_pt20k"]
-[ext_resource type="PackedScene" uid="uid://b4lcfammdn2ly" path="res://TankBattle/scenes/Bullet/PlayerBullet.tscn" id="3_una4e"]
+[ext_resource type="PackedScene" uid="uid://cwoucsf351etn" path="res://TankBattle/scenes/Bullet/Player_Bullet.tscn" id="3_4vnnm"]
 [ext_resource type="Texture2D" uid="uid://j2haaqxeh8b8" path="res://TankBattle/kenney_top-down-tanks/PNG/Tanks/Nong.png" id="4_rory0"]
 [ext_resource type="Texture2D" uid="uid://bgvqm3s3jh8r8" path="res://TankBattle/kenney_top-down-tanks/PNG/Smoke/smokeWhite3.png" id="6_4vnnm"]
 
@@ -15,7 +15,8 @@ rotation = -1.57587
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("2_fw815")
-Bullet = ExtResource("3_una4e")
+Bullet = ExtResource("3_4vnnm")
+max_speed = 70.0
 gun_cooldown = 0.4
 ammo = 10
 

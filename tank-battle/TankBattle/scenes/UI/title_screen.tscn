@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0a2ie7at1txf"]
+[gd_scene load_steps=9 format=3 uid="uid://b0a2ie7at1txf"]
 
 [ext_resource type="Texture2D" uid="uid://dtfimajyh7j6p" path="res://TankBattle/kenney_top-down-tanks/sample-removebg-preview.png" id="1_1fys7"]
 [ext_resource type="FontFile" uid="uid://dsea3nsc6vruv" path="res://TankBattle/kenney_top-down-tanks/font/Xolonium-Bold.ttf" id="1_uf0ll"]
@@ -64,6 +64,8 @@ _data = {
 &"RESET": SubResource("Animation_uf0ll"),
 &"nhay": SubResource("Animation_2c588")
 }
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yb38r"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -132,3 +134,22 @@ libraries = {
 &"": SubResource("AnimationLibrary_duegn")
 }
 autoplay = "nhay"
+
+[node name="Map1Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 400.0
+offset_right = 411.0
+offset_bottom = 473.0
+text = "map01
+"
+icon = SubResource("ViewportTexture_yb38r")
+
+[node name="Map2Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 779.0
+offset_top = 397.0
+offset_right = 890.0
+offset_bottom = 475.0
+text = "map02
+"

@@ -37,7 +37,7 @@ func explode():
 	velocity = Vector2()	
 	$Sprite.hide()
 	$Explosion.show()
-	$Explosion.play("smoke")
+	$Explosion.play("smoke")	
 
 func _on_Bullet_body_entered(body: Node2D) -> void:
 	print("trung enemy")

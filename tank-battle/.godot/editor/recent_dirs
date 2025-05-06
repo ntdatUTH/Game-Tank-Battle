@@ -1,3 +1,4 @@
+res://TankBattle/scenes/Tanks
 res://TankBattle/scenes/Maps
 res://TankBattle/kenney_top-down-tanks/font
 res://TankBattle/scenes/UI
@@ -6,4 +7,3 @@ res://TankBattle/scenes/effects
 res://TankBattle/scenes/Items_Pickup
 res://TankBattle/scenes/Bullet
 res://TankBattle/scenes/Enviroment
-res://TankBattle/scenes/Tanks
