@@ -132,3 +132,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_duegn")
 }
 autoplay = "nhay"
+
+[node name="LogoutButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1040.0
+offset_top = 27.0
+offset_right = 1144.0
+offset_bottom = 99.0
+theme_override_font_sizes/font_size = 27
+text = "Đăng xuất"
+
+[connection signal="pressed" from="LogoutButton" to="." method="_on_logout_button_pressed"]

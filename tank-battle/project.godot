@@ -11,13 +11,18 @@ config_version=5
 [application]
 
 config/name="Tank Battle"
-run/main_scene="uid://4ph4tqhwdtng"
+run/main_scene="uid://dufcgso143pky"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GLOBALS="*res://globals.gd"
+Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-firebase/plugin.cfg")
 
 [input]
 
