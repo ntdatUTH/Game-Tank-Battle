@@ -1,16 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://dufcgso143pky"]
+[gd_scene load_steps=5 format=3 uid="uid://dufcgso143pky"]
 
 [ext_resource type="Script" uid="uid://bub0iac8k2k6u" path="res://TankBattle/scenes/databaseFirebase/authentication.gd" id="1_7j68d"]
+[ext_resource type="PackedScene" uid="uid://cyccaoc4pd3kc" path="res://TankBattle/scenes/Tanks/Enemy_Tank.tscn" id="2_2mnrq"]
+[ext_resource type="PackedScene" uid="uid://vr263y4nmw7h" path="res://TankBattle/scenes/Bullet/missile.tscn" id="3_ptyjg"]
+
+[sub_resource type="Curve2D" id="Curve2D_uv2di"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 216, 90, 0, 0, 0, 0, 437, 23, 0, 0, 0, 0, 1112, 65, 0, 0, 0, 0, 1106, 569, 0, 0, 0, 0, 223, 548, 0, 0, 0, 0, 217, 90)
+}
+point_count = 6
 
 [node name="Authentication" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2.0
-offset_top = -17.0
-offset_right = -2.0
-offset_bottom = -17.0
+offset_left = 69.0
+offset_top = 7.0
+offset_right = 69.0
+offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7j68d")
@@ -34,28 +42,66 @@ theme_override_constants/separation = 20
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-text = "No loggin"
+theme_override_font_sizes/font_size = 23
+text = "Đăng nhập "
 
 [node name="EmailLineEdit" type="LineEdit" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 18
 placeholder_text = "Email"
 
 [node name="PasswordLineEdit" type="LineEdit" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 18
 placeholder_text = "Password"
 secret = true
 
 [node name="LoginButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Login "
 
-[node name="SignupButton" type="Button" parent="VBoxContainer"]
+[node name="remember_me_checkbox" type="CheckBox" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Sign up"
+size_flags_horizontal = 8
+size_flags_vertical = 8
+size_flags_stretch_ratio = 3.2
+theme_override_font_sizes/font_size = 16
+text = "Ghi nhớ mật khẩu"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="VBoxContainer"]
 
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SignUpButton" type="Button" parent="VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Đăng ký tại đây "
+
+[node name="Path2D2" type="Path2D" parent="."]
+curve = SubResource("Curve2D_uv2di")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D2"]
+position = Vector2(216, 90)
+rotation = -0.29436
+
+[node name="Enemy_Tank" parent="Path2D2/PathFollow2D" instance=ExtResource("2_2mnrq")]
+rotation = -0.0495546
+scale = Vector2(0.4, 0.4)
+turret_speed = 3.0
+detect_radius = 500
+Bullet = ExtResource("3_ptyjg")
+max_speed = 175.0
+max_health = 50
+offroad_friction = 0.0
+gun_shots = 3
+
 [connection signal="pressed" from="VBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/SignupButton" to="." method="_on_signup_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/SignUpButton" to="." method="_on_sign_up_button_pressed"]

@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ctkjc247jws16" path="res://TankBattle/scenes/Enviroment/Obstacle.tscn" id="8_o7vqr"]
 [ext_resource type="PackedScene" uid="uid://cdxw1c824ninh" path="res://TankBattle/scenes/Items_Pickup/pickup.tscn" id="10_r3o64"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c2wl0"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r3o64"]
 texture = ExtResource("1_fkvks")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -2576,7 +2576,7 @@ texture_region_size = Vector2i(32, 32)
 79:31/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_2kgsp"]
-sources/0 = SubResource("TileSetAtlasSource_c2wl0")
+sources/0 = SubResource("TileSetAtlasSource_r3o64")
 
 [sub_resource type="Curve2D" id="Curve2D_2kgsp"]
 _data = {

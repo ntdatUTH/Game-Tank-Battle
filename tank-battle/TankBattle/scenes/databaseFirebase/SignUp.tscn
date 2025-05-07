@@ -1,0 +1,143 @@
+[gd_scene load_steps=6 format=3 uid="uid://cp65o8ekxyq48"]
+
+[ext_resource type="Script" uid="uid://d4g1wxmscxutl" path="res://TankBattle/scenes/databaseFirebase/sign_up.gd" id="1_pfe3f"]
+[ext_resource type="PackedScene" uid="uid://cyccaoc4pd3kc" path="res://TankBattle/scenes/Tanks/Enemy_Tank.tscn" id="2_ta4sv"]
+[ext_resource type="PackedScene" uid="uid://vr263y4nmw7h" path="res://TankBattle/scenes/Bullet/missile.tscn" id="3_3hs7f"]
+
+[sub_resource type="Curve2D" id="Curve2D_c5t1p"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 216, 90, 0, 0, 0, 0, 1112, 65, 0, 0, 0, 0, 1106, 569, 0, 0, 0, 0, 135.165, 566.271, 0, 0, 0, 0, 217, 90)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_hn87u"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 273.179, 280.832, 0, 0, 0, 0, 341, 464, -32.7846, 0, 32.7846, 0, 375.246, 515.854, -36.1997, 0.683013, 36.1997, -0.683013, 881.087, 506.868, 0, 0, 0, 0, 962.632, 489.962, 0, 0, 0, 0, 1008.48, 315.171, 1.36603, 53.9581, -1.36603, -53.9581, 1008.48, 218.323, 0, 0, 0, 0, 948.622, 114.524, 0, 0, 0, 0, 539.354, 118.507, 37.5657, -5.46411, -37.5657, 5.46411, 349.229, 106.557, 0, 0, 0, 0, 232.152, 142.408, 0, 0, 0, 0, 280.184, 230.043)
+}
+point_count = 12
+
+[node name="SignUp" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = 51.0
+offset_right = 33.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pfe3f")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -195.0
+offset_top = -176.0
+offset_right = 277.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="StateLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "Đăng ký tài khoản "
+
+[node name="EmailLineEdit" type="LineEdit" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+placeholder_text = "Email"
+
+[node name="PaswordLineEdit" type="LineEdit" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+placeholder_text = "Mật khẩu"
+secret = true
+
+[node name="PasswordLineEdit2" type="LineEdit" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+placeholder_text = "Nhập lại mật khẩu "
+secret = true
+
+[node name="SignUpButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Đăng ký "
+
+[node name="HTTPRequest" type="HTTPRequest" parent="VBoxContainer"]
+unique_name_in_owner = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="LoginButton" type="Button" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Đăng nhập "
+
+[node name="Path2D2" type="Path2D" parent="."]
+position = Vector2(-29.7857, -56.4484)
+scale = Vector2(1.02679, 1.09921)
+curve = SubResource("Curve2D_c5t1p")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D2"]
+position = Vector2(216, 90)
+rotation = -0.0278945
+
+[node name="Enemy_Tank" parent="Path2D2/PathFollow2D" instance=ExtResource("2_ta4sv")]
+rotation = -0.0495546
+scale = Vector2(0.4, 0.4)
+turret_speed = 3.0
+detect_radius = 500
+Bullet = ExtResource("3_3hs7f")
+max_speed = 175.0
+max_health = 50
+offroad_friction = 0.0
+gun_shots = 3
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-5.249, 1.33215)
+scale = Vector2(1.00472, 1.00158)
+curve = SubResource("Curve2D_hn87u")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(273.179, 280.832)
+rotation = 1.21618
+
+[node name="Enemy_Tank" parent="Path2D/PathFollow2D" instance=ExtResource("2_ta4sv")]
+position = Vector2(-62.8285, 57.8324)
+rotation = -0.0495546
+scale = Vector2(0.4, 0.4)
+offroad_friction = 0.0
+
+[node name="Path2D3" type="Path2D" parent="."]
+position = Vector2(3, 8)
+scale = Vector2(0.999344, 1.00416)
+curve = SubResource("Curve2D_hn87u")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D3"]
+position = Vector2(273.179, 280.832)
+rotation = 1.21618
+
+[node name="Enemy_Tank" parent="Path2D3/PathFollow2D" instance=ExtResource("2_ta4sv")]
+position = Vector2(17.505, 4.34741)
+rotation = -0.0495546
+scale = Vector2(0.4, 0.4)
+offroad_friction = 0.0
+
+[connection signal="pressed" from="VBoxContainer/SignUpButton" to="." method="_on_sign_up_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]

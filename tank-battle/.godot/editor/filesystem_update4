@@ -1,6 +1,5 @@
-res://TankBattle/scenes/databaseFirebase/authentication.gd
-res://TankBattle/scenes/databaseFirebase/Authentication.tscn
 res://TankBattle/scenes/Tanks/Player.tscn
+res://TankBattle/scenes/databaseFirebase/sign_up.gd
 res://TankBattle/scenes/Tanks/Enemy_Tank.tscn
 res://TankBattle/scenes/Tanks/GunTurret.tscn
 res://TankBattle/scenes/Bullet/Bullet.tscn
@@ -10,4 +9,6 @@ res://TankBattle/scenes/Tanks/tank.tscn
 res://TankBattle/scenes/Maps/TileSetMaker.tscn
 res://TankBattle/scenes/effects/smoke.tscn
 res://TankBattle/scenes/UI/title_screen.tscn
-res://TankBattle/scenes/UI/title_screen.gd
+res://TankBattle/scenes/databaseFirebase/Authentication.tscn
+res://TankBattle/scenes/databaseFirebase/SignUp.tscn
+res://TankBattle/scenes/databaseFirebase/authentication.gd
