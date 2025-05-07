@@ -142,7 +142,7 @@ offset_top = 400.0
 offset_right = 411.0
 offset_bottom = 473.0
 text = "map01
-"
+host"
 icon = SubResource("ViewportTexture_yb38r")
 
 [node name="Map2Button" type="Button" parent="."]
@@ -152,4 +152,15 @@ offset_top = 397.0
 offset_right = 890.0
 offset_bottom = 475.0
 text = "map02
+join
 "
+
+[node name="inputIP" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 546.0
+offset_top = 414.0
+offset_right = 761.0
+offset_bottom = 455.0
+
+[connection signal="pressed" from="Map1Button" to="." method="host_game"]
+[connection signal="pressed" from="Map2Button" to="." method="join_game"]

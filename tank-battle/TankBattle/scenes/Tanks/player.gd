@@ -1,8 +1,12 @@
 extends "res://TankBattle/scenes/Tanks/Tank.gd"
 
 func control(delta):
+	if not is_multiplayer_authority():
+		return
+
 	$Turret.look_at(get_global_mouse_position())
 	$Turret.rotation += deg_to_rad(-90)
+	
 	velocity = Vector2.ZERO  # Khởi tạo lại velocity mỗi frame
 	var rot_dir = 0
 	
@@ -27,4 +31,16 @@ func control(delta):
 	
 	if Input.is_action_just_pressed('click'):
 		print("HP player: ", health)
-		shoot(gun_shots, gun_spread)
+		shoot.rpc(gun_shots, gun_spread) # Gọi RPC để đồng bộ bắn đạn
+
+func setup_local_player():
+	if is_multiplayer_authority():
+		$Camera2D.make_current()
+		set_process(true)  # Bật _process()
+		set_physics_process(true)  # Bật _physics_process()
+		set_process_input(true)
+		
+		# Lấy map hiện tại từ MapManager
+		var map = get_node("/root/Map01")
+		if map and map.has_method("set_camera_limits"):
+			map.set_camera_limits(self)

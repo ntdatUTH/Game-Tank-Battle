@@ -1,5 +1,6 @@
-res://TankBattle/scenes/Tanks
 res://TankBattle/scenes/Maps
+res://TankBattle
+res://TankBattle/scenes/Tanks
 res://TankBattle/kenney_top-down-tanks/font
 res://TankBattle/scenes/UI
 res://

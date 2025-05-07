@@ -41,6 +41,7 @@ func _ready():
 func control(delta):
 	pass
 
+@rpc("call_local", "any_peer")
 func shoot(num, spread, target=null):
 	if can_shoot and ammo > 0:
 		ammo -= 1  # Sẽ tự động gọi setter
@@ -97,3 +98,8 @@ func _on_gun_timer_timeout() -> void:
 
 func _on_explosion_animation_finished() -> void:
 	queue_free()
+
+@rpc("any_peer", "call_local")
+func sync_position(pos, rot):
+	global_position = pos
+	rotation = rot
