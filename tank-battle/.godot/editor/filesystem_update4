@@ -10,7 +10,7 @@ res://TankBattle/scenes/Bullet/Gun_ Bullet.tscn
 res://TankBattle/scenes/UI/hud.tscn
 res://TankBattle/scenes/Maps/map_03.tscn
 res://TankBattle/scenes/Bullet/Bullet.tscn
+res://TankBattle/network_manager.gd
 res://TankBattle/scenes/Tanks/player.gd
 res://TankBattle/scenes/Tanks/Tank.gd
-res://TankBattle/network_manager.gd
-res://TankBattle/scenes/UI/title_screen.gd
+res://TankBattle/scenes/Bullet/Player_Bullet.tscn

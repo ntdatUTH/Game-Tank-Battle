@@ -59,7 +59,7 @@ func add_player(id):
 	var player = player_scene.instantiate()
 	player.name = str(id)
 	player.set_multiplayer_authority(id)
-	
+	player.Bullet = load("res://TankBattle/scenes/Bullet/Player_Bullet.tscn")
 	var spawn_points = get_tree().get_nodes_in_group("spawn_points")
 	#player.global_position = spawn_points[randi() % spawn_points.size()].global_position
 	player.global_position = Vector2(100, 100)
@@ -81,29 +81,6 @@ func add_player(id):
 	
 	if id == multiplayer.get_unique_id():
 		player.setup_local_player()
-
-func spawn_player():
-	var player_scene =load("res://TankBattle/scenes/Tanks/Player.tscn")
-
-	var player = player_scene.instantiate()
-
-	# Đặt vị trí
-	player.global_position = Vector2(100, 100)
-
-	# ✅ KẾT NỐI TÍN HIỆU
-	if player.has_signal("shoot_"):
-		player.shoot_.connect(GameManager._on_Tank_shoot)
-
-	if player.has_signal("dead"):
-		player.dead.connect(GameManager._on_Player_dead)
-		get_node("/root/Map01").add_child(player)
-	var hud = load("res://TankBattle/scenes/UI/hud.tscn")
-	var hud_instance = hud.instantiate()
-	hud_instance.name = "HUD"
-	get_node("/root/Map01").add_child(hud_instance)  # Thêm vào node bạn muốn
-	var hud_node = $HUD
-	player.ammo_changed.connect(hud_node.update_ammo)
-	player.health_changed.connect(hud_node.update_healthbar)
 
 @rpc("any_peer")
 func sync_existing_players(existing_players: Dictionary):

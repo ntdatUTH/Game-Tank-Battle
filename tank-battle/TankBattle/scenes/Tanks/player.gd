@@ -3,7 +3,7 @@ extends "res://TankBattle/scenes/Tanks/Tank.gd"
 func control(delta):
 	if not is_multiplayer_authority():
 		return
-
+		
 	$Turret.look_at(get_global_mouse_position())
 	$Turret.rotation += deg_to_rad(-90)
 	
@@ -44,3 +44,4 @@ func setup_local_player():
 		var map = get_node("/root/Map01")
 		if map and map.has_method("set_camera_limits"):
 			map.set_camera_limits(self)
+		print("đã chạy setup_local_player")

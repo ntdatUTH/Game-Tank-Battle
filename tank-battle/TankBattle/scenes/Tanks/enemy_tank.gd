@@ -52,7 +52,6 @@ func _process(delta):
 	
 		# Kiểm tra hướng bằng góc thay vì dot product
 		if abs(current_angle - target_angle) > 0.9:  # ~5.7 độ
-			print("HP bot: ", health)
 			shoot(gun_shots,gun_spread,target)
 func _on_detect_radius_body_entered(body: Node2D) -> void:
 	print(body.name)

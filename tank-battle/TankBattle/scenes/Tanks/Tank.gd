@@ -32,6 +32,7 @@ var health
 var map
 
 func _ready():
+	set_physics_process(true)
 	health = max_health
 	$Smoke.emitting = false
 	health_changed.emit(health * 100 / max_health)
@@ -59,7 +60,11 @@ func shoot(num, spread, target=null):
 func _physics_process(delta):
 	if not alive:
 		return
-	control(delta)
+	if is_multiplayer_authority():
+		control(delta)
+		# Đồng bộ vị trí nếu là client
+		if not multiplayer.is_server():
+			sync_position.rpc_id(1, global_position, rotation)
 	if map:
 		var tile_pos = map.local_to_map(position)
 		var atlas_coords = map.get_cell_atlas_coords(0, tile_pos)
@@ -99,7 +104,9 @@ func _on_gun_timer_timeout() -> void:
 func _on_explosion_animation_finished() -> void:
 	queue_free()
 
-@rpc("any_peer", "call_local")
+#@rpc("any_peer", "call_local")
+@rpc("unreliable", "call_remote")
 func sync_position(pos, rot):
-	global_position = pos
-	rotation = rot
+	if not is_multiplayer_authority():
+		global_position = pos
+		rotation = rot
