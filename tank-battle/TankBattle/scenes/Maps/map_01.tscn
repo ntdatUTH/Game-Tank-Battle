@@ -2676,6 +2676,13 @@ type = 1
 position = Vector2(770, 383)
 scale = Vector2(0.4, 0.4)
 
+[node name="QuitButton" type="Button" parent="."]
+offset_left = -4.0
+offset_top = 104.0
+offset_right = 103.0
+offset_bottom = 152.0
+text = "THoát game"
+
 [connection signal="ammo_changed" from="Player" to="HUD" method="update_ammo"]
 [connection signal="dead" from="Player" to="." method="_on_Player_dead"]
 [connection signal="health_changed" from="Player" to="HUD" method="update_healthbar"]

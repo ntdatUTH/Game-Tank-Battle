@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GLOBALS="*res://globals.gd"
 Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
+AuthManager="*res://TankBattle/scenes/UI/auth_manager.gd"
 
 [editor_plugins]
 

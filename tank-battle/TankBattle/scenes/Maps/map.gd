@@ -1,9 +1,11 @@
 extends Node
-
+@onready var quit_Game_button = $QuitButton
 func _ready():
 	set_camera_limits()
 	Input.set_custom_mouse_cursor(load("res://TankBattle/kenney_top-down-tanks/PNG/Tanks/ngắm.png"),Input.CURSOR_ARROW,Vector2(16,16))
 	$Player.map = $Ground
+	
+	quit_Game_button.pressed.connect(_on_quit_button_pressed)
 func set_camera_limits():
 	# Kiểm tra node tồn tại
 	if not has_node("Ground") or not has_node("Player/Camera2D"):
@@ -30,3 +32,7 @@ func _on_Tank_shoot(bullet, _position, _direction,_target=null):
 
 func _on_Player_dead():
 	GLOBALS.restart()
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://TankBattle/scenes/UI/title_screen.tscn")

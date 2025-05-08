@@ -19,6 +19,7 @@ const FIREBASE_AUTH_URL = "https://identitytoolkit.googleapis.com/v1/accounts:"
 @onready var state_label = %StateLabel
 @onready var http_request = %HTTPRequest
 @onready var login_container = %VBoxContainer
+
 func _ready() -> void:
 	http_request.request_completed.connect(_on_http_request_completed)
 	sign_up_button.pressed.connect(_on_sign_up_button_pressed)
