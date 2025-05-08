@@ -1,4 +1,6 @@
-Sprite2D
-Control
 Label
 TextureRect
+Sprite2D
+CollisionShape2D
+VBoxContainer
+Button

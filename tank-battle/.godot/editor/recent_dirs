@@ -1,9 +1,15 @@
+res://TankBattle/scenes
+res://TankBattle/scenes/manager_game
+res://TankBattle/scenes/network
+res://TankBattle/scenes/Skins
+res://TankBattle/scenes/autoLoad
+res://TankBattle/scenes/Bullet
 res://TankBattle/scenes/Tanks
+res://TankBattle/kenney_top-down-tanks/PNG/Smoke
 res://TankBattle/scenes/Maps
 res://TankBattle/kenney_top-down-tanks/font
 res://TankBattle/scenes/UI
 res://
 res://TankBattle/scenes/effects
 res://TankBattle/scenes/Items_Pickup
-res://TankBattle/scenes/Bullet
 res://TankBattle/scenes/Enviroment

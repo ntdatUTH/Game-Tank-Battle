@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b1wlpxh1c0p56"]
+[gd_scene load_steps=14 format=3 uid="uid://b1wlpxh1c0p56"]
 
 [ext_resource type="Script" uid="uid://f6g4nn8fd1ty" path="res://TankBattle/scenes/Maps/map.gd" id="1_2kgsp"]
 [ext_resource type="Texture2D" uid="uid://cil8tcvmyi4gk" path="res://TankBattle/kenney_top-down-tanks/terrainTiles_retina.png" id="1_fkvks"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://vr263y4nmw7h" path="res://TankBattle/scenes/Bullet/missile.tscn" id="6_o7vqr"]
 [ext_resource type="PackedScene" uid="uid://dgo0pub76igoa" path="res://TankBattle/scenes/Tanks/GunTurret.tscn" id="8_g28ee"]
 [ext_resource type="PackedScene" uid="uid://ctkjc247jws16" path="res://TankBattle/scenes/Enviroment/Obstacle.tscn" id="8_o7vqr"]
+[ext_resource type="PackedScene" uid="uid://d4ehrdnr8dfbd" path="res://TankBattle/scenes/Tanks/kamikaze_tank.tscn" id="8_r3o64"]
+[ext_resource type="PackedScene" uid="uid://b2xaeyn7jh8xq" path="res://TankBattle/scenes/Tanks/respawn.tscn" id="9_o7vqr"]
 [ext_resource type="PackedScene" uid="uid://cdxw1c824ninh" path="res://TankBattle/scenes/Items_Pickup/pickup.tscn" id="10_r3o64"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c2wl0"]
@@ -2665,6 +2667,12 @@ type = 1
 [node name="Pickup2" parent="Items" instance=ExtResource("10_r3o64")]
 position = Vector2(770, 383)
 scale = Vector2(0.4, 0.4)
+
+[node name="kamikaze_tank" parent="." instance=ExtResource("8_r3o64")]
+position = Vector2(1037, 158)
+max_speed = 20.0
+
+[node name="respawn" parent="." instance=ExtResource("9_o7vqr")]
 
 [connection signal="shoot_" from="Paths/Path2D/PathFollow2D/Enemy_Tank" to="." method="_on_Tank_shoot"]
 [connection signal="shoot_" from="Paths/Path2D2/PathFollow2D/Enemy_Tank" to="." method="_on_Tank_shoot"]

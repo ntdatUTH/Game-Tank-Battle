@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0q8ipitd2l05"]
+
+[ext_resource type="Script" uid="uid://t333b5ah73un" path="res://TankBattle/scenes/Skins/skin_menu.gd" id="1_q8cnu"]
+
+[node name="SkinMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1130.0
+offset_bottom = 640.0
+script = ExtResource("1_q8cnu")
+
+[node name="BodyPreview" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 94.0
+offset_right = 136.0
+offset_bottom = 181.0
+
+[node name="BarrelPreview" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 102.0
+offset_right = 376.0
+offset_bottom = 202.0
+
+[node name="NextBodyBtn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 217.0
+offset_right = 68.0
+offset_bottom = 268.0
+text = "tien body"
+
+[node name="PrevBodyBtn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 218.0
+offset_right = 151.0
+offset_bottom = 268.0
+text = "lui body"
+
+[node name="NextBarrelBtn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 277.0
+offset_top = 226.0
+offset_right = 285.0
+offset_bottom = 234.0
+text = "tien nong"
+
+[node name="PrevBarrelBtn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 224.0
+offset_right = 209.0
+offset_bottom = 232.0
+text = "lui nong"
+
+[connection signal="pressed" from="NextBodyBtn" to="." method="_on_next_body_pressed"]
+[connection signal="pressed" from="PrevBodyBtn" to="." method="_on_prev_body_pressed"]
+[connection signal="pressed" from="NextBarrelBtn" to="." method="_on_next_barrel_pressed"]
+[connection signal="pressed" from="PrevBarrelBtn" to="." method="_on_prev_barrel_pressed"]

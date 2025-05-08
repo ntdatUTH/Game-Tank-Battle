@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://d06dw68cht31b" path="res://TankBattle/scenes/Tanks/tank.tscn" id="1_tjheg"]
 [ext_resource type="Script" uid="uid://c2tayfaxfylmt" path="res://TankBattle/scenes/Tanks/player.gd" id="2_fw815"]
-[ext_resource type="Texture2D" uid="uid://blyrl45qmoqth" path="res://TankBattle/kenney_top-down-tanks/Vector/preview.png" id="2_pt20k"]
 [ext_resource type="PackedScene" uid="uid://cwoucsf351etn" path="res://TankBattle/scenes/Bullet/Player_Bullet.tscn" id="3_4vnnm"]
-[ext_resource type="Texture2D" uid="uid://j2haaqxeh8b8" path="res://TankBattle/kenney_top-down-tanks/PNG/Tanks/Nong.png" id="4_rory0"]
+[ext_resource type="Texture2D" uid="uid://bt1a6v6mt5l7l" path="res://TankBattle/kenney_top-down-tanks-redux/PNG/Retina/tankBody_green.png" id="4_4vnnm"]
+[ext_resource type="Texture2D" uid="uid://cq2rec3eckx0o" path="res://TankBattle/kenney_top-down-tanks-redux/PNG/Retina/tankGreen_barrel2.png" id="5_phfdu"]
 [ext_resource type="Texture2D" uid="uid://bgvqm3s3jh8r8" path="res://TankBattle/kenney_top-down-tanks/PNG/Smoke/smokeWhite3.png" id="6_4vnnm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pt20k"]
@@ -21,9 +21,10 @@ gun_cooldown = 0.4
 ammo = 10
 
 [node name="Body" parent="." index="0"]
-texture = ExtResource("2_pt20k")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_4vnnm")
 region_enabled = true
-region_rect = Rect2(221, 109, 36, 35)
+region_rect = Rect2(0, 0, 76, 72)
 
 [node name="CollisionShape2D" parent="." index="1"]
 visible = false
@@ -34,21 +35,22 @@ metadata/_edit_group_ = true
 position = Vector2(-0.908661, -18.0048)
 
 [node name="Turret" parent="." index="3"]
-position = Vector2(1.8581e-09, 0)
-rotation = 0.00914076
-scale = Vector2(0.145951, 0.16219)
-texture = ExtResource("4_rory0")
-offset = Vector2(0, 70)
+position = Vector2(0, -2.38419e-07)
+rotation = -0.00583768
+scale = Vector2(0.8, 0.594)
+texture = ExtResource("5_phfdu")
+offset = Vector2(0, 17)
 region_enabled = true
-region_rect = Rect2(-3, 0, 128, 242)
+region_rect = Rect2(0, 0, 16, 52)
 
 [node name="Muzzle" parent="Turret" index="0"]
-position = Vector2(-1.24656, 221.959)
+position = Vector2(-0.142051, 82.006)
+rotation = -5.32869
 
 [node name="Flash" parent="Turret" index="1"]
-position = Vector2(-5.98772, 191.157)
+position = Vector2(-1.82155, 58.9804)
 texture = ExtResource("6_4vnnm")
-region_rect = Rect2(0, 0, 100, 100)
+region_rect = Rect2(0, 0, 100, 97)
 
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
-zoom = Vector2(1.4, 1.4)
+zoom = Vector2(2, 2)
