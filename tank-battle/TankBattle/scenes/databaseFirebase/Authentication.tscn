@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dufcgso143pky"]
+[gd_scene load_steps=5 format=3 uid="uid://dufcgso143pky"]
 
 [ext_resource type="Script" uid="uid://bub0iac8k2k6u" path="res://TankBattle/scenes/databaseFirebase/authentication.gd" id="1_7j68d"]
 [ext_resource type="Texture2D" uid="uid://darftmxkjdfcq" path="res://TankBattle/scenes/databaseFirebase/dangNhap.jpg" id="2_i4sfi"]
+[ext_resource type="FontFile" uid="uid://catsw05whx1ip" path="res://fonts/xolonium/xolonium-fonts-4.1/ttf/Xolonium-Bold.ttf" id="3_2mnrq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ptyjg"]
 
 [node name="Authentication" type="Control"]
 layout_mode = 3
@@ -17,10 +20,23 @@ grow_vertical = 2
 script = ExtResource("1_7j68d")
 
 [node name="DangNhap" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.435294)
-position = Vector2(509, 335)
+modulate = Color(1, 1, 1, 0.486275)
+position = Vector2(515, 340)
 scale = Vector2(1.13477, 1.0118)
 texture = ExtResource("2_i4sfi")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+modulate = Color(0.486633, 0.929688, 0.535092, 1)
+offset_left = 425.0
+offset_top = 101.0
+offset_right = 750.0
+offset_bottom = 169.0
+theme_override_colors/word_highlighted_color = Color(0.964844, 0.915848, 0.915848, 1)
+theme_override_fonts/font = ExtResource("3_2mnrq")
+theme_override_font_sizes/font_size = 47
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ptyjg")
+text = "Đăng nhập "
+caret_mid_grapheme = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -41,9 +57,8 @@ theme_override_constants/separation = 20
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.375366, 0.800781, 0.48172, 1)
-theme_override_font_sizes/font_size = 40
-text = "Đăng nhập "
+theme_override_colors/font_color = Color(0.984375, 0.984375, 0.984375, 1)
+theme_override_font_sizes/font_size = 30
 
 [node name="EmailLineEdit" type="LineEdit" parent="VBoxContainer"]
 unique_name_in_owner = true
@@ -55,14 +70,14 @@ placeholder_text = "Email"
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-placeholder_text = "Password"
+placeholder_text = "Mật khẩu "
 secret = true
 
 [node name="LoginButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Login "
+text = "Đăng nhập "
 
 [node name="remember_me_checkbox" type="CheckBox" parent="VBoxContainer"]
 unique_name_in_owner = true

@@ -1,7 +1,8 @@
+TextEdit
+TextureRect
 ColorRect
 AnimationPlayer
 AudioStreamPlayer2D
-TextEdit
 Button
 Panel
 VBoxContainer
@@ -11,5 +12,3 @@ CanvasLayer
 Label
 LineEdit
 TileMap
-PathFollow2D
-CheckButton
