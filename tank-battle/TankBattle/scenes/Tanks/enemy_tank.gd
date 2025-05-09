@@ -38,9 +38,8 @@ func control(delta):
 		# Reset vị trí local để tránh lệch khỏi PathFollow2D
 		position = Vector2i.ZERO
 	else:
+		speed = 100
 		
-		speed = 0
-		pass
 
 func _process(delta):
 	if target:

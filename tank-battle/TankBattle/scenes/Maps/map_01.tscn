@@ -1,17 +1,17 @@
-[gd_scene load_steps=15 format=3 uid="uid://b1wlpxh1c0p56"]
+[gd_scene load_steps=18 format=3 uid="uid://b1wlpxh1c0p56"]
 
 [ext_resource type="Script" uid="uid://f6g4nn8fd1ty" path="res://TankBattle/scenes/Maps/map.gd" id="1_2kgsp"]
 [ext_resource type="Texture2D" uid="uid://cil8tcvmyi4gk" path="res://TankBattle/kenney_top-down-tanks/terrainTiles_retina.png" id="1_fkvks"]
-[ext_resource type="PackedScene" uid="uid://4ph4tqhwdtng" path="res://TankBattle/scenes/Tanks/Player.tscn" id="2_c2wl0"]
 [ext_resource type="PackedScene" uid="uid://cyccaoc4pd3kc" path="res://TankBattle/scenes/Tanks/Enemy_Tank.tscn" id="4_2vvdr"]
-[ext_resource type="PackedScene" uid="uid://cwoucsf351etn" path="res://TankBattle/scenes/Bullet/Player_Bullet.tscn" id="4_ndnf7"]
-[ext_resource type="PackedScene" uid="uid://bch84mxihyu8u" path="res://TankBattle/scenes/UI/hud.tscn" id="5_2vvdr"]
 [ext_resource type="PackedScene" uid="uid://vr263y4nmw7h" path="res://TankBattle/scenes/Bullet/missile.tscn" id="6_o7vqr"]
 [ext_resource type="PackedScene" uid="uid://dgo0pub76igoa" path="res://TankBattle/scenes/Tanks/GunTurret.tscn" id="8_g28ee"]
 [ext_resource type="PackedScene" uid="uid://ctkjc247jws16" path="res://TankBattle/scenes/Enviroment/Obstacle.tscn" id="8_o7vqr"]
+[ext_resource type="Script" uid="uid://cgxy1d55685k7" path="res://TankBattle/scenes/Maps/respawn.gd" id="9_o7vqr"]
 [ext_resource type="PackedScene" uid="uid://cdxw1c824ninh" path="res://TankBattle/scenes/Items_Pickup/pickup.tscn" id="10_r3o64"]
+[ext_resource type="PackedScene" uid="uid://d4ehrdnr8dfbd" path="res://TankBattle/scenes/Tanks/kamikaze_tank.tscn" id="10_riwoc"]
+[ext_resource type="AudioStream" uid="uid://cm5cnjolffela" path="res://TankBattle/sound/videoplayback-_1_.wav" id="10_v1nak"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c2wl0"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r3o64"]
 texture = ExtResource("1_fkvks")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -2576,7 +2576,7 @@ texture_region_size = Vector2i(32, 32)
 79:31/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_2kgsp"]
-sources/0 = SubResource("TileSetAtlasSource_c2wl0")
+sources/0 = SubResource("TileSetAtlasSource_r3o64")
 
 [sub_resource type="Curve2D" id="Curve2D_2kgsp"]
 _data = {
@@ -2590,6 +2590,12 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r3o64"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_riwoc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v1nak"]
+
 [node name="Map01" type="Node"]
 script = ExtResource("1_2kgsp")
 
@@ -2601,15 +2607,7 @@ layer_0/tile_data = PackedInt32Array(0, 1310720, 6, 65536, 1310720, 6, 131072, 1
 [node name="StaticBody2D" type="StaticBody2D" parent="Ground"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground/StaticBody2D"]
-polygon = PackedVector2Array(-6, -6, 1175, -7, 1174, 678, -7, 678, -6, 0, -15, 6, -57, 746, 1263, 742, 1242, -89, -57, -102, -6, 0)
-
-[node name="Player" parent="." instance=ExtResource("2_c2wl0")]
-position = Vector2(563, 305)
-Bullet = ExtResource("4_ndnf7")
-max_speed = 70.0
-gun_cooldown = 0.5
-max_health = 120
-offroad_friction = 0.3
+polygon = PackedVector2Array(-6, -6, 209.293, -6.1823, 1175, -7, 1174, 678, -7, 678, -6, 0, -15, 6, -57, 746, 1263, 742, 1242, -89, -57, -102, -6, 0)
 
 [node name="Paths" type="Node2D" parent="."]
 
@@ -2644,8 +2642,6 @@ max_health = 50
 offroad_friction = 0.0
 gun_shots = 3
 
-[node name="HUD" parent="." instance=ExtResource("5_2vvdr")]
-
 [node name="GunTurret" parent="." instance=ExtResource("8_g28ee")]
 position = Vector2(1015, 334)
 
@@ -2676,10 +2672,76 @@ type = 1
 position = Vector2(770, 383)
 scale = Vector2(0.4, 0.4)
 
-[connection signal="ammo_changed" from="Player" to="HUD" method="update_ammo"]
-[connection signal="dead" from="Player" to="." method="_on_Player_dead"]
-[connection signal="health_changed" from="Player" to="HUD" method="update_healthbar"]
-[connection signal="shoot_" from="Player" to="." method="_on_Tank_shoot"]
+[node name="respawn" type="Node2D" parent="."]
+script = ExtResource("9_o7vqr")
+
+[node name="kamikaze_tank" parent="." instance=ExtResource("10_riwoc")]
+position = Vector2(478, 117)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_v1nak")
+autoplay = true
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 136.0
+offset_top = 182.0
+offset_right = 801.0
+offset_bottom = 650.0
+
+[node name="ChoiLaiButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.5
+offset_top = -60.0
+offset_right = 78.5
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_disabled_color = Color(0.777344, 0.409927, 0.409927, 1)
+theme_override_font_sizes/font_size = 30
+text = "Chơi lại"
+flat = true
+
+[node name="MeniButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -163.5
+offset_top = -26.0
+offset_right = 109.5
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Quay lại trang chủ"
+flat = true
+
+[node name="TextEdit" type="TextEdit" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.5
+offset_top = -129.5
+offset_right = 242.5
+offset_bottom = -61.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_r3o64")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_riwoc")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_v1nak")
+text = "Bạn đã thua! "
+
 [connection signal="shoot_" from="Paths/Path2D/PathFollow2D/Enemy_Tank" to="." method="_on_Tank_shoot"]
 [connection signal="shoot_" from="Paths/Path2D2/PathFollow2D/Enemy_Tank" to="." method="_on_Tank_shoot"]
 [connection signal="shoot_" from="GunTurret" to="." method="_on_Tank_shoot"]

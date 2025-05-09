@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://fquhydisfbwv"]
+
+[ext_resource type="Script" uid="uid://dn2e3diwjak05" path="res://TankBattle/scenes/Bullet/bounce_.gd" id="1_ruen3"]
+[ext_resource type="Texture2D" uid="uid://b7c20sfxximkg" path="res://TankBattle/kenney_top-down-tanks/Vector/vector_tanks.svg" id="2_sat05"]
+[ext_resource type="PackedScene" uid="uid://3bst80cqf1sg" path="res://TankBattle/scenes/effects/explosion.tscn" id="3_sat05"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sf7v3"]
+radius = 12.6491
+
+[node name="Bounce" type="CharacterBody2D"]
+scale = Vector2(0.7, 0.7)
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_ruen3")
+
+[node name="Lifetime" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_sat05")
+region_enabled = true
+region_rect = Rect2(253, 116, 47, 46)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sf7v3")
+
+[node name="Explosion" parent="." instance=ExtResource("3_sat05")]
+visible = false
+scale = Vector2(0.5, 0.5)
+
+[connection signal="animation_finished" from="Explosion" to="." method="_on_explosion_animation_finished"]
