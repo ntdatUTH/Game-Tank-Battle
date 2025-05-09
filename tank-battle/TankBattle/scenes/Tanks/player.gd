@@ -63,3 +63,18 @@ func control(delta):
 	if Input.is_action_just_pressed('click'):
 		print("HP player: ", health)
 		shoot(gun_shots, gun_spread)
+func save_state() -> Dictionary:
+	return {
+		"health": health,
+		"ammo": ammo,
+		"position": global_position,
+		"body_index": SkinManager.current_body_index,
+		"barrel_index": SkinManager.current_barrel_index
+
+	}
+
+func load_state(state: Dictionary):
+	health = state["health"]
+	ammo = state["ammo"]
+	global_position = state["position"]
+	update_skin()

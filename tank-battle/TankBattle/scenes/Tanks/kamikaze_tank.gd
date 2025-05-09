@@ -9,7 +9,8 @@ var is_exploded: bool = false
 
 func _ready():
 	super._ready()
-	
+	add_to_group("Enemy")  # Nhận diện là enemy
+	GLOBALS.register_enemy() 
 	$Explosion.hide()
 
 func _process(delta):
@@ -41,5 +42,18 @@ func explode():
 		return
 	is_exploded = true
 	super.explode()
+func take_damage(amount: int):
+	if health <= 0:  # Đã chết thì bỏ qua
+		return
+	
+	print("Tank Enemy took damage! HP:", health, " Damage:", amount)
+	super.take_damage(amount)
+	if health <= 0:
+		die()
 
+func die():
+	print("Tank Enemy died!")
+	super.explode()
+	GLOBALS.enemy_killed()
+	queue_free()
 	

@@ -12,6 +12,8 @@ func _ready():
 	var circle = CircleShape2D.new()
 	$DetectRadius/CollisionShape2D.shape = circle
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
+	GLOBALS.register_enemy()
+	add_to_group("Enemy")
 func shoot(num, spread, target = null):
 	if not can_shoot:
 		return
@@ -39,7 +41,12 @@ func control(delta):
 		position = Vector2i.ZERO
 	else:
 		speed = 100
-		
+	var player=get_tree().get_first_node_in_group("Player")
+	if player :
+		var direction=(player.global_position-global_position).normalized()
+		velocity=direction*max_speed
+		rotation = lerp_angle(rotation, (player.global_position - global_position).angle(), turret_speed * delta)
+
 
 func _process(delta):
 	if target:
@@ -61,7 +68,18 @@ func _on_detect_radius_body_exited(body: Node2D) -> void:
 	if (body == target):
 		target = null
 		print("ko co player")
-
-
-func update_healthbar() -> void:
-	pass # Replace with function body.
+func take_damage(amount: int):
+	if is_in_group("Player"):  # Bỏ qua nếu là Player
+		return
+	
+	print("Enemy took damage! Current HP:", health, " - Damage:", amount)
+	super.take_damage(amount)  # Gọi hàm cha (Tank.gd)
+	if health <= 0:
+		die()
+		print("Enemy died!")  # Đổi thông báo cho rõ ràng
+func die():
+	super.explode()
+	GLOBALS.enemy_killed()
+	
+	
+	
