@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tank Battle"
-run/main_scene="uid://dufcgso143pky"
+run/main_scene="uid://x6chm7d80ayt"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 

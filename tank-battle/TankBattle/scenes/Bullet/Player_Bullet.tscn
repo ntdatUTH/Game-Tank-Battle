@@ -11,6 +11,7 @@ size = Vector2(17, 10)
 collision_layer = 8
 script = ExtResource("2_kuuh8")
 speed = 750
+damage = 20
 
 [node name="Sprite" parent="." index="0"]
 rotation = 1.5708

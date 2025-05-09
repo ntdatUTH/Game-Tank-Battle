@@ -1,7 +1,0 @@
-res://TankBattle/scenes/databaseFirebase/Authentication.tscn
-res://TankBattle/scenes/databaseFirebase/SignUp.tscn
-res://TankBattle/scenes/Maps/map_03.tscn
-res://TankBattle/scenes/Maps/map_01.tscn
-res://TankBattle/scenes/UI/title_screen.tscn
-res://TankBattle/scenes/UI/unit_display.tscn
-res://TankBattle/scenes/Tanks/GunTurret.tscn

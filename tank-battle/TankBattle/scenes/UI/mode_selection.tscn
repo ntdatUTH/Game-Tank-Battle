@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://x6chm7d80ayt"]
+
+[ext_resource type="Script" uid="uid://c2myvd2eqtady" path="res://TankBattle/scenes/ControlMenu/mode_selection.gd" id="1_6ij7y"]
+
+[node name="ModeSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_6ij7y")
+
+[node name="CampaignButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 249.0
+offset_top = 418.0
+offset_right = 481.0
+offset_bottom = 482.0
+text = "campain
+"
+
+[node name="EndlessButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 709.0
+offset_top = 417.0
+offset_right = 853.0
+offset_bottom = 474.0
+text = "endless
+"
+
+[connection signal="pressed" from="CampaignButton" to="." method="_on_CampaignButton_pressed"]
+[connection signal="pressed" from="EndlessButton" to="." method="_on_EndlessButton_pressed"]
