@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c12iuoqqf0i4q"
-path="res://.godot/imported/xe_tang2.jpg-4ed38624953c5da46fb12cecbe064059.ctex"
+uid="uid://darftmxkjdfcq"
+path="res://.godot/imported/dangNhap.jpg-a044d955fd548bc9bb08f1dda3ae6250.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TankBattle/scenes/databaseFirebase/xe_tang2.jpg"
-dest_files=["res://.godot/imported/xe_tang2.jpg-4ed38624953c5da46fb12cecbe064059.ctex"]
+source_file="res://TankBattle/scenes/databaseFirebase/dangNhap.jpg"
+dest_files=["res://.godot/imported/dangNhap.jpg-a044d955fd548bc9bb08f1dda3ae6250.ctex"]
 
 [params]
 

@@ -1,14 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dufcgso143pky"]
+[gd_scene load_steps=3 format=3 uid="uid://dufcgso143pky"]
 
 [ext_resource type="Script" uid="uid://bub0iac8k2k6u" path="res://TankBattle/scenes/databaseFirebase/authentication.gd" id="1_7j68d"]
-[ext_resource type="PackedScene" uid="uid://cyccaoc4pd3kc" path="res://TankBattle/scenes/Tanks/Enemy_Tank.tscn" id="2_2mnrq"]
-[ext_resource type="PackedScene" uid="uid://vr263y4nmw7h" path="res://TankBattle/scenes/Bullet/missile.tscn" id="3_ptyjg"]
-
-[sub_resource type="Curve2D" id="Curve2D_uv2di"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 216, 90, 0, 0, 0, 0, 437, 23, 0, 0, 0, 0, 1112, 65, 0, 0, 0, 0, 1106, 569, 0, 0, 0, 0, 223, 548, 0, 0, 0, 0, 217, 90)
-}
-point_count = 6
+[ext_resource type="Texture2D" uid="uid://darftmxkjdfcq" path="res://TankBattle/scenes/databaseFirebase/dangNhap.jpg" id="2_i4sfi"]
 
 [node name="Authentication" type="Control"]
 layout_mode = 3
@@ -22,6 +15,12 @@ offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7j68d")
+
+[node name="DangNhap" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.435294)
+position = Vector2(509, 335)
+scale = Vector2(1.13477, 1.0118)
+texture = ExtResource("2_i4sfi")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -42,7 +41,8 @@ theme_override_constants/separation = 20
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 23
+theme_override_colors/font_color = Color(0.375366, 0.800781, 0.48172, 1)
+theme_override_font_sizes/font_size = 40
 text = "Đăng nhập "
 
 [node name="EmailLineEdit" type="LineEdit" parent="VBoxContainer"]
@@ -84,24 +84,6 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Đăng ký tại đây "
-
-[node name="Path2D2" type="Path2D" parent="."]
-curve = SubResource("Curve2D_uv2di")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D2"]
-position = Vector2(216, 90)
-rotation = -0.29436
-
-[node name="Enemy_Tank" parent="Path2D2/PathFollow2D" instance=ExtResource("2_2mnrq")]
-rotation = -0.0495546
-scale = Vector2(0.4, 0.4)
-turret_speed = 3.0
-detect_radius = 500
-Bullet = ExtResource("3_ptyjg")
-max_speed = 175.0
-max_health = 50
-offroad_friction = 0.0
-gun_shots = 3
 
 [connection signal="pressed" from="VBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/SignUpButton" to="." method="_on_sign_up_button_pressed"]

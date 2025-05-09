@@ -1,7 +1,6 @@
-res://TankBattle/scenes/effectsound
+res://TankBattle/scenes/UI
 res://TankBattle/scenes/Skins
 res://TankBattle/scenes/autoLoad
-res://TankBattle/scenes/UI
 res://TankBattle/scenes/databaseFirebase
 res://TankBattle/scenes/Maps
 res://TankBattle/kenney_top-down-tanks/font
