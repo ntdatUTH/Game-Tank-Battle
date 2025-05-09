@@ -1,3 +1,6 @@
+AudioStreamPlayer2D
+AudioStreamPlayer
+Node2D
 Button
 CanvasLayer
 Label
@@ -9,6 +12,3 @@ CheckBox
 VBoxContainer
 HTTPRequest
 TileMapLayer
-Path2D
-AnimationPlayer
-TextureRect

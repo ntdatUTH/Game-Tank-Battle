@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4ehrdnr8dfbd"]
+
+[ext_resource type="PackedScene" uid="uid://d06dw68cht31b" path="res://TankBattle/scenes/Tanks/tank.tscn" id="1_hcdje"]
+[ext_resource type="Script" uid="uid://di8yqr21puj5g" path="res://TankBattle/scenes/Tanks/kamikaze_tank.gd" id="1_hfh1a"]
+[ext_resource type="Texture2D" uid="uid://8kvuogvtgl0w" path="res://TankBattle/kenney_top-down-tanks-redux/Vector/topdownTanks_vector.svg" id="2_hcdje"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j0fvq"]
+size = Vector2(51.5, 62.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfh1a"]
+size = Vector2(51.7957, 63.1986)
+
+[node name="kamikaze_tank" instance=ExtResource("1_hcdje")]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_hfh1a")
+damage = 25
+explosion_radius = 32.0
+speed = 40.0
+gun_cooldown = 0.0
+offroad_friction = 0.0
+
+[node name="Body" parent="." index="0"]
+texture = ExtResource("2_hcdje")
+region_enabled = true
+region_rect = Rect2(696, 173, 52, 66)
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(1.25, 2.75)
+shape = SubResource("RectangleShape2D_j0fvq")
+
+[node name="Smoke" parent="." index="2"]
+position = Vector2(1, -9)
+
+[node name="Area2D" type="Area2D" parent="." index="7"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(2.10213, 4.40068)
+shape = SubResource("RectangleShape2D_hfh1a")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
