@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b0a2ie7at1txf"]
+[gd_scene load_steps=8 format=3 uid="uid://b0a2ie7at1txf"]
 
 [ext_resource type="Texture2D" uid="uid://dtfimajyh7j6p" path="res://TankBattle/kenney_top-down-tanks/sample-removebg-preview.png" id="1_1fys7"]
 [ext_resource type="FontFile" uid="uid://dsea3nsc6vruv" path="res://TankBattle/kenney_top-down-tanks/font/Xolonium-Bold.ttf" id="1_uf0ll"]
 [ext_resource type="Script" uid="uid://ms5xrpja7gwi" path="res://TankBattle/scenes/UI/title_screen.gd" id="1_yb38r"]
-[ext_resource type="FontFile" uid="uid://37afx47vlvie" path="res://TankBattle/kenney_top-down-tanks/font/Xolonium-Regular.ttf" id="2_yb38r"]
 
 [sub_resource type="Animation" id="Animation_uf0ll"]
 length = 0.001
@@ -87,10 +86,10 @@ texture = ExtResource("1_1fys7")
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.330583
-anchor_top = 0.325729
-anchor_right = 0.671875
-anchor_bottom = 0.439038
+anchor_left = 0.262007
+anchor_top = 0.27789
+anchor_right = 0.603299
+anchor_bottom = 0.391199
 offset_left = 12.1684
 offset_top = 15.9276
 offset_right = 192.0
@@ -105,51 +104,53 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayMessage" type="Label" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.218761
-anchor_top = 0.529578
-anchor_right = 0.891504
-anchor_bottom = 0.759516
-offset_left = 1.98785
-offset_top = 23.8333
-offset_right = 41.9878
-offset_bottom = 46.8333
-theme_override_colors/font_color = Color(1, 0.972656, 0.972656, 1)
-theme_override_constants/shadow_offset_x = 3
-theme_override_constants/shadow_offset_y = 3
-theme_override_fonts/font = ExtResource("2_yb38r")
-theme_override_font_sizes/font_size = 53
-text = "Press Space to play
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../PlayMessage")
+root_node = NodePath("")
 libraries = {
 &"": SubResource("AnimationLibrary_duegn")
 }
 autoplay = "nhay"
 
-[node name="Map1Button" type="Button" parent="."]
+[node name="Host" type="Button" parent="."]
 layout_mode = 0
-offset_left = 320.0
-offset_top = 400.0
-offset_right = 411.0
-offset_bottom = 473.0
-text = "map01
+offset_left = 271.0
+offset_top = 353.0
+offset_right = 362.0
+offset_bottom = 426.0
+text = "Host
 "
 icon = SubResource("ViewportTexture_yb38r")
 
-[node name="Map2Button" type="Button" parent="."]
+[node name="Join" type="Button" parent="."]
 layout_mode = 0
-offset_left = 779.0
-offset_top = 397.0
-offset_right = 890.0
-offset_bottom = 475.0
-text = "map02
-"
+offset_left = 789.0
+offset_top = 347.0
+offset_right = 900.0
+offset_bottom = 425.0
+text = "Join"
+
+[node name="IPtext" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 526.0
+offset_top = 358.0
+offset_right = 772.0
+offset_bottom = 412.0
+
+[node name="label" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 358.0
+offset_right = 527.0
+offset_bottom = 412.0
+text = "Nhập IP:"
+
+[node name="LabelIP" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 604.0
+offset_right = 462.0
+offset_bottom = 641.0
+text = "IPv4 address:"
+
+[connection signal="pressed" from="Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Join" to="." method="_on_join_pressed"]

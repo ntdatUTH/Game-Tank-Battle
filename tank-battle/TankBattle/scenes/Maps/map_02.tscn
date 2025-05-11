@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://de6yn1d7n3c4"]
+[gd_scene load_steps=10 format=3 uid="uid://de6yn1d7n3c4"]
 
 [ext_resource type="Texture2D" uid="uid://bmthooag84dmn" path="res://TankBattle/kenney_top-down-tanks/tuong.png" id="1_in87k"]
 [ext_resource type="Script" uid="uid://drdguhuogqm7n" path="res://TankBattle/scenes/Maps/map_02.gd" id="1_vtyso"]
 [ext_resource type="Texture2D" uid="uid://cil8tcvmyi4gk" path="res://TankBattle/kenney_top-down-tanks/terrainTiles_retina.png" id="1_yg43d"]
+[ext_resource type="Script" uid="uid://pcimo3j8yppb" path="res://TankBattle/scenes/Multiplayer/multi_player.gd" id="5_2htea"]
 [ext_resource type="PackedScene" uid="uid://dgo0pub76igoa" path="res://TankBattle/scenes/Tanks/GunTurret.tscn" id="5_omqxv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vtyso"]
@@ -3119,5 +3120,15 @@ position = Vector2(1015, 334)
 max_speed = 6.0
 rotation_speed = 6.0
 ammo = 3
+
+[node name="MultiPlayer" type="Node2D" parent="."]
+script = ExtResource("5_2htea")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="MultiPlayer"]
+_spawnable_scenes = PackedStringArray("uid://4ph4tqhwdtng", "uid://bch84mxihyu8u")
+spawn_path = NodePath("..")
+spawn_limit = 4
+
+[node name="HUDlocal" type="Node2D" parent="."]
 
 [connection signal="shoot_" from="GunTurret" to="." method="_on_Tank_shoot"]

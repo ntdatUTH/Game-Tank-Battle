@@ -1,5 +1,14 @@
 extends "res://TankBattle/scenes/Tanks/Tank.gd"
 
+func _enter_tree() -> void:
+	set_multiplayer_authority(name.to_int())
+
+func _ready() -> void:
+	super._ready()
+	add_to_group("Player")
+	if str(name) == str(multiplayer.get_unique_id()):
+		$Camera2D.make_current()
+
 func control(delta):
 	$Turret.look_at(get_global_mouse_position())
 	$Turret.rotation += deg_to_rad(-90)

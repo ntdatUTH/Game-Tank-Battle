@@ -10,10 +10,12 @@ var levels = [
 	"res://TankBattle/scenes/Maps/map_01.tscn",
 	"res://TankBattle/scenes/Maps/map_02.tscn"
 ]
-
+@rpc("any_peer", "reliable") 
 func restart():
-	current_level = 0
-	get_tree().change_scene_to_file(levels[current_level])
+	if multiplayer.multiplayer_peer == null:
+		current_level = 0
+		print("Nhận lệnh restart từ server")
+		get_tree().change_scene_to_file(levels[current_level])
 
 func next_level():
 	current_level += 1

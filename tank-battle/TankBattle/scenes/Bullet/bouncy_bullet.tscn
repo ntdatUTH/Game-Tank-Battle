@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=3 uid="uid://dijtmxbr77l20"]
+
+[ext_resource type="PackedScene" uid="uid://c7fyt5hlcx4jv" path="res://TankBattle/scenes/Bullet/Bullet.tscn" id="1_qcu8k"]
+[ext_resource type="Texture2D" uid="uid://b7c20sfxximkg" path="res://TankBattle/kenney_top-down-tanks/Vector/vector_tanks.svg" id="3_iujl8"]
+
+[sub_resource type="GDScript" id="GDScript_t63i3"]
+script/source = "extends \"res://TankBattle/scenes/Bullet/bullet.gd\"
+
+@export var max_bounces: int = 3
+@export var bounciness: float = 0.8
+@export var bounce_sound: AudioStream
+@export var bounce_particles: PackedScene
+
+var bounce_count: int = 0
+var raycast: RayCast2D  # RayCast dùng lại
+
+func _ready():
+	speed = 300
+	damage = 20
+	lifetime = 5.0
+	
+	# Khởi tạo RayCast2D
+	raycast = RayCast2D.new()
+	add_child(raycast)
+	raycast.enabled = true
+
+func bounce(normal: Vector2):
+	if bounce_count >= max_bounces:
+		explode()
+		return
+	
+	bounce_count += 1
+	velocity = velocity.bounce(normal) * bounciness
+	rotation = velocity.angle()
+	
+	# Hiệu ứng âm thanh
+	if bounce_sound and has_node(\"AudioStreamPlayer2D\"):
+		$AudioStreamPlayer2D.stream = bounce_sound
+		$AudioStreamPlayer2D.play()
+	
+	# Hiệu ứng particle
+	if bounce_particles:
+		var particles = bounce_particles.instantiate()
+		add_child(particles)
+		particles.emitting = true
+		particles.global_rotation = normal.angle()
+		particles.finished.connect(particles.queue_free)
+
+func _on_body_entered(body: Node2D):
+	if body.is_in_group(\"Player\") or body.is_in_group(\"Enemy\"):
+		explode()
+		if body.has_method(\"take_damage\"):
+			body.take_damage(damage)
+	else:
+		raycast.target_position = velocity.normalized() * 20
+		raycast.force_raycast_update()
+		if raycast.is_colliding():
+			bounce(raycast.get_collision_normal())
+
+func _exit_tree():
+	if raycast:
+		raycast.queue_free()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w8kr7"]
+radius = 24.1868
+
+[node name="bouncy_bullet" instance=ExtResource("1_qcu8k")]
+script = SubResource("GDScript_t63i3")
+max_bounces = 3
+bounciness = 0.8
+bounce_sound = null
+bounce_particles = null
+damage = 0
+lifetime = 10.0
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("3_iujl8")
+region_enabled = true
+region_rect = Rect2(253, 116, 47, 46)
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_w8kr7")

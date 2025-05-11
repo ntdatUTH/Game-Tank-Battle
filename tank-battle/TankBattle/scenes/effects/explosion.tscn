@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://3bst80cqf1sg"]
+[gd_scene load_steps=13 format=3 uid="uid://3bst80cqf1sg"]
 
 [ext_resource type="Texture2D" uid="uid://c38240misw03i" path="res://TankBattle/kenney_top-down-tanks/PNG/fire/fire01.png" id="1_e51wl"]
 [ext_resource type="Texture2D" uid="uid://bpjdyfjnx8w23" path="res://TankBattle/kenney_top-down-tanks/PNG/fire/fire02.png" id="2_npiiv"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ckbmkxseb6bqd" path="res://TankBattle/kenney_top-down-tanks/PNG/fire/fire08.png" id="8_v7vht"]
 [ext_resource type="Texture2D" uid="uid://c3vm4nx7jk7f4" path="res://TankBattle/kenney_top-down-tanks/PNG/fire/fire09.png" id="9_5qrxt"]
 [ext_resource type="Texture2D" uid="uid://chvjefv20p5dp" path="res://TankBattle/kenney_top-down-tanks/PNG/fire/fire010.png" id="10_siibs"]
+[ext_resource type="Script" uid="uid://by06rtcbjm3od" path="res://TankBattle/scenes/effects/explosion.gd" id="11_l0wyv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rfbi7"]
 animations = [{
@@ -56,4 +57,7 @@ animations = [{
 
 [node name="Explosion" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_rfbi7")
-animation = &"smoke"
+animation = &"fire"
+script = ExtResource("11_l0wyv")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

@@ -8,6 +8,9 @@
 size = Vector2(17, 10)
 
 [node name="Player_Bullet" instance=ExtResource("1_rh63i")]
+light_mask = 524288
+visibility_layer = 524288
+z_index = 10
 collision_layer = 8
 script = ExtResource("2_kuuh8")
 speed = 750
@@ -21,3 +24,6 @@ region_rect = Rect2(151, 196, 10, 17)
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_k8sdm")
+
+[node name="Explosion" parent="." index="3"]
+z_index = 10

@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 GLOBALS="*res://globals.gd"
+BaseMap="*res://TankBattle/scenes/Maps/BaseMap.gd"
+MultiPlayer="*res://TankBattle/scenes/Multiplayer/multi_player.gd"
 
 [input]
 
