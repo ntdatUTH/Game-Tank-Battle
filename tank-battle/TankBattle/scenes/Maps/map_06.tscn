@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1uupj2gmkxfx"]
+
+[ext_resource type="PackedScene" uid="uid://bh6v0jhlqjwv7" path="res://TankBattle/scenes/Maps/map_02.tscn" id="1_xyjop"]
+
+[node name="map06" instance=ExtResource("1_xyjop")]

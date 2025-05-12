@@ -15,7 +15,7 @@ func _ready():
 	GLOBALS.register_enemy()
 	add_to_group("Enemy")
 func shoot(num, spread, target = null):
-	if not can_shoot:
+	if not can_shoot or not target.is_in_group("Player"):
 		return
 	can_shoot = false
 	$GunTimer.start()
