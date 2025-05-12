@@ -31,8 +31,9 @@ func start_endless_mode():
 	enemies_killed = 0  # Reset điểm số
 	enemies_in_level = 0
 	get_tree().change_scene_to_file(endless_map)
-func restart():
-	current_level = 0
+	
+func restart(_current_level:int):
+	current_level = _current_level
 	enemies_killed = 0  # Reset điểm số
 	enemies_in_level = 0
 	get_tree().change_scene_to_file(levels[current_level])
@@ -45,12 +46,12 @@ func next_level():
 	if current_level < levels.size():
 		get_tree().change_scene_to_file(levels[current_level])
 	else:
-		restart()
+		restart(0)
 func register_enemy():
 	enemies_in_level+=1
 func enemy_killed():
 	enemies_killed+=1
-	if current_game_mode == GameMode.CAMPAIGN and enemies_killed >= required_kills:
+	if current_game_mode == GameMode.CAMPAIGN and enemies_killed >= required_kills and current_level<levels.size()-1:
 		next_level()
 func save_player_state():
 	if current_player and current_player.has_method("save_state"):

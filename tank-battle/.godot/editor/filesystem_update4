@@ -1,0 +1,9 @@
+res://TankBattle/scenes/Maps/map_03.tscn
+res://TankBattle/scenes/Maps/map_02.tscn
+res://TankBattle/scenes/Maps/map_01.tscn
+res://TankBattle/scenes/Maps/map_02.gd
+res://TankBattle/scenes/Maps/map_03.gd
+res://globals.gd
+res://TankBattle/scenes/Maps/BaseMap.gd
+res://TankBattle/scenes/Maps/map_04.tscn
+res://TankBattle/scenes/UI/title_screen.tscn

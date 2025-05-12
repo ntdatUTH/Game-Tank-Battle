@@ -1,9 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://bh6v0jhlqjwv7"]
+[gd_scene load_steps=17 format=3 uid="uid://bh6v0jhlqjwv7"]
 
 [ext_resource type="Texture2D" uid="uid://bmthooag84dmn" path="res://TankBattle/kenney_top-down-tanks/tuong.png" id="1_in87k"]
 [ext_resource type="Script" uid="uid://drdguhuogqm7n" path="res://TankBattle/scenes/Maps/map_02.gd" id="1_vtyso"]
 [ext_resource type="Texture2D" uid="uid://cil8tcvmyi4gk" path="res://TankBattle/kenney_top-down-tanks/terrainTiles_retina.png" id="1_yg43d"]
 [ext_resource type="AudioStream" uid="uid://cm5cnjolffela" path="res://TankBattle/sound/videoplayback-_1_.wav" id="4_vtyso"]
+[ext_resource type="PackedScene" uid="uid://cyccaoc4pd3kc" path="res://TankBattle/scenes/Tanks/Enemy_Tank.tscn" id="5_7mqfe"]
+[ext_resource type="PackedScene" uid="uid://vr263y4nmw7h" path="res://TankBattle/scenes/Bullet/missile.tscn" id="6_pkpmb"]
+[ext_resource type="PackedScene" uid="uid://dgo0pub76igoa" path="res://TankBattle/scenes/Tanks/GunTurret.tscn" id="7_o8q6n"]
+[ext_resource type="PackedScene" uid="uid://cdxw1c824ninh" path="res://TankBattle/scenes/Items_Pickup/pickup.tscn" id="8_arl6s"]
+[ext_resource type="Script" uid="uid://cgxy1d55685k7" path="res://TankBattle/scenes/Maps/respawn.gd" id="9_tij6o"]
+[ext_resource type="PackedScene" uid="uid://d4ehrdnr8dfbd" path="res://TankBattle/scenes/Tanks/kamikaze_tank.tscn" id="10_7ixab"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vtyso"]
 texture = ExtResource("1_yg43d")
@@ -3107,6 +3113,18 @@ physics_layer_0/collision_layer = 3
 physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_omqxv")
 
+[sub_resource type="Curve2D" id="Curve2D_7mqfe"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 252.165, 228.051, 0, 0, 0, 0, 217.142, 375.438, -32.7846, 0, 32.7846, 0, 339.223, 586.56, 0, 0, 0, 0, 548.36, 447.14, -86.179, 134, 86.179, -134, 453.297, 147.387, 0, 0, 0, 0, 339.223, 52.7804, 37.5657, -5.46411, -37.5657, 5.46411, 257.169, 142.408, 0, 0, 0, 0, 254.167, 228.051)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_pkpmb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 416, 152, 0, 0, 0, 0, 366.564, 341.455, 0, 0, 0, 0, 338.177, 402.469, 0, 0, 0, 0, 318.939, 469.842, 0, 0, 0, 0, 198.962, 471.458, 0, 0, 0, 0, 207, 48, 0, 0, 0, 0, 413, 156, 0, 0, 0, 0, 416, 152)
+}
+point_count = 8
+
 [node name="map02" type="Node2D"]
 script = ExtResource("1_vtyso")
 
@@ -3128,3 +3146,61 @@ layer_0/tile_data = PackedInt32Array(36, 196608, 8, 65572, 196608, 8, 131108, 19
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_vtyso")
 autoplay = true
+
+[node name="GunTurret" parent="." instance=ExtResource("7_o8q6n")]
+position = Vector2(584, 303)
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Pickup" parent="Items" instance=ExtResource("8_arl6s")]
+position = Vector2(695, 451)
+scale = Vector2(0.4, 0.4)
+type = 1
+
+[node name="Pickup2" parent="Items" instance=ExtResource("8_arl6s")]
+position = Vector2(110, 367)
+scale = Vector2(0.4, 0.4)
+
+[node name="respawn" type="Node2D" parent="."]
+script = ExtResource("9_tij6o")
+
+[node name="kamikaze_tank" parent="." instance=ExtResource("10_7ixab")]
+position = Vector2(478, 117)
+
+[node name="Paths" type="Node2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="Paths"]
+scale = Vector2(0.999344, 1.00416)
+curve = SubResource("Curve2D_7mqfe")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Paths/Path2D"]
+position = Vector2(252.165, 228.051)
+rotation = 1.8041
+
+[node name="Enemy_Tank" parent="Paths/Path2D/PathFollow2D" instance=ExtResource("5_7mqfe")]
+rotation = -0.0495546
+scale = Vector2(0.4, 0.4)
+offroad_friction = 0.0
+
+[node name="Path2D2" type="Path2D" parent="Paths"]
+position = Vector2(-217.761, -1.39668)
+scale = Vector2(1.11962, 1.23743)
+curve = SubResource("Curve2D_pkpmb")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Paths/Path2D2"]
+position = Vector2(416, 152)
+rotation = 1.82604
+
+[node name="Enemy_Tank" parent="Paths/Path2D2/PathFollow2D" instance=ExtResource("5_7mqfe")]
+rotation = -0.0495546
+scale = Vector2(0.4, 0.4)
+turret_speed = 3.0
+Bullet = ExtResource("6_pkpmb")
+max_speed = 175.0
+max_health = 50
+offroad_friction = 0.0
+gun_shots = 3
+
+[connection signal="shoot_" from="GunTurret" to="." method="_on_Tank_shoot"]
+[connection signal="shoot_" from="Paths/Path2D/PathFollow2D/Enemy_Tank" to="." method="_on_Tank_shoot"]
+[connection signal="shoot_" from="Paths/Path2D2/PathFollow2D/Enemy_Tank" to="." method="_on_Tank_shoot"]

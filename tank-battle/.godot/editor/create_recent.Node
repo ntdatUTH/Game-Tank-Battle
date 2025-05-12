@@ -1,9 +1,9 @@
 TextEdit
-TextureRect
+Button
 ColorRect
+TextureRect
 AnimationPlayer
 AudioStreamPlayer2D
-Button
 Panel
 VBoxContainer
 AudioStreamPlayer

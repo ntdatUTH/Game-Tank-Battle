@@ -86,7 +86,7 @@ anchor_top = -0.160266
 anchor_right = 0.454059
 anchor_bottom = -0.0469572
 offset_left = 214.615
-offset_top = 98.3133
+offset_top = 98.3132
 offset_right = 394.447
 offset_bottom = 128.889
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -169,13 +169,6 @@ theme_override_font_sizes/font_size = 30
 text = "Tùy chỉnh "
 flat = true
 
-[node name="HuongDanButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_font_sizes/font_size = 30
-text = "Hướng dẫn "
-flat = true
-
 [node name="Bonfire" type="Sprite2D" parent="VBoxContainer"]
 position = Vector2(-31, 221)
 scale = Vector2(0.0976563, 0.0957031)
@@ -185,6 +178,42 @@ texture = ExtResource("4_iprc1")
 position = Vector2(-24, 416)
 scale = Vector2(0.132813, 0.107422)
 texture = ExtResource("8_tff4m")
+
+[node name="HuongDanButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 30
+text = "Hướng dẫn "
+flat = true
+
+[node name="TextHD" type="TextEdit" parent="VBoxContainer/HuongDanButton"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.034
+anchor_top = -0.243
+offset_left = -320.948
+offset_top = -564.85
+offset_right = 490.0
+offset_bottom = -17.0
+theme_override_colors/background_color = Color(0, 0.407843, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Chế độ nhiều người chơi:
+Hai người chơi thi đấu trên cùng địa chỉ IP 
+Người chơi 1: WASD để di chuyển, Space để bắn.
+Người chơi 2: Phím mũi tên để di chuyển, Enter để bắn.
+Mục tiêu: Tiêu diệt đối phương.
+
+Chế độ vượt ải:
+Vượt qua các màn chơi với độ khó tăng dần.
+Tiêu diệt kẻ địch, né đạn, vượt chướng ngại vật.
+Nhặt vật phẩm hỗ trợ (máu, tốc độ, vũ khí).
+
+Chế độ bất tận:
+Chiến đấu liên tục với làn sóng kẻ địch không dứt.
+Kẻ địch ngày càng mạnh và đông.
+Cố gắng sống sót lâu nhất, ghi điểm cao và xếp hạng. 
+"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -239,4 +268,8 @@ max_health = 50
 offroad_friction = 0.0
 gun_shots = 3
 
+[connection signal="pressed" from="VBoxContainer/VuotAiButton" to="." method="_on_CampaignButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/BatTanButton" to="." method="_on_EndlessButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/TuyChinhButton" to="." method="_on_tuy_chinh_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HuongDanButton" to="." method="_on_button_HD_pressed"]
 [connection signal="pressed" from="VBoxContainer2/LogoutButton" to="." method="_on_logout_button_pressed"]

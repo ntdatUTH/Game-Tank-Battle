@@ -2,7 +2,7 @@ extends Node
 
 @export var spawn_positions: Array[Vector2] = [Vector2(100,100)]
 @export var endless_mode_spawner: PackedScene  # Scene spawner enemy cho chế độ bất tận
-
+var victory_panel = null
 func _ready():
 	spawn_player()
 	
@@ -11,6 +11,13 @@ func _ready():
 		start_endless_mode()
 
 func spawn_player(spawn_position: Vector2 = spawn_positions[0]):
+	if GLOBALS.current_player and is_instance_valid(GLOBALS.current_player):
+		GLOBALS.current_player.queue_free()
+	
+	# Kiểm tra lại sau khi xóa
+	var existing_players = get_tree().get_nodes_in_group("Player")
+	for p in existing_players:
+		p.queue_free()
 	var player_scene = load("res://TankBattle/scenes/Tanks/Player.tscn")
 	var player = player_scene.instantiate()
 	player.global_position = spawn_position
@@ -60,21 +67,73 @@ func set_camera_limits(player):
 	camera.limit_right = int(map_limits.end.x * tile_size.x)
 	camera.limit_top = int(map_limits.position.y * tile_size.y)
 	camera.limit_bottom = int(map_limits.end.y * tile_size.y)
-
-func _on_Player_dead():
-	if GLOBALS.current_game_mode == GLOBALS.GameMode.ENDLESS:
-		# Chuyển thẳng về màn hình chọn chế độ
-		get_tree().change_scene_to_file("res://TankBattle/scenes/UI/mode_selection.tscn")
-	else:
-		# Giữ nguyên xử lý cho campaign
-		GLOBALS.restart()
-
-func show_endless_results():
-	var game_over = preload("res://TankBattle/scenes/UI/mode_selection.tscn").instantiate()
-	game_over.set_score(GLOBALS.enemies_killed)
-	add_child(game_over)
-
 func _on_Tank_shoot(bullet, _position, _direction, _target = null):
 	var b = bullet.instantiate()
 	add_child(b)
 	b.start(_position, _direction, _target)
+var game_over_panel = null  # Biến lưu panel game over
+
+func _on_Player_dead():
+	# Kiểm tra nếu panel đã tồn tại thì không tạo mới
+	if game_over_panel != null:
+		return
+	
+	# Tạo panel game over
+	game_over_panel = Panel.new()
+	add_child(game_over_panel)
+	
+	# Thiết lập panel
+	game_over_panel.size = Vector2(600, 300)
+	game_over_panel.position = Vector2(276, 174)  # Căn giữa màn hình 1152x648
+	game_over_panel.theme = Theme.new()
+	
+	# Thêm label "Bạn đã chết"
+	var death_label = Label.new()
+	game_over_panel.add_child(death_label)
+	death_label.text = "BẠN ĐÃ CHẾT"
+	death_label.position = Vector2(200, 50)
+	death_label.add_theme_font_size_override("font_size", 50)
+	
+	# Thêm nút "Chơi lại" (Y)
+	var restart_button = Button.new()
+	game_over_panel.add_child(restart_button)
+	restart_button.text = "CHƠI LẠI (Y)"
+	restart_button.position = Vector2(100, 150)
+	restart_button.size = Vector2(150, 50)
+	restart_button.pressed.connect(_on_restart_pressed)
+	
+	# Thêm nút "Về menu" (X)
+	var menu_button = Button.new()
+	game_over_panel.add_child(menu_button)
+	menu_button.text = "VỀ MENU (X)"
+	menu_button.position = Vector2(350, 150)
+	menu_button.size = Vector2(150, 50)
+	menu_button.pressed.connect(_on_menu_pressed)
+	if GLOBALS.current_game_mode == GLOBALS.GameMode.ENDLESS:
+		var kills_label = Label.new()
+		game_over_panel.add_child(kills_label)
+		kills_label.text = "Kẻ thù đã tiêu diệt: " + str(GLOBALS.enemies_killed)
+		kills_label.position = Vector2(180, 100)
+		kills_label.add_theme_font_size_override("font_size", 30)
+		#chổ này đọc điểm của số enemy đã tiêu diệt làm bxh
+		
+	# Vô hiệu hóa player và enemy
+	if GLOBALS.current_player:
+		GLOBALS.current_player.set_process(false)
+		GLOBALS.current_player.set_physics_process(false)
+
+func _on_restart_pressed():
+	if GLOBALS.current_game_mode == GLOBALS.GameMode.ENDLESS:
+		get_tree().change_scene_to_file(GLOBALS.endless_map)
+	else:
+		GLOBALS.restart(GLOBALS.current_level)
+
+func _on_menu_pressed():
+	GLOBALS.restart(0)
+
+func _input(event):
+	if game_over_panel and event is InputEventKey:
+		if Input.is_action_pressed("_on_restart_pressed"):
+			_on_restart_pressed()
+		elif Input.is_action_pressed("_on_menu_pressed"):
+			_on_menu_pressed()

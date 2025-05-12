@@ -4,7 +4,7 @@ func _ready():
 	GLOBALS.required_kills = 10
 	GLOBALS.enemies_in_level = 0
 	GLOBALS.enemies_killed = 0
-
+	GLOBALS.current_level=1
 	if !GLOBALS.current_player:
 		spawn_player()
 	else:
