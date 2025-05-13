@@ -107,8 +107,8 @@ func _on_Tank_shoot(bullet, _position, _direction, _target = null):
 var game_over_panel = null  # Biến lưu panel game over
 func _on_Player_dead():
 	var canvas = get_tree().current_scene.get_node("HUDlocal")
-	if canvas.has_node("LocalPlayerHUD"):
-		var old_hud = canvas.get_node("LocalPlayerHUD")
+	if canvas.has_node("HUD"):
+		var old_hud = canvas.get_node("HUD")
 		old_hud.queue_free()
 	print("Dead đã chạy")
 	if multiplayer.is_server():
@@ -187,13 +187,22 @@ func _on_menu_pressed():
 	if multiplayer.multiplayer_peer == null or multiplayer.multiplayer_peer.get_class() == "OfflineMultiplayerPeer":
 		GLOBALS.restart(0)
 	else:
-		GLOBALS.restart.rpc_id(1,0)
+		if multiplayer.is_server():
+			GLOBALS.restart.rpc(GLOBALS.current_level)  # Server chỉ điều khiển clients
+		else:
+			request_menu.rpc_id(1)
 
 @rpc("any_peer", "reliable")
 func request_restart():
-	print("Đã CHẠY REQUEST")
+	print("Đã CHẠY REQUEST RESTART")
 	if multiplayer.is_server():
 		GLOBALS.restart.rpc(GLOBALS.current_level)  # Server broadcast
+
+@rpc("any_peer", "reliable")
+func request_menu():
+	print("Đã CHẠY REQUEST MENU")
+	if multiplayer.is_server():
+		GLOBALS.restart.rpc(0)  # Server broadcast
 
 func _input(event):
 	if game_over_panel and event is InputEventKey:

@@ -22,3 +22,4 @@ res://TankBattle/scenes/Bullet/missile.tscn
 res://TankBattle/scenes/Bullet/PlayerBullet.tscn
 res://TankBattle/scenes/Bullet/Player_Bullet.tscn
 res://TankBattle/scenes/Bullet/testbullet.tscn
+res://TankBattle/scenes/Maps/BaseMap.gd
