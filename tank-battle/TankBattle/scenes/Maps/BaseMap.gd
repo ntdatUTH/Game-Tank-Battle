@@ -44,8 +44,7 @@ func spawn_player(id, spawn_position: Vector2 = spawn_positions[0]):
 	if id == multiplayer.get_unique_id():
 		# 1. Kiểm tra CanvasLayer đã có HUD chưa
 		var camera = player.get_node("Camera2D")
-		camera.current = true  # Chỉ client local mới có camera active
-		camera.enabled = true  # Đảm bảo camera được bật
+		camera.make_current()
 		var canvas = get_parent()
 		if not canvas.has_node("HUD"):  # Dùng tên FIXED cho HUD local
 			var hud = preload("res://TankBattle/scenes/UI/hud.tscn").instantiate()
