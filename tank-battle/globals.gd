@@ -35,11 +35,17 @@ func start_endless_mode():
 
 @rpc("any_peer", "reliable") 
 func restart(_current_level:int):
-	if multiplayer.multiplayer_peer == null or multiplayer.multiplayer_peer.get_class() == "OfflineMultiplayerPeer":
+	print("CHẠY RESTART của GLOBALS")
+	# Chỉ server mới được xử lý restart
+	if not multiplayer.is_server():
+		print("BẮT ĐẦU RESTART")
 		current_level = _current_level
 		enemies_killed = 0  # Reset điểm số
 		enemies_in_level = 0
-		get_tree().change_scene_to_file(levels[current_level])
+		if current_level == 5:
+			BaseMap.rpc_id(1, "request_player_list")
+		else:
+			get_tree().change_scene_to_file(levels[current_level])
 
 func next_level():
 	if current_game_mode == GameMode.ENDLESS:

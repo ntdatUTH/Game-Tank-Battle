@@ -3202,6 +3202,8 @@ max_health = 50
 offroad_friction = 0.0
 gun_shots = 3
 
+[node name="HUDlocal" type="CanvasLayer" parent="."]
+
 [connection signal="shoot_" from="GunTurret" to="." method="_on_Tank_shoot"]
 [connection signal="shoot_" from="Paths/Path2D/PathFollow2D/Enemy_Tank" to="." method="_on_Tank_shoot"]
 [connection signal="shoot_" from="Paths/Path2D2/PathFollow2D/Enemy_Tank" to="." method="_on_Tank_shoot"]

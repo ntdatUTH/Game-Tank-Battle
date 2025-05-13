@@ -4,9 +4,6 @@
 
 [node name="map06" instance=ExtResource("1_xyjop")]
 
-[node name="GunTurret" parent="." index="3"]
-z_index = 0
-
 [node name="kamikaze_tank" parent="." index="6"]
 z_index = 0
 

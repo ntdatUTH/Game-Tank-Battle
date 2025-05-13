@@ -2677,6 +2677,8 @@ position = Vector2(478, 117)
 stream = ExtResource("10_v1nak")
 autoplay = true
 
+[node name="HUDlocal" type="CanvasLayer" parent="."]
+
 [connection signal="shoot_" from="Paths/Path2D/PathFollow2D/Enemy_Tank" to="." method="_on_Tank_shoot"]
 [connection signal="shoot_" from="Paths/Path2D2/PathFollow2D/Enemy_Tank" to="." method="_on_Tank_shoot"]
 [connection signal="shoot_" from="GunTurret" to="." method="_on_Tank_shoot"]

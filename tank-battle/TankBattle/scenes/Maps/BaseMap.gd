@@ -26,39 +26,25 @@ func spawn_player(id, spawn_position: Vector2 = spawn_positions[0]):
 	print("Đã add người chơi")
 	var player = preload("res://TankBattle/scenes/Tanks/Player.tscn").instantiate()
 	player.name = str(id)
-	#player.Bullet = preload("res://TankBattle/scenes/Bullet/bounce_.tscn")
+	player.Bullet = preload("res://TankBattle/scenes/Bullet/bounce_.tscn")
 	player.z_index = 10
 	# Đặt vị trí
 	player.global_position = Vector2(100, 100)
 
-	# ✅ KẾT NỐI TÍN HIỆU
-	# Chỉ thực hiện trên client của người chơi hiện tại
-		# Kết nối signal
-	if player.has_signal("shoot_"):
-		player.shoot_.connect(_on_Tank_shoot)
-	if player.has_signal("dead"):
-		player.dead.connect(_on_Player_dead)
-				# Kiểm tra HUD chưa tồn tại
-	# ⚠️ QUAN TRỌNG: Chỉ xử lý HUD trên client LOCAL
-	# ⚠️ QUAN TRỌNG: Chỉ xử lý HUD trên client LOCAL
 	if id == multiplayer.get_unique_id():
+		player.dead.connect(_on_Player_dead)
+		player.shoot_.connect(_on_Tank_shoot)
 		# 1. Kiểm tra CanvasLayer đã có HUD chưa
-		var camera = player.get_node("Camera2D")
-		camera.make_current()
-		var canvas = get_parent()
+		var canvas = get_tree().current_scene.get_node("HUDlocal")
 		if not canvas.has_node("HUD"):  # Dùng tên FIXED cho HUD local
 			var hud = preload("res://TankBattle/scenes/UI/hud.tscn").instantiate()
 			hud.name = "HUD"  # ⭐ Tên cố định chỉ 1 HUD duy nhất
 			canvas.add_child(hud)
-			
 			# Kết nối signals
 			player.ammo_changed.connect(hud.update_ammo)
 			player.health_changed.connect(hud.update_healthbar)
-	
+
 	add_child(player)
-	# Cập nhật HUD theo chế độ
-	#if GLOBALS.current_game_mode == GLOBALS.GameMode.ENDLESS:
-		#hud_node.update_mode_label("Endless Mode")
 	GLOBALS.current_player = player
 	set_camera_limits(player)
 
@@ -120,22 +106,31 @@ func _on_Tank_shoot(bullet, _position, _direction, _target = null):
 
 var game_over_panel = null  # Biến lưu panel game over
 func _on_Player_dead():
+	var canvas = get_tree().current_scene.get_node("HUDlocal")
+	if canvas.has_node("LocalPlayerHUD"):
+		var old_hud = canvas.get_node("LocalPlayerHUD")
+		old_hud.queue_free()
+	print("Dead đã chạy")
 	if multiplayer.is_server():
 		var all_players = []
 		all_players.append_array(multiplayer.get_peers())
 		rpc("sync_player_list", all_players)
+	_show_game_over_panel()
+
+func _show_game_over_panel():
+	print("Panel đã chạy")
 	# Kiểm tra nếu panel đã tồn tại thì không tạo mới
 	if game_over_panel != null:
 		return
-	
+	print("tạo Panel")
+	var canvas = get_tree().current_scene.get_node("HUDlocal")
 	# Tạo panel game over
 	game_over_panel = Panel.new()
-	add_child(game_over_panel)
-	
-	# Thiết lập panel
+	game_over_panel.name = "game_over_panel"
+	game_over_panel.z_index = 12
 	game_over_panel.size = Vector2(600, 300)
-	game_over_panel.position = Vector2(276, 174)  # Căn giữa màn hình 1152x648
-	game_over_panel.theme = Theme.new()
+	game_over_panel.position = Vector2(276, 174)
+	canvas.add_child(game_over_panel)
 	
 	# Thêm label "Bạn đã chết"
 	var death_label = Label.new()
@@ -173,13 +168,32 @@ func _on_Player_dead():
 		GLOBALS.current_player.set_physics_process(false)
 
 func _on_restart_pressed():
+	var canvas = get_tree().current_scene.get_node("HUDlocal")
+	if game_over_panel != null:
+		canvas.get_node("game_over_panel").queue_free()
 	if GLOBALS.current_game_mode == GLOBALS.GameMode.ENDLESS:
 		get_tree().change_scene_to_file(GLOBALS.endless_map)
-	else:
+	elif multiplayer.multiplayer_peer == null or multiplayer.multiplayer_peer.get_class() == "OfflineMultiplayerPeer":
 		GLOBALS.restart(GLOBALS.current_level)
+	else:
+		print("Đã nhảy vô xử lí mạng RESTART")
+		if multiplayer.is_server():
+			GLOBALS.restart.rpc(GLOBALS.current_level)  # Server chỉ điều khiển clients
+		else:
+			request_restart.rpc_id(1)  # Client gửi yêu cầu
 
 func _on_menu_pressed():
-	GLOBALS.restart(0)
+	print("Đã ấn nút restart")
+	if multiplayer.multiplayer_peer == null or multiplayer.multiplayer_peer.get_class() == "OfflineMultiplayerPeer":
+		GLOBALS.restart(0)
+	else:
+		GLOBALS.restart.rpc_id(1,0)
+
+@rpc("any_peer", "reliable")
+func request_restart():
+	print("Đã CHẠY REQUEST")
+	if multiplayer.is_server():
+		GLOBALS.restart.rpc(GLOBALS.current_level)  # Server broadcast
 
 func _input(event):
 	if game_over_panel and event is InputEventKey:
@@ -197,10 +211,6 @@ func request_player_list():
 
 @rpc("reliable", "call_local")
 func sync_player_list(players: Array):
-		#for id in players:
-		#if not get_node_or_null(str(id)):  # Tránh thêm trùng
-			#add_player(id)
-			#pass
 	# Danh sách ID player hiện có
 	var current_players = []
 	for child in get_children():
@@ -216,7 +226,7 @@ func sync_player_list(players: Array):
 	
 	# Thêm player mới
 	for id in players:
-		if not get_node_or_null(str(id)):
+		if not get_node_or_null(str(id)) and not has_node(str(id)):
 			spawn_player(id)
 
 @rpc("reliable", "call_local")

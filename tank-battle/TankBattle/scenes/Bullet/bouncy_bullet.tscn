@@ -66,7 +66,6 @@ func _exit_tree():
 radius = 24.1868
 
 [node name="bouncy_bullet" instance=ExtResource("1_qcu8k")]
-z_index = 10
 script = SubResource("GDScript_t63i3")
 max_bounces = 3
 bounciness = 0.8

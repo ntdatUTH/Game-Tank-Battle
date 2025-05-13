@@ -3140,3 +3140,5 @@ type = 1
 [node name="Pickup2" parent="Items" instance=ExtResource("6_yp1ee")]
 position = Vector2(110, 367)
 scale = Vector2(0.4, 0.4)
+
+[node name="HUDlocal" type="CanvasLayer" parent="."]
