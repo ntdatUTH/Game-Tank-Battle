@@ -11,6 +11,7 @@ size = Vector2(51.5, 62.5)
 size = Vector2(51.7957, 63.1986)
 
 [node name="kamikaze_tank" instance=ExtResource("1_hcdje")]
+z_index = 10
 collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_hfh1a")

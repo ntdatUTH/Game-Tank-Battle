@@ -197,7 +197,37 @@ func request_player_list():
 
 @rpc("reliable", "call_local")
 func sync_player_list(players: Array):
+		#for id in players:
+		#if not get_node_or_null(str(id)):  # Tránh thêm trùng
+			#add_player(id)
+			#pass
+	# Danh sách ID player hiện có
+	var current_players = []
+	for child in get_children():
+		if child.is_in_group("Player"):
+			current_players.append(int(child.name))
+	
+	# Xóa player không còn trong danh sách
+	for player_id in current_players:
+		if not player_id in players and player_id != multiplayer.get_unique_id():
+			var player_node = get_node_or_null(str(player_id))
+			if player_node:
+				player_node.queue_free()
+	
+	# Thêm player mới
 	for id in players:
-		if not get_node_or_null(str(id)):  # Tránh thêm trùng
+		if not get_node_or_null(str(id)):
 			spawn_player(id)
-			pass
+
+@rpc("reliable", "call_local")
+func remove_disconnected_player(id):
+	var player_node = get_node_or_null(str(id))
+	if player_node:
+		player_node.queue_free()
+		print("Removed player: ", id)
+	
+	# Nếu là server, cập nhật lại danh sách player
+	if multiplayer.is_server():
+		var remaining_players = []
+		remaining_players.append_array(multiplayer.get_peers())
+		sync_player_list(remaining_players)

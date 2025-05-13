@@ -2637,6 +2637,7 @@ offroad_friction = 0.0
 gun_shots = 3
 
 [node name="GunTurret" parent="." instance=ExtResource("8_g28ee")]
+z_index = 0
 position = Vector2(1015, 334)
 
 [node name="Obstacle" type="Node2D" parent="."]

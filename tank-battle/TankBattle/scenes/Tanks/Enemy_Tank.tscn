@@ -11,6 +11,7 @@
 size = Vector2(83.2099, 86.5432)
 
 [node name="Enemy_Tank" instance=ExtResource("1_pyrxt")]
+z_index = 10
 scale = Vector2(0.162, 0.162)
 collision_layer = 4
 collision_mask = 11

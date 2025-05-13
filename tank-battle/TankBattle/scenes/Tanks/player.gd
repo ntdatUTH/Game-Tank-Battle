@@ -9,11 +9,9 @@ func _enter_tree() -> void:
 
 func _ready():
 	super._ready()
-	if not is_multiplayer_authority():  # Kiểm tra nếu không phải client local
-		var camera = get_node("Camera2D")
-		if camera:
-			camera.current = false  # Tắt camera
-			camera.enabled = false  # Vô hiệu hóa hoàn toàn
+	if str(name) == str(multiplayer.get_unique_id()):
+		$Camera2D.make_current()
+	#if not is_multiplayer_authority():  # Kiểm tra nếu không phải client local
 	# Load settings trước khi cập nhật skin
 	GlobalSettings.load_settings()
 	SkinManager.current_body_index = GlobalSettings.current_body_index
