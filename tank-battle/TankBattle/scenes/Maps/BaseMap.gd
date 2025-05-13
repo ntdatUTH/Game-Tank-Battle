@@ -16,13 +16,13 @@ var victory_panel = null
 
 @rpc("any_peer", "call_local", "reliable")
 func spawn_player(id, spawn_position: Vector2 = spawn_positions[0]):
-	if GLOBALS.current_player and is_instance_valid(GLOBALS.current_player):
-		GLOBALS.current_player.queue_free()
-	
-	# Kiểm tra lại sau khi xóa
-	var existing_players = get_tree().get_nodes_in_group("Player")
-	for p in existing_players:
-		p.queue_free()
+	#if GLOBALS.current_player and is_instance_valid(GLOBALS.current_player):
+		#GLOBALS.current_player.queue_free()
+	#
+	## Kiểm tra lại sau khi xóa
+	#var existing_players = get_tree().get_nodes_in_group("Player")
+	#for p in existing_players:
+		#p.queue_free()
 	print("Đã add người chơi")
 	var player = preload("res://TankBattle/scenes/Tanks/Player.tscn").instantiate()
 	player.name = str(id)
@@ -43,6 +43,9 @@ func spawn_player(id, spawn_position: Vector2 = spawn_positions[0]):
 	# ⚠️ QUAN TRỌNG: Chỉ xử lý HUD trên client LOCAL
 	if id == multiplayer.get_unique_id():
 		# 1. Kiểm tra CanvasLayer đã có HUD chưa
+		var camera = player.get_node("Camera2D")
+		camera.current = true  # Chỉ client local mới có camera active
+		camera.enabled = true  # Đảm bảo camera được bật
 		var canvas = get_parent()
 		if not canvas.has_node("HUD"):  # Dùng tên FIXED cho HUD local
 			var hud = preload("res://TankBattle/scenes/UI/hud.tscn").instantiate()
@@ -94,7 +97,7 @@ func set_camera_limits(player):
 	else:
 		update_camera_limits(player.get_path(), limits)
 
-@rpc("any_peer", "call_local", "reliable")
+@rpc("any_peer", "reliable")
 func update_camera_limits(player_path: NodePath, limits: Dictionary):
 	var player = get_node(player_path)
 	if not player or not player.has_node("Camera2D"):

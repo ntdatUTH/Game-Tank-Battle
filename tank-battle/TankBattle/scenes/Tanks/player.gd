@@ -9,6 +9,11 @@ func _enter_tree() -> void:
 
 func _ready():
 	super._ready()
+	if not is_multiplayer_authority():  # Kiểm tra nếu không phải client local
+		var camera = get_node("Camera2D")
+		if camera:
+			camera.current = false  # Tắt camera
+			camera.enabled = false  # Vô hiệu hóa hoàn toàn
 	# Load settings trước khi cập nhật skin
 	GlobalSettings.load_settings()
 	SkinManager.current_body_index = GlobalSettings.current_body_index
@@ -34,18 +39,7 @@ func _on_skin_changed(body_texture:Texture2D,barrel_texture:Texture2D):
 		body_sprite.texture=body_texture
 	if barrel_texture:
 		barrel_sprite.texture = barrel_texture
-func _physics_process(delta):
-	if not alive:
-		return
-	
-	control(delta)
-	move_and_slide()  
-	
-	if map:
-		var tile_pos = map.local_to_map(position)
-		var atlas_coords = map.get_cell_atlas_coords(0, tile_pos)
-		if GLOBALS.slow_terrain.has(atlas_coords):
-			velocity *= offroad_friction
+
 func control(delta):
 	$Turret.look_at(get_global_mouse_position())
 	$Turret.rotation += deg_to_rad(-90)

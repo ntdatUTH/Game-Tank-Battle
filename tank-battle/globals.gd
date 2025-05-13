@@ -19,6 +19,7 @@ var levels = [
 	"res://TankBattle/scenes/Maps/map_03.tscn"
 ]
 var endless_map = "res://TankBattle/scenes/Maps/map_04.tscn"
+var network_map = "res://TankBattle/scenes/Maps/map_05.tscn"
 var enemies_in_level:=0
 var enemies_killed:=0
 var required_kills:=0

@@ -23,7 +23,7 @@ func join_game(ip: String):
 	_change_to_game_scene()
 
 func _change_to_game_scene():
-	get_tree().change_scene_to_file("res://TankBattle/scenes/Maps/map_02.tscn")
+	get_tree().change_scene_to_file("res://TankBattle/scenes/Maps/map_05.tscn")
 
 func _on_peer_connected(id):
 	print("Người chơi kết nối với ID: ", id)
