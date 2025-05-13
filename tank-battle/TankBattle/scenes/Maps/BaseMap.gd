@@ -3,14 +3,19 @@ extends Node
 @export var spawn_positions: Array[Vector2] = [Vector2(100,100)]
 @export var endless_mode_spawner: PackedScene  # Scene spawner enemy cho chế độ bất tận
 var victory_panel = null
-func _ready():
-	spawn_player()
-	
-	# Nếu là chế độ bất tận, kích hoạt spawner
-	if GLOBALS.current_game_mode == GLOBALS.GameMode.ENDLESS:
-		start_endless_mode()
+#
+#func _ready():
+	## Chỉ chạy khi OFFLINE (không có kết nối multiplayer)
+	#print(multiplayer.multiplayer_peer)
+	#if multiplayer.multiplayer_peer == null or multiplayer.multiplayer_peer.get_class() == "OfflineMultiplayerPeer":
+		#print("add player")
+		#spawn_player(1)  # Dùng ID mặc định (ví dụ: 1) cho offline
+		## Nếu là chế độ bất tận, kích hoạt spawner
+		#if GLOBALS.current_game_mode == GLOBALS.GameMode.ENDLESS:
+			#start_endless_mode()
 
-func spawn_player(spawn_position: Vector2 = spawn_positions[0]):
+@rpc("any_peer", "call_local", "reliable")
+func spawn_player(id, spawn_position: Vector2 = spawn_positions[0]):
 	if GLOBALS.current_player and is_instance_valid(GLOBALS.current_player):
 		GLOBALS.current_player.queue_free()
 	
@@ -18,32 +23,43 @@ func spawn_player(spawn_position: Vector2 = spawn_positions[0]):
 	var existing_players = get_tree().get_nodes_in_group("Player")
 	for p in existing_players:
 		p.queue_free()
-	var player_scene = load("res://TankBattle/scenes/Tanks/Player.tscn")
-	var player = player_scene.instantiate()
-	player.global_position = spawn_position
+	print("Đã add người chơi")
+	var player = preload("res://TankBattle/scenes/Tanks/Player.tscn").instantiate()
+	player.name = str(id)
+	#player.Bullet = preload("res://TankBattle/scenes/Bullet/bounce_.tscn")
+	player.z_index = 10
+	# Đặt vị trí
+	player.global_position = Vector2(100, 100)
 
+	# ✅ KẾT NỐI TÍN HIỆU
+	# Chỉ thực hiện trên client của người chơi hiện tại
+		# Kết nối signal
 	if player.has_signal("shoot_"):
 		player.shoot_.connect(_on_Tank_shoot)
 	if player.has_signal("dead"):
 		player.dead.connect(_on_Player_dead)
-
-	add_child(player)
-
-	var hud = load("res://TankBattle/scenes/UI/hud.tscn")
-	var hud_instance = hud.instantiate()
-	hud_instance.name = "HUD"
-	add_child(hud_instance)
-
-	var hud_node = $HUD
-	player.ammo_changed.connect(hud_node.update_ammo)
-	player.health_changed.connect(hud_node.update_healthbar)
+				# Kiểm tra HUD chưa tồn tại
+	# ⚠️ QUAN TRỌNG: Chỉ xử lý HUD trên client LOCAL
+	# ⚠️ QUAN TRỌNG: Chỉ xử lý HUD trên client LOCAL
+	if id == multiplayer.get_unique_id():
+		# 1. Kiểm tra CanvasLayer đã có HUD chưa
+		var canvas = get_parent()
+		if not canvas.has_node("HUD"):  # Dùng tên FIXED cho HUD local
+			var hud = preload("res://TankBattle/scenes/UI/hud.tscn").instantiate()
+			hud.name = "HUD"  # ⭐ Tên cố định chỉ 1 HUD duy nhất
+			canvas.add_child(hud)
+			
+			# Kết nối signals
+			player.ammo_changed.connect(hud.update_ammo)
+			player.health_changed.connect(hud.update_healthbar)
 	
+	add_child(player)
 	# Cập nhật HUD theo chế độ
 	#if GLOBALS.current_game_mode == GLOBALS.GameMode.ENDLESS:
 		#hud_node.update_mode_label("Endless Mode")
-
 	GLOBALS.current_player = player
 	set_camera_limits(player)
+
 
 func start_endless_mode():
 	if endless_mode_spawner:
@@ -54,6 +70,7 @@ func start_endless_mode():
 		push_warning("No endless spawner assigned")
 
 func set_camera_limits(player):
+	# Kiểm tra node cần thiết (chạy trên mọi peer)
 	if not has_node("Ground") or not player.has_node("Camera2D"):
 		push_error("Thiếu Ground hoặc Camera2D")
 		return
@@ -63,17 +80,48 @@ func set_camera_limits(player):
 	var map_limits = ground.get_used_rect()
 	var tile_size = ground.tile_set.tile_size
 
-	camera.limit_left = int(map_limits.position.x * tile_size.x)
-	camera.limit_right = int(map_limits.end.x * tile_size.x)
-	camera.limit_top = int(map_limits.position.y * tile_size.y)
-	camera.limit_bottom = int(map_limits.end.y * tile_size.y)
-func _on_Tank_shoot(bullet, _position, _direction, _target = null):
-	var b = bullet.instantiate()
-	add_child(b)
-	b.start(_position, _direction, _target)
-var game_over_panel = null  # Biến lưu panel game over
+	# Tính toán giới hạn
+	var limits = {
+		"left": int(map_limits.position.x * tile_size.x),
+		"right": int(map_limits.end.x * tile_size.x),
+		"top": int(map_limits.position.y * tile_size.y),
+		"bottom": int(map_limits.end.y * tile_size.y)
+	}
 
+	# Đồng bộ giới hạn camera qua RPC nếu là host
+	if multiplayer.is_server():
+		update_camera_limits.rpc(player.get_path(), limits)
+	else:
+		update_camera_limits(player.get_path(), limits)
+
+@rpc("any_peer", "call_local", "reliable")
+func update_camera_limits(player_path: NodePath, limits: Dictionary):
+	var player = get_node(player_path)
+	if not player or not player.has_node("Camera2D"):
+		return
+
+	var camera = player.get_node("Camera2D")
+	camera.limit_left = limits["left"]
+	camera.limit_right = limits["right"]
+	camera.limit_top = limits["top"]
+	camera.limit_bottom = limits["bottom"]
+
+func _on_Tank_shoot(bullet, _position, _direction, _target = null):
+	print("Đã chạy signal Bắn")
+	var b = bullet.instantiate()
+	# Thiết lập tham số TRƯỚC khi add_child
+	b.position = _position
+	b.rotation = _direction.angle()
+	b.velocity = _direction * b.speed  # Truy cập speed từ bullet
+	b.target = _target
+	add_child(b)
+
+var game_over_panel = null  # Biến lưu panel game over
 func _on_Player_dead():
+	if multiplayer.is_server():
+		var all_players = []
+		all_players.append_array(multiplayer.get_peers())
+		rpc("sync_player_list", all_players)
 	# Kiểm tra nếu panel đã tồn tại thì không tạo mới
 	if game_over_panel != null:
 		return
@@ -137,3 +185,17 @@ func _input(event):
 			_on_restart_pressed()
 		elif Input.is_action_pressed("_on_menu_pressed"):
 			_on_menu_pressed()
+
+@rpc("any_peer", "reliable")
+func request_player_list():
+	if multiplayer.is_server():
+		var all_players = []
+		all_players.append_array(multiplayer.get_peers())
+		rpc("sync_player_list", all_players)
+
+@rpc("reliable", "call_local")
+func sync_player_list(players: Array):
+	for id in players:
+		if not get_node_or_null(str(id)):  # Tránh thêm trùng
+			spawn_player(id)
+			pass

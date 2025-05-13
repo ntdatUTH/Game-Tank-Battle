@@ -31,12 +31,14 @@ func start_endless_mode():
 	enemies_killed = 0  # Reset điểm số
 	enemies_in_level = 0
 	get_tree().change_scene_to_file(endless_map)
-	
+
+@rpc("any_peer", "reliable") 
 func restart(_current_level:int):
-	current_level = _current_level
-	enemies_killed = 0  # Reset điểm số
-	enemies_in_level = 0
-	get_tree().change_scene_to_file(levels[current_level])
+	if multiplayer.multiplayer_peer == null or multiplayer.multiplayer_peer.get_class() == "OfflineMultiplayerPeer":
+		current_level = _current_level
+		enemies_killed = 0  # Reset điểm số
+		enemies_in_level = 0
+		get_tree().change_scene_to_file(levels[current_level])
 
 func next_level():
 	if current_game_mode == GameMode.ENDLESS:

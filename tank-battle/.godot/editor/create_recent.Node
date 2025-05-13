@@ -1,3 +1,8 @@
+MultiplayerSynchronizer
+VBoxContainer
+HBoxContainer
+LineEdit
+Label
 TextEdit
 Button
 ColorRect
@@ -5,10 +10,5 @@ TextureRect
 AnimationPlayer
 AudioStreamPlayer2D
 Panel
-VBoxContainer
 AudioStreamPlayer
 Node2D
-CanvasLayer
-Label
-LineEdit
-TileMap

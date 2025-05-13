@@ -2,6 +2,11 @@ extends "res://TankBattle/scenes/Tanks/Tank.gd"
 @onready var body_sprite=$Body
 @onready var barrel_sprite=$Turret
 
+func _enter_tree() -> void:
+	if multiplayer.multiplayer_peer != null && multiplayer.multiplayer_peer.get_class() != "OfflineMultiplayerPeer":
+		# Online logic
+		set_multiplayer_authority(name.to_int())
+
 func _ready():
 	super._ready()
 	# Load settings trước khi cập nhật skin
@@ -16,6 +21,10 @@ func _ready():
 		Input.CURSOR_ARROW,
 		Vector2(16, 16) # Căn giữa hình ngắm
 	)
+	add_to_group("Player")
+	#if str(name) == str(multiplayer.get_unique_id()):
+		#$Camera2D.make_current()
+	
 func update_skin():
 	$Body.texture = SkinManager.get_current_body_skin()
 	$Turret.texture = SkinManager.get_current_barrel_skin()

@@ -1,7 +1,9 @@
 extends Control
 @onready var text_guide=$VBoxContainer/HuongDanButton/TextHD
 #@onready var welcome_label = $TenEmailLabel
-#func _ready() -> void:
+func _ready() -> void:
+	var ip = get_lan_ip()
+	$LabelIP.text = "LAN IP: " + ip
 	#if AuthManager.check_auth_status():
 		#welcome_label.text = "Xin chào, %s!" % AuthManager.current_username
 	#else:
@@ -16,7 +18,13 @@ extends Control
 	#get_tree().change_scene_to_file("res://TankBattle/scenes/databaseFirebase/Authentication.tscn")
 	#pass # Replace with function body.
 
-
+func get_lan_ip() -> String:
+	var ip_list = IP.get_local_addresses()
+	for ip in ip_list:
+		if ip.begins_with("192.168."):
+			return ip
+	return "Không tìm thấy IP 192.168"
+	
 func _on_tuy_chinh_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://TankBattle/scenes/Skins/skin_menu.tscn")
 func _on_CampaignButton_pressed():
@@ -30,3 +38,10 @@ func _on_EndlessButton_pressed():
 func _on_button_HD_pressed():
 	# Chuyển trạng thái ẩn/hiện
 	text_guide.visible = !text_guide.visible
+
+func _on_host_pressed() -> void:
+	MultiPlayer.host_game()
+
+func _on_join_pressed() -> void:
+	var ip = $VBoxNetworkMode/HBoxNetworkMode/IPtext.text.strip_edges()
+	MultiPlayer.join_game(ip)
