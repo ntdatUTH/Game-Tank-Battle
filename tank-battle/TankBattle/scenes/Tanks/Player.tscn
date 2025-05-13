@@ -19,6 +19,7 @@ script = ExtResource("2_fw815")
 Bullet = ExtResource("3_4vnnm")
 max_speed = 70.0
 gun_cooldown = 0.4
+bullet_speed = 200
 ammo = 10
 
 [node name="Body" parent="." index="0"]

@@ -26,7 +26,8 @@ func spawn_player(id, spawn_position: Vector2 = spawn_positions[0]):
 	print("Đã add người chơi")
 	var player = preload("res://TankBattle/scenes/Tanks/Player.tscn").instantiate()
 	player.name = str(id)
-	player.Bullet = preload("res://TankBattle/scenes/Bullet/bounce_.tscn")
+	if GLOBALS.current_level == 5:
+		player.Bullet = preload("res://TankBattle/scenes/Bullet/bounce_.tscn")
 	player.z_index = 10
 	# Đặt vị trí
 	player.global_position = Vector2(100, 100)
@@ -187,6 +188,7 @@ func _on_menu_pressed():
 	if multiplayer.multiplayer_peer == null or multiplayer.multiplayer_peer.get_class() == "OfflineMultiplayerPeer":
 		GLOBALS.restart(0)
 	else:
+		MultiPlayer.disconnect_game()
 		if multiplayer.is_server():
 			GLOBALS.restart.rpc(GLOBALS.current_level)  # Server chỉ điều khiển clients
 		else:

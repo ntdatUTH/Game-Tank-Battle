@@ -33,3 +33,17 @@ func _on_peer_connected(id):
 		var all_players = []
 		all_players.append_array(multiplayer.get_peers())
 		BaseMap.rpc("sync_player_list", all_players)
+
+func disconnect_game():
+	#var existing_players = get_tree().get_nodes_in_group("Player")
+	#for p in existing_players:
+		#p.queue_free()
+	if peer != null and peer.get_connection_status() != MultiplayerPeer.CONNECTION_DISCONNECTED:
+		print("Đang ngắt kết nối...")
+
+		# Ngắt kết nối mạng
+		peer.close()
+		multiplayer.multiplayer_peer = null
+		peer = ENetMultiplayerPeer.new()  # Reset peer để có thể host/join lại sau
+	else:
+		print("Chưa kết nối hoặc đã ngắt kết nối.")
