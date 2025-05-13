@@ -34,7 +34,7 @@ func login_with_email(email: String, password: String) -> void:
 	http_request.request_completed.connect(_on_login_completed)
 	http_request.request(url, headers, HTTPClient.METHOD_POST, body)
 
-func _on_login_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
+func _on_login_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray, token: String, user_data: Dictionary, is_connected: bool):
 	var response = JSON.parse_string(body.get_string_from_utf8())
 	
 	if response_code == 200:
@@ -42,14 +42,35 @@ func _on_login_completed(result: int, response_code: int, headers: PackedStringA
 		current_username = current_user_email.split("@")[0]
 		firebase_token = response.get("idToken", "")
 		is_logged_in = true
+		
+		# Luôn cập nhật GLOBALS khi login thành công
+		GLOBALS.firebase_token = token
+		GLOBALS.user_data = user_data
+		GLOBALS.is_connected = true
+		print("Đã lưu thông tin đăng nhập vào Global!")
 		emit_signal("login_success")
 	else:
+		GLOBALS.is_connected = false
+		printerr("Đăng nhập Firebase thất bại!")
 		emit_signal("login_failed", response.get("error", {}).get("message", "Unknown error"))
 
 # Hàm kiểm tra trạng thái đăng nhập
 func check_auth_status() -> bool:
 	return is_logged_in
-
+# hàm lưu điểm số
+func save_score_to_leaderboard(score: int):
+	if Firebase.Auth.get_jwt_token().is_empty():
+		return
+	
+	var user_data = {
+		"email": current_user_email,
+		"score": score
+	}
+	
+	Firebase.Database.set(
+		"leaderboard/%s" % Firebase.Auth.get_user_id(),
+		user_data
+	)
 # Hàm đăng xuất
 func logout():
 	current_user_email = ""

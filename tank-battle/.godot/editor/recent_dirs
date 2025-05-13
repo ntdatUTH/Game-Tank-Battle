@@ -1,1 +1,4 @@
+res://addons/godot-firebase/firebase
+res://TankBattle/scenes/autoLoad
+res://TankBattle/scenes/databaseFirebase
 res://TankBattle/scenes/Maps

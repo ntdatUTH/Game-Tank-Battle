@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Tank Battle"
-run/main_scene="uid://x6chm7d80ayt"
+run/main_scene="uid://dufcgso143pky"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GLOBALS="*res://globals.gd"
-Firebase="*res://addons/godot-firebase/firebase/firebase.tscn"
+Firebase="*res://addons/godot-firebase/firebase/firebase.gd"
 AuthManager="*res://TankBattle/scenes/UI/auth_manager.gd"
 GlobalSettings="*res://TankBattle/scenes/autoLoad/global_settings.gd"
 SkinManager="*res://TankBattle/scenes/autoLoad/skin_manager.gd"

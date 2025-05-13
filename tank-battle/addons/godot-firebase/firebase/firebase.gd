@@ -50,14 +50,12 @@ const _AUTH_PROVIDERS : String = "firebase/auth_providers"
 # These values can be found in your Firebase Project
 # See the README checked Github for how to access
 var _config : Dictionary = {
-	"apiKey": "",
-	"authDomain": "",
-	"databaseURL": "",
-	"projectId": "",
-	"storageBucket": "",
-	"messagingSenderId": "",
-	"appId": "",
-	"measurementId": "",
+	"apiKey": "AIzaSyC_C33LbHn4tn9PTVZwYWJjqKPPqbRCkS0",
+	"authDomain": "game-tank-battle.firebaseapp.com",
+	"databaseURL": "https://game-tank-battle-default-rtdb.firebaseio.com",
+	"projectId": "game-tank-battle",
+	"storageBucket": "game-tank-battle.firebasestorage.app",
+	"messagingSenderId": "881841128069",
 	"clientId": "",
 	"clientSecret" : "",
 	"domainUriPrefix" : "",

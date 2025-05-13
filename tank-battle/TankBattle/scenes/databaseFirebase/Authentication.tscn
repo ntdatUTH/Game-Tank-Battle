@@ -21,12 +21,13 @@ script = ExtResource("1_7j68d")
 
 [node name="DangNhap" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.486275)
-position = Vector2(515, 340)
+position = Vector2(516, 333)
 scale = Vector2(1.13477, 1.0118)
 texture = ExtResource("2_i4sfi")
 
 [node name="TextEdit" type="TextEdit" parent="."]
 modulate = Color(0.486633, 0.929688, 0.535092, 1)
+layout_mode = 0
 offset_left = 425.0
 offset_top = 101.0
 offset_right = 750.0

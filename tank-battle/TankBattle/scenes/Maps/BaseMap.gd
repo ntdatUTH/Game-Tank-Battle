@@ -78,6 +78,7 @@ func _on_Player_dead():
 	if game_over_panel != null:
 		return
 	
+
 	# Tạo panel game over
 	game_over_panel = Panel.new()
 	add_child(game_over_panel)
@@ -109,18 +110,48 @@ func _on_Player_dead():
 	menu_button.position = Vector2(350, 150)
 	menu_button.size = Vector2(150, 50)
 	menu_button.pressed.connect(_on_menu_pressed)
+	
+	#nhận tính hiệu khi chết rồi truyền dl qua globals
 	if GLOBALS.current_game_mode == GLOBALS.GameMode.ENDLESS:
 		var kills_label = Label.new()
 		game_over_panel.add_child(kills_label)
 		kills_label.text = "Kẻ thù đã tiêu diệt: " + str(GLOBALS.enemies_killed)
 		kills_label.position = Vector2(180, 100)
 		kills_label.add_theme_font_size_override("font_size", 30)
-		#chổ này đọc điểm của số enemy đã tiêu diệt làm bxh
+	#chổ này đọc điểm của số enemy đã tiêu diệt làm bxh
+	GLOBALS.endless_score = GLOBALS.enemies_killed
 		
+	#kết thúc game endlesss thì cập nhật điểm 
+	GLOBALS.add_current_player_to_leaderboard()
+	
+	if GLOBALS.current_game_mode == GLOBALS.GameMode.ENDLESS:
+	# Đảm bảo có email và điểm hợp lệ
+		if GLOBALS.player_email != "" and GLOBALS.enemies_killed > 0:
+			var new_record = {
+				"email": GLOBALS.player_email,
+				"score": GLOBALS.enemies_killed
+			}
+			GLOBALS.leaderboard_data.append(new_record)
+			
+			# Debug: In ra để kiểm tra
+			print("Added new record: ", new_record)
+			
+			# Lưu dữ liệu nếu cần
+		
+		
+   		# Hiển thị bảng xếp hạng
+		var leaderboard_scene = preload("res://TankBattle/scenes/rank/Rank.tscn").instantiate()
+		get_tree().current_scene.add_child(leaderboard_scene)
+		
+
+	
+	
 	# Vô hiệu hóa player và enemy
 	if GLOBALS.current_player:
 		GLOBALS.current_player.set_process(false)
 		GLOBALS.current_player.set_physics_process(false)
+
+
 
 func _on_restart_pressed():
 	if GLOBALS.current_game_mode == GLOBALS.GameMode.ENDLESS:
@@ -131,8 +162,12 @@ func _on_restart_pressed():
 func _on_menu_pressed():
 	GLOBALS.restart(0)
 
+
+
+	
 func _input(event):
 	if game_over_panel and event is InputEventKey:
+
 		if Input.is_action_pressed("_on_restart_pressed"):
 			_on_restart_pressed()
 		elif Input.is_action_pressed("_on_menu_pressed"):

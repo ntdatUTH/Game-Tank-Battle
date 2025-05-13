@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b0a2ie7at1txf"]
+[gd_scene load_steps=19 format=3 uid="uid://b0a2ie7at1txf"]
 
 [ext_resource type="FontFile" uid="uid://dsea3nsc6vruv" path="res://TankBattle/kenney_top-down-tanks/font/Xolonium-Bold.ttf" id="1_uf0ll"]
 [ext_resource type="Script" uid="uid://ms5xrpja7gwi" path="res://TankBattle/scenes/UI/title_screen.gd" id="1_yb38r"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bi5nxkcvgjm7c" path="res://TankBattle/scenes/UI/bonfire.png" id="4_iprc1"]
 [ext_resource type="Texture2D" uid="uid://kljsc1ynoe8q" path="res://TankBattle/scenes/UI/logout.png" id="5_dmkog"]
 [ext_resource type="Texture2D" uid="uid://dauow5wxklaq8" path="res://TankBattle/scenes/UI/information.png" id="8_tff4m"]
+[ext_resource type="Texture2D" uid="uid://b6hm3bsiwg7uu" path="res://TankBattle/scenes/UI/rank.png" id="9_61xmw"]
 [ext_resource type="Texture2D" uid="uid://ctnfxv6m2wfss" path="res://TankBattle/scenes/UI/challenge.png" id="9_tff4m"]
 [ext_resource type="Texture2D" uid="uid://b6l026pxr1dl3" path="res://TankBattle/scenes/UI/setting.png" id="10_61xmw"]
 [ext_resource type="AudioStream" uid="uid://x7bdhx38hk55" path="res://TankBattle/sound/videoplayback.wav" id="10_dmkog"]
@@ -54,7 +55,7 @@ _data = {
 
 [sub_resource type="Curve2D" id="Curve2D_tff4m"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 382, 87, 0, 0, 0, 0, 930, 93, 0, 0, 0, 0, 888, 295, 0, 0, 0, 0, 995, 592, 0, 0, 0, 0, 344, 676, 0, 0, 0, 0, 226, 579, 0, 0, 0, 0, 223, 548, 0, 0, 0, 0, 370, 98)
+"points": PackedVector2Array(0, 0, 0, 0, 378, 15, 0, 0, 0, 0, 970, 11, 0, 0, 0, 0, 888, 295, 0, 0, 0, 0, 995, 592, 0, 0, 0, 0, 344, 676, 0, 0, 0, 0, 226, 579, 0, 0, 0, 0, 223, 548, 0, 0, 0, 0, 364, 34)
 }
 point_count = 8
 
@@ -74,7 +75,7 @@ size_flags_vertical = 4
 script = ExtResource("1_yb38r")
 
 [node name="Nen" type="Sprite2D" parent="."]
-position = Vector2(508, 629)
+position = Vector2(764, 637)
 scale = Vector2(1.50977, 1.31152)
 texture = ExtResource("2_dmkog")
 
@@ -87,7 +88,7 @@ anchor_right = 0.454059
 anchor_bottom = -0.0469572
 offset_left = 214.615
 offset_top = 98.3132
-offset_right = 394.447
+offset_right = 394.446
 offset_bottom = 128.889
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/shadow_offset_x = 3
@@ -110,25 +111,25 @@ text = "Tên của bạn "
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-offset_left = 473.0
-offset_top = 133.0
-offset_right = 895.0
-offset_bottom = 608.0
-theme_override_constants/separation = 50
+offset_left = 433.0
+offset_top = 83.0
+offset_right = 855.0
+offset_bottom = 558.0
+theme_override_constants/separation = 43
 
 [node name="Setting" type="Sprite2D" parent="VBoxContainer"]
-position = Vector2(-37, 329)
+position = Vector2(-37, 307)
 scale = Vector2(0.12207, 0.111328)
 texture = ExtResource("10_61xmw")
 
 [node name="Challenge" type="Sprite2D" parent="VBoxContainer"]
-position = Vector2(-34, 123)
+position = Vector2(-35, 122)
 scale = Vector2(0.101562, 0.0917969)
 texture = ExtResource("9_tff4m")
 
 [node name="Gamepad" type="Sprite2D" parent="VBoxContainer"]
-position = Vector2(-26, 22)
-scale = Vector2(0.0908203, 0.0878906)
+position = Vector2(-28.375, 24.25)
+scale = Vector2(0.100098, 0.0966797)
 texture = ExtResource("3_dmkog")
 
 [node name="2nguoiButton" type="Button" parent="VBoxContainer"]
@@ -170,18 +171,16 @@ text = "Tùy chỉnh "
 flat = true
 
 [node name="Bonfire" type="Sprite2D" parent="VBoxContainer"]
-position = Vector2(-31, 221)
+position = Vector2(-35, 209)
 scale = Vector2(0.0976563, 0.0957031)
 texture = ExtResource("4_iprc1")
-
-[node name="Information" type="Sprite2D" parent="VBoxContainer"]
-position = Vector2(-24, 416)
-scale = Vector2(0.132813, 0.107422)
-texture = ExtResource("8_tff4m")
 
 [node name="HuongDanButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_colors/font_hover_color = Color(0.470588, 0.745098, 0.572549, 1)
+theme_override_colors/icon_disabled_color = Color(0.392157, 0.635294, 0.396078, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0.603922, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "Hướng dẫn "
 flat = true
@@ -215,6 +214,26 @@ Kẻ địch ngày càng mạnh và đông.
 Cố gắng sống sót lâu nhất, ghi điểm cao và xếp hạng. 
 "
 
+[node name="RankButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_color = Color(0.392157, 0.635294, 0.396078, 1)
+theme_override_colors/icon_disabled_color = Color(0.392157, 0.635294, 0.396078, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0.596078, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Xếp hạng "
+flat = true
+
+[node name="Rank" type="Sprite2D" parent="VBoxContainer"]
+position = Vector2(-32, 487.75)
+scale = Vector2(0.121094, 0.108399)
+texture = ExtResource("9_61xmw")
+
+[node name="Information" type="Sprite2D" parent="VBoxContainer"]
+position = Vector2(-38.5, 391.5)
+scale = Vector2(0.111328, 0.0957032)
+texture = ExtResource("8_tff4m")
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 993.0
@@ -245,7 +264,7 @@ autoplay = true
 libraries = {
 &"": SubResource("AnimationLibrary_tff4m")
 }
-autoplay = "done"
+autoplay = "RESET"
 
 [node name="Paths" type="Node2D" parent="."]
 
@@ -254,8 +273,8 @@ position = Vector2(-88, 23)
 curve = SubResource("Curve2D_tff4m")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Paths/Path2D2"]
-position = Vector2(382, 87)
-rotation = 0.0109485
+position = Vector2(378, 15)
+rotation = -0.00675665
 
 [node name="Enemy_Tank" parent="Paths/Path2D2/PathFollow2D" instance=ExtResource("11_tff4m")]
 rotation = -0.0495546
@@ -272,4 +291,5 @@ gun_shots = 3
 [connection signal="pressed" from="VBoxContainer/BatTanButton" to="." method="_on_EndlessButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/TuyChinhButton" to="." method="_on_tuy_chinh_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HuongDanButton" to="." method="_on_button_HD_pressed"]
+[connection signal="pressed" from="VBoxContainer/RankButton" to="." method="_on_rank_button_pressed"]
 [connection signal="pressed" from="VBoxContainer2/LogoutButton" to="." method="_on_logout_button_pressed"]
