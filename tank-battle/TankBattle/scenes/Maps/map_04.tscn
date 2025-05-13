@@ -542,6 +542,7 @@ autoplay = true
 
 [node name="kamikaze_tank" parent="." instance=ExtResource("3_gknbx")]
 position = Vector2(226, 459)
+bullet_speed = 500
 
 [node name="respawn" type="Node2D" parent="."]
 script = ExtResource("4_vajaj")

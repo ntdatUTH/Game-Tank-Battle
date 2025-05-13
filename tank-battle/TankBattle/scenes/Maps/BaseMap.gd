@@ -188,11 +188,11 @@ func _on_menu_pressed():
 	if multiplayer.multiplayer_peer == null or multiplayer.multiplayer_peer.get_class() == "OfflineMultiplayerPeer":
 		GLOBALS.restart(0)
 	else:
-		MultiPlayer.disconnect_game()
 		if multiplayer.is_server():
 			GLOBALS.restart.rpc(GLOBALS.current_level)  # Server chỉ điều khiển clients
 		else:
 			request_menu.rpc_id(1)
+		
 
 @rpc("any_peer", "reliable")
 func request_restart():
@@ -204,7 +204,8 @@ func request_restart():
 func request_menu():
 	print("Đã CHẠY REQUEST MENU")
 	if multiplayer.is_server():
-		GLOBALS.restart.rpc(0)  # Server broadcast
+		var requester_id = multiplayer.get_remote_sender_id()
+		GLOBALS.restart.rpc_id(requester_id, 0)  # 🔁 CHỈ gửi cho người yêu cầu
 
 func _input(event):
 	if game_over_panel and event is InputEventKey:

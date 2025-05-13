@@ -2617,6 +2617,7 @@ rotation = 1.56687
 rotation = -0.0495546
 scale = Vector2(0.4, 0.4)
 offroad_friction = 0.0
+bullet_speed = 500
 
 [node name="Path2D2" type="Path2D" parent="Paths"]
 curve = SubResource("Curve2D_g28ee")
@@ -2634,11 +2635,13 @@ Bullet = ExtResource("6_o7vqr")
 max_speed = 175.0
 max_health = 50
 offroad_friction = 0.0
+bullet_speed = 500
 gun_shots = 3
 
 [node name="GunTurret" parent="." instance=ExtResource("8_g28ee")]
 z_index = 0
 position = Vector2(1015, 334)
+bullet_speed = 500
 
 [node name="Obstacle" type="Node2D" parent="."]
 
@@ -2672,6 +2675,7 @@ script = ExtResource("9_o7vqr")
 
 [node name="kamikaze_tank" parent="." instance=ExtResource("10_riwoc")]
 position = Vector2(478, 117)
+bullet_speed = 500
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_v1nak")

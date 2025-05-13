@@ -4,11 +4,17 @@
 
 [node name="map06" instance=ExtResource("1_xyjop")]
 
+[node name="GunTurret" parent="." index="3"]
+bullet_speed = 500
+
 [node name="kamikaze_tank" parent="." index="6"]
 z_index = 0
+bullet_speed = 500
 
 [node name="Enemy_Tank" parent="Paths/Path2D/PathFollow2D" index="0"]
 z_index = 0
+bullet_speed = 500
 
 [node name="Enemy_Tank" parent="Paths/Path2D2/PathFollow2D" index="0"]
 z_index = 0
+bullet_speed = 500

@@ -3150,6 +3150,7 @@ autoplay = true
 [node name="GunTurret" parent="." instance=ExtResource("7_o8q6n")]
 z_index = 0
 position = Vector2(584, 303)
+bullet_speed = 500
 
 [node name="Items" type="Node2D" parent="."]
 
@@ -3167,6 +3168,7 @@ script = ExtResource("9_tij6o")
 
 [node name="kamikaze_tank" parent="." instance=ExtResource("10_7ixab")]
 position = Vector2(478, 117)
+bullet_speed = 500
 
 [node name="Paths" type="Node2D" parent="."]
 
@@ -3182,6 +3184,7 @@ rotation = 1.8041
 rotation = -0.0495546
 scale = Vector2(0.4, 0.4)
 offroad_friction = 0.0
+bullet_speed = 500
 
 [node name="Path2D2" type="Path2D" parent="Paths"]
 position = Vector2(-217.761, -1.39668)
@@ -3200,6 +3203,7 @@ Bullet = ExtResource("6_pkpmb")
 max_speed = 175.0
 max_health = 50
 offroad_friction = 0.0
+bullet_speed = 500
 gun_shots = 3
 
 [node name="HUDlocal" type="CanvasLayer" parent="."]

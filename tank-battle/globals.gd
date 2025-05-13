@@ -45,6 +45,8 @@ func restart(_current_level:int):
 		if current_level == 5:
 			BaseMap.rpc_id(1, "request_player_list")
 		else:
+			if multiplayer.multiplayer_peer != null && multiplayer.multiplayer_peer.get_class() != "OfflineMultiplayerPeer":
+				MultiPlayer.disconnect_game()
 			get_tree().change_scene_to_file(levels[current_level])
 
 func next_level():

@@ -275,6 +275,7 @@ Bullet = ExtResource("12_61xmw")
 max_speed = 175.0
 max_health = 50
 offroad_friction = 0.0
+bullet_speed = 500
 gun_shots = 3
 
 [node name="VBoxNetworkMode" type="VBoxContainer" parent="."]

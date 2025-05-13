@@ -35,9 +35,10 @@ func _on_peer_connected(id):
 		BaseMap.rpc("sync_player_list", all_players)
 
 func disconnect_game():
-	#var existing_players = get_tree().get_nodes_in_group("Player")
-	#for p in existing_players:
-		#p.queue_free()
+	var existing_players = get_tree().get_nodes_in_group("Player")
+	for p in existing_players:
+		p.queue_free()
+		await p.tree_exited
 	if peer != null and peer.get_connection_status() != MultiplayerPeer.CONNECTION_DISCONNECTED:
 		print("Đang ngắt kết nối...")
 
