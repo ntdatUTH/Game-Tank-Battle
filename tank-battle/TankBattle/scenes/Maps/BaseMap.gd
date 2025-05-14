@@ -3,26 +3,9 @@ extends Node
 @export var spawn_positions: Array[Vector2] = [Vector2(100,100)]
 @export var endless_mode_spawner: PackedScene  # Scene spawner enemy cho chế độ bất tận
 var victory_panel = null
-#
-#func _ready():
-	## Chỉ chạy khi OFFLINE (không có kết nối multiplayer)
-	#print(multiplayer.multiplayer_peer)
-	#if multiplayer.multiplayer_peer == null or multiplayer.multiplayer_peer.get_class() == "OfflineMultiplayerPeer":
-		#print("add player")
-		#spawn_player(1)  # Dùng ID mặc định (ví dụ: 1) cho offline
-		## Nếu là chế độ bất tận, kích hoạt spawner
-		#if GLOBALS.current_game_mode == GLOBALS.GameMode.ENDLESS:
-			#start_endless_mode()
 
 @rpc("any_peer", "call_local", "reliable")
 func spawn_player(id, spawn_position: Vector2 = spawn_positions[0]):
-	#if GLOBALS.current_player and is_instance_valid(GLOBALS.current_player):
-		#GLOBALS.current_player.queue_free()
-	#
-	## Kiểm tra lại sau khi xóa
-	#var existing_players = get_tree().get_nodes_in_group("Player")
-	#for p in existing_players:
-		#p.queue_free()
 	print("Đã add người chơi")
 	var player = preload("res://TankBattle/scenes/Tanks/Player.tscn").instantiate()
 	player.name = str(id)
@@ -48,15 +31,6 @@ func spawn_player(id, spawn_position: Vector2 = spawn_positions[0]):
 	add_child(player)
 	GLOBALS.current_player = player
 	set_camera_limits(player)
-
-
-func start_endless_mode():
-	if endless_mode_spawner:
-		var spawner = endless_mode_spawner.instantiate()
-		add_child(spawner)
-		print("Endless mode activated")
-	else:
-		push_warning("No endless spawner assigned")
 
 func set_camera_limits(player):
 	# Kiểm tra node cần thiết (chạy trên mọi peer)

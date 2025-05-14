@@ -25,8 +25,6 @@ func _ready():
 		Vector2(16, 16) # Căn giữa hình ngắm
 	)
 	add_to_group("Player")
-	#if str(name) == str(multiplayer.get_unique_id()):
-		#$Camera2D.make_current()
 	
 func update_skin():
 	$Body.texture = SkinManager.get_current_body_skin()

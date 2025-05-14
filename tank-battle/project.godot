@@ -26,6 +26,11 @@ BaseMap="*res://TankBattle/scenes/Maps/BaseMap.gd"
 MultiPlayer="*res://TankBattle/scenes/Multiplayer/multi_player.gd"
 FireBaseUploader="*res://TankBattle/scenes/databaseFirebase/FireBase_uploader.gd"
 
+[display]
+
+window/size/viewport_width=1680
+window/size/viewport_height=1050
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot-firebase/plugin.cfg")

@@ -112,28 +112,6 @@ func _on_login_success(auth_data: Dictionary) -> void:
 	await get_tree().create_timer(1.0).timeout
 	get_tree().change_scene_to_file("res://TankBattle/scenes/UI/title_screen.tscn")
 
-#func _on_login_success(auth_data: Dictionary) -> void:
-	## Lưu thông tin auth vào Firebase.Auth
-	#if Firebase != null && Firebase.Auth != null:
-		#Firebase.Auth.save_auth(auth_data)
-	#
-	## Lưu thông tin người dùng vào AuthManager
-	#AuthManager.current_user_email = auth_data.get("email", "")
-	#AuthManager.current_username = AuthManager.current_user_email.split("@")[0]
-	#AuthManager.is_logged_in = true
-	#
-	#state_label.text = "Đăng nhập thành công!"
-	#await get_tree().create_timer(1.0).timeout
-	#get_tree().change_scene_to_file("res://TankBattle/scenes/UI/title_screen.tscn")
-#func _on_Firebase_login_completed(token: String, user_data: Dictionary, is_connected: bool):
-	#if not token.is_empty() and is_connected:
-		#GLOBALS.firebase_token = token
-		#GLOBALS.user_data = user_data
-		#GLOBALS.is_connected = true
-		#print("Đã lưu thông tin đăng nhập vào Global!")
-	#else:
-		#GLOBALS.is_connected = false
-		#printerr("Đăng nhập Firebase thất bại!")
 func _on_login_failed(error_code: int, message: String) -> void:
 	if "INVALID_LOGIN_CREDENTIALS" in message:
 		state_label.text = "Email hoặc mật khẩu không đúng"

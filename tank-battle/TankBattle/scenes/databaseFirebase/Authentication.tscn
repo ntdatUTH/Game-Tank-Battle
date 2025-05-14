@@ -25,18 +25,17 @@ position = Vector2(515, 340)
 scale = Vector2(1.13477, 1.0118)
 texture = ExtResource("2_i4sfi")
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="TextEdit" type="Label" parent="."]
 modulate = Color(0.486633, 0.929688, 0.535092, 1)
+layout_mode = 0
 offset_left = 425.0
 offset_top = 101.0
 offset_right = 750.0
 offset_bottom = 169.0
-theme_override_colors/word_highlighted_color = Color(0.964844, 0.915848, 0.915848, 1)
 theme_override_fonts/font = ExtResource("3_2mnrq")
 theme_override_font_sizes/font_size = 47
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ptyjg")
 text = "Đăng nhập "
-caret_mid_grapheme = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
