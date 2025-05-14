@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=3 uid="uid://de8qfajmgdx2h"]
+
+[ext_resource type="Script" uid="uid://cmk8peu7caoa5" path="res://TankBattle/scenes/rank/Leaderboard.gd" id="1_0nvpq"]
+[ext_resource type="FontFile" uid="uid://u7bnw4qs1yyw" path="res://fonts/montreal/Montreal-Bold.ttf" id="2_5osyy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sjokx"]
+
+[node name="Leaderboard" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1156.0
+offset_bottom = 647.0
+script = ExtResource("1_0nvpq")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1161.0
+offset_bottom = 638.0
+color = Color(0.219884, 0.622623, 0.4388, 1)
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 373.0
+offset_top = 1.0
+offset_right = 744.0
+offset_bottom = 63.0
+theme_override_fonts/font = ExtResource("2_5osyy")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sjokx")
+text = "BẢNG XẾP HẠNG "
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="RefreshButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1046.0
+offset_top = 3.0
+offset_right = 1140.0
+offset_bottom = 55.0
+theme_override_colors/font_hover_color = Color(0, 0.717647, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Tải lại "
+flat = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 90.0
+offset_right = 1148.0
+offset_bottom = 635.0
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="STTLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="UserLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="LeaderboardBox" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonQuit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 79.0
+offset_bottom = 62.0
+theme_override_colors/font_hover_color = Color(0, 0.717647, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Về trang chủ
+"
+flat = true
+
+[connection signal="pressed" from="ButtonQuit" to="." method="_on_button_quit_pressed"]

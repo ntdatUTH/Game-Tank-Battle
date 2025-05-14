@@ -3150,7 +3150,6 @@ autoplay = true
 [node name="GunTurret" parent="." instance=ExtResource("7_o8q6n")]
 z_index = 0
 position = Vector2(584, 303)
-bullet_speed = 500
 
 [node name="Items" type="Node2D" parent="."]
 

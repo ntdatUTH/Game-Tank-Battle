@@ -1,5 +1,20 @@
 extends Node
+#lưu địa chỉ khi đăng nhập thành công
+var firebase_token: String = ""
+var user_data: Dictionary = {}
+var is_connected: bool 
 
+#lưu email
+signal player_email_changed(new_email)
+
+var _player_email = ""
+var player_email:
+	get:
+		return _player_email
+	set(value):
+		_player_email = value
+		emit_signal("player_email_changed", value)
+		print("[GLOBALS] Đã cập nhật player_email:", value)
 var slow_terrain = [
 	Vector2i(1,10),
 	Vector2i(20,6),
@@ -23,6 +38,7 @@ var network_map = "res://TankBattle/scenes/Maps/map_05.tscn"
 var enemies_in_level:=0
 var enemies_killed:=0
 var required_kills:=0
+var last_score:int=0
 func set_game_mode(mode: GameMode):
 	current_game_mode = mode
 	if mode == GameMode.ENDLESS:
