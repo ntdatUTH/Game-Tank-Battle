@@ -30,7 +30,7 @@ func _ready() -> void:
 	http_request.request_completed.connect(_on_http_request_completed)
 	
 	# Ẩn container đăng ký ban đầu
-	signup_container.visible = false
+	#signup_container.visible = false
 	
 	# Kết nối các nút bấm và checkbox
 	login_button.pressed.connect(_on_login_button_pressed)

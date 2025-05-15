@@ -13,7 +13,9 @@ res://TankBattle/scenes/Maps/map_04.tscn
 res://TankBattle/scenes/Maps/map_05.tscn
 res://TankBattle/scenes/Bullet/bounce_.tscn
 res://TankBattle/scenes/Tanks/kamikaze_tank.tscn
-res://TankBattle/scenes/rank/bxh.tscn
 res://TankBattle/scenes/Maps/map_06.tscn
+res://TankBattle/scenes/rank/bxh.tscn
 res://TankBattle/scenes/Skins/skin_menu.tscn
-res://TankBattle/scenes/Maps/BaseMap.gd
+res://TankBattle/scenes/Tanks/Enemy_Tank.tscn
+res://TankBattle/scenes/Tanks/GunTurret.tscn
+res://TankBattle/scenes/databaseFirebase/authentication.gd
