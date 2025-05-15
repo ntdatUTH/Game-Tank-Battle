@@ -19,6 +19,7 @@ turret_speed = 50.0
 detect_radius = 350
 Bullet = ExtResource("3_u7a24")
 max_speed = 100.0
+bullet_damage = 15
 
 [node name="Body" parent="." index="0"]
 texture = ExtResource("2_y02es")

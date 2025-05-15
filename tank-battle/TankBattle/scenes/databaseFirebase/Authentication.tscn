@@ -21,22 +21,32 @@ script = ExtResource("1_7j68d")
 
 [node name="DangNhap" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.486275)
-position = Vector2(515, 340)
-scale = Vector2(1.13477, 1.0118)
+position = Vector2(773, 487)
+scale = Vector2(1.65821, 1.45428)
 texture = ExtResource("2_i4sfi")
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="TextEdit" type="Label" parent="."]
 modulate = Color(0.486633, 0.929688, 0.535092, 1)
-offset_left = 425.0
-offset_top = 101.0
-offset_right = 750.0
-offset_bottom = 169.0
-theme_override_colors/word_highlighted_color = Color(0.964844, 0.915848, 0.915848, 1)
+layout_mode = 0
+offset_left = 619.0
+offset_top = 133.0
+offset_right = 1043.0
+offset_bottom = 228.0
 theme_override_fonts/font = ExtResource("3_2mnrq")
-theme_override_font_sizes/font_size = 47
+theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ptyjg")
 text = "Đăng nhập "
-caret_mid_grapheme = true
+
+[node name="StateLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 551.0
+offset_top = 232.0
+offset_right = 552.0
+offset_bottom = 274.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.984375, 0.984375, 0.984375, 1)
+theme_override_font_sizes/font_size = 30
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -45,38 +55,32 @@ anchor_left = 0.098
 anchor_top = 0.5
 anchor_right = 0.098
 anchor_bottom = 0.5
-offset_left = 305.104
-offset_top = -138.0
-offset_right = 630.104
-offset_bottom = 219.0
+offset_left = 381.36
+offset_top = -168.0
+offset_right = 960.36
+offset_bottom = 385.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 20
-
-[node name="StateLabel" type="Label" parent="VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.984375, 0.984375, 0.984375, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_constants/separation = 41
 
 [node name="EmailLineEdit" type="LineEdit" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 35
 placeholder_text = "Email"
 
 [node name="PasswordLineEdit" type="LineEdit" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 35
 placeholder_text = "Mật khẩu "
 secret = true
 
 [node name="LoginButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_colors/font_hover_color = Color(0.423651, 0.423651, 0.423651, 1)
+theme_override_font_sizes/font_size = 40
 text = "Đăng nhập "
 
 [node name="remember_me_checkbox" type="CheckBox" parent="VBoxContainer"]
@@ -85,7 +89,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 size_flags_stretch_ratio = 3.2
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 20
 text = "Ghi nhớ mật khẩu"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="VBoxContainer"]
@@ -97,7 +101,8 @@ layout_mode = 2
 [node name="SignUpButton" type="Button" parent="VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_colors/font_hover_color = Color(0.423529, 0.423529, 0.423529, 1)
+theme_override_font_sizes/font_size = 40
 text = "Đăng ký tại đây "
 
 [connection signal="pressed" from="VBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]

@@ -8,45 +8,53 @@ extends Area2D
 var velocity = Vector2()
 var acceleration=Vector2()
 var target=null
+var shooter_id: int
 
-func start(_position, _direction,_target=null):
-	position = _position
-	rotation = _direction.angle()
+func _ready():
 	$Lifetime.wait_time = lifetime
-	velocity = _direction * speed
 	$Lifetime.start()
-	target=_target
+
+	# Chỉ owner mới điều khiển bullet
+	if multiplayer.multiplayer_peer != null && multiplayer.multiplayer_peer.get_class() != "OfflineMultiplayerPeer":
+		set_multiplayer_authority(multiplayer.get_unique_id())
 
 func seek():
+	if !is_instance_valid(target) || !target is Node2D:
+		return Vector2.ZERO  # Trả về vector zero nếu target không hợp lệ
 	var desired = (target.position - position).normalized() * speed
 	var steer = desired - velocity
 	if steer.length() > 0:
 		steer = steer.normalized() * steer_force
 	return steer
 
-func _process(delta):
-	if target:
-		acceleration = seek()
-		velocity += acceleration * delta
-		velocity = velocity.limit_length(speed)
-		rotation = velocity.angle()
-	position += velocity * delta
+func _physics_process(delta):
+	if multiplayer.multiplayer_peer.get_class() == "OfflineMultiplayerPeer" or is_multiplayer_authority():
+		if target:
+			acceleration = seek()
+			velocity += acceleration * delta
+			velocity = velocity.limit_length(speed)
+			rotation = velocity.angle()
+		
+		position += velocity * delta
 
 #Hàm phát nổ
+@rpc("any_peer", "call_local", "reliable")
 func explode():
-	velocity = Vector2()	
+	#velocity = Vector2()	
+	set_physics_process(false)
+	$CollisionShape2D.set_deferred("disabled", true)
 	$Sprite.hide()
 	$Explosion.show()
 	$Explosion.play("smoke")
 
 func _on_Bullet_body_entered(body: Node2D) -> void:
-	print("trung enemy")
-	explode()
-	if body.has_method('take_damage'):
-		body.take_damage(damage)
+	if body != get_parent():
+		explode.rpc()
+		if body.has_method('take_damage'):
+			body.take_damage.rpc(damage)
 
 func _on_lifetime_timeout() -> void:
-	explode()
+	explode.rpc()
 
 func _on_explosion_animation_finished() -> void:
 	queue_free() # Replace with function body.

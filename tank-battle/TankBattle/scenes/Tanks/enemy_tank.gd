@@ -14,6 +14,7 @@ func _ready():
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
 	GLOBALS.register_enemy()
 	add_to_group("Enemy")
+	
 func shoot(num, spread, target = null):
 	if not can_shoot or not target.is_in_group("Player"):
 		return
@@ -49,7 +50,7 @@ func control(delta):
 
 
 func _process(delta):
-	if target:
+	if target and is_instance_valid(target) and target.alive:
 		# Tính góc hiện tại và góc mục tiêu
 		var current_angle = $Turret.global_rotation
 		var target_angle = (target.global_position - $Turret.global_position).angle()
@@ -57,17 +58,25 @@ func _process(delta):
 		$Turret.global_rotation = lerp_angle(current_angle, target_angle - deg_to_rad(90), turret_speed * delta)
 	
 		# Kiểm tra hướng bằng góc thay vì dot product
-		if abs(current_angle - target_angle) > 0.9:  # ~5.7 độ
+		if can_shoot and abs(current_angle - target_angle) > 0.9:  # ~5.7 độ
 			print("HP bot: ", health)
-			shoot(gun_shots,gun_spread,target)
+			shoot(gun_shots, gun_spread, target)
+			start_attack_cooldown()
+func start_attack_cooldown():
+	can_shoot = false
+	await get_tree().create_timer(gun_cooldown).timeout
+	can_shoot = true
+
 func _on_detect_radius_body_entered(body: Node2D) -> void:
-	print(body.name)
-	target = body
+	if body.is_in_group("Player") and body.alive:
+		target = body
+		print("Đã phát hiện mục tiêu: ", body.name)
 
 func _on_detect_radius_body_exited(body: Node2D) -> void:
 	if (body == target):
 		target = null
 		print("ko co player")
+
 func take_damage(amount: int):
 	if is_in_group("Player"):  # Bỏ qua nếu là Player
 		return
@@ -77,9 +86,7 @@ func take_damage(amount: int):
 	if health <= 0:
 		die()
 		print("Enemy died!")  # Đổi thông báo cho rõ ràng
+
 func die():
 	super.explode()
 	GLOBALS.enemy_killed()
-	
-	
-	

@@ -11,6 +11,9 @@ signal ammo_changed
 @export var gun_cooldown: float
 @export var max_health: int
 @export var offroad_friction: float
+@export var bullet_speed: int = 500
+@export var bullet_damage: int = 10
+@export var bullet_lifetime: float = 0.5
 
 @export var gun_shots: int = 1
 @export_range(0, 1.5) var gun_spread: float = 0.2
@@ -41,23 +44,34 @@ func control(delta):
 	pass
 
 func shoot(num, spread, target=null):
-	if can_shoot and ammo > 0:
-		ammo -= 1  # Sẽ tự động gọi setter
-		can_shoot = false
-		$GunTimer.start()
-		var dir = Vector2(1, 0).rotated($Turret.global_rotation + deg_to_rad(90))
-		if num > 1:
-			for i in range(num):
-				var a = -spread + i * (2 * spread) / (num - 1)
-				shoot_.emit(Bullet, $Turret/Muzzle.global_position, dir.rotated(a), target)
-		else:
-			shoot_.emit(Bullet, $Turret/Muzzle.global_position, dir, target)
-		$AnimationPlayer.play("muzzle_flash")
+	if not can_shoot:
+		return
+		
+	can_shoot = false
+	$GunTimer.start()
+	
+	var dir = Vector2(1, 0).rotated($Turret.global_rotation + deg_to_rad(90))
+	
+	# Bỏ kiểm tra ammo nếu là enemy
+	if is_in_group("Enemy") or ammo > 0:
+		if not is_in_group("Enemy"):
+			ammo -= 1  # Chỉ trừ ammo nếu không phải enemy
+			
+		if multiplayer.is_server() or is_multiplayer_authority():
+			if num > 1:
+				for i in range(num):
+					var a = -spread + i * (2 * spread) / (num - 1)
+					spawn_bullet.rpc($Turret/Muzzle.global_position, dir.rotated(a), target)
+			else:
+				spawn_bullet.rpc($Turret/Muzzle.global_position, dir, target)
+	
+	$AnimationPlayer.play("muzzle_flash")
 
 func _physics_process(delta):
 	if not alive:
 		return
-	control(delta)
+	if is_multiplayer_authority():
+		control(delta)
 	if map:
 		var tile_pos = map.local_to_map(position)
 		var atlas_coords = map.get_cell_atlas_coords(0, tile_pos)
@@ -67,6 +81,7 @@ func _physics_process(delta):
 			velocity *= offroad_friction
 	move_and_slide()
 
+@rpc("any_peer", "call_local")
 func take_damage(amount):
 	health -= amount
 	health_changed.emit(health * 100 / max_health)
@@ -96,3 +111,21 @@ func _on_gun_timer_timeout() -> void:
 
 func _on_explosion_animation_finished() -> void:
 	queue_free()
+
+@rpc("any_peer", "call_local", "reliable")
+func spawn_bullet(pos: Vector2, dir: Vector2, target=null):
+	var bullet = Bullet.instantiate()
+	bullet.speed = bullet_speed
+	bullet.damage = bullet_damage
+	bullet.lifetime = bullet_lifetime
+	bullet.position = pos
+	bullet.rotation = dir.angle()
+	bullet.set_multiplayer_authority(multiplayer.get_unique_id())
+	
+	# Thêm vào scene chính
+	get_parent().add_child(bullet)
+	
+	# Thiết lập velocity sau khi add_child để tránh warning
+	bullet.velocity = dir * bullet_speed
+	if target:
+		bullet.target = target
