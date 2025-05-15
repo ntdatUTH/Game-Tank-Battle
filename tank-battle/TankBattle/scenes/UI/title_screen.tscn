@@ -1,11 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://b0a2ie7at1txf"]
+[gd_scene load_steps=18 format=3 uid="uid://b0a2ie7at1txf"]
 
 [ext_resource type="FontFile" uid="uid://dsea3nsc6vruv" path="res://TankBattle/kenney_top-down-tanks/font/Xolonium-Bold.ttf" id="1_uf0ll"]
 [ext_resource type="Script" uid="uid://ms5xrpja7gwi" path="res://TankBattle/scenes/UI/title_screen.gd" id="1_yb38r"]
 [ext_resource type="Texture2D" uid="uid://bo2gh6capxisk" path="res://TankBattle/scenes/UI/nen.png" id="2_dmkog"]
 [ext_resource type="Texture2D" uid="uid://bm0o4y8chog4l" path="res://TankBattle/scenes/UI/gamepad.png" id="3_dmkog"]
 [ext_resource type="Texture2D" uid="uid://bi5nxkcvgjm7c" path="res://TankBattle/scenes/UI/bonfire.png" id="4_iprc1"]
-[ext_resource type="Texture2D" uid="uid://kljsc1ynoe8q" path="res://TankBattle/scenes/UI/logout.png" id="5_dmkog"]
 [ext_resource type="Texture2D" uid="uid://dauow5wxklaq8" path="res://TankBattle/scenes/UI/information.png" id="8_tff4m"]
 [ext_resource type="Texture2D" uid="uid://bweg63cyp8l34" path="res://TankBattle/scenes/UI/rank.png" id="9_61xmw"]
 [ext_resource type="Texture2D" uid="uid://ctnfxv6m2wfss" path="res://TankBattle/scenes/UI/challenge.png" id="9_tff4m"]
@@ -42,9 +41,9 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.94),
-"transitions": PackedFloat32Array(1.51572, 1.23114),
+"transitions": PackedFloat32Array(1.62451, 2.73207),
 "update": 0,
-"values": [Vector2(341, -7.623), Vector2(341, -38)]
+"values": [Vector2(389, -7.623), Vector2(389, -68)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tff4m"]
@@ -55,9 +54,9 @@ _data = {
 
 [sub_resource type="Curve2D" id="Curve2D_tff4m"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 382, 87, 0, 0, 0, 0, 624, 154, 0, 0, 0, 0, 809, 120, 0, 0, 0, 0, 824, 267, 0, 0, 0, 0, 744, 377, 0, 0, 0, 0, 764, 530, 0, 0, 0, 0, 580, 637, 0, 0, 0, 0, 226, 579, 0, 0, 0, 0, 266, 465, 0, 0, 0, 0, 321, 328, 0, 0, 0, 0, 370, 98)
+"points": PackedVector2Array(0, 0, 0, 0, 329.5, 88.4139, 0, 0, 0, 0, 738.9, 82.0514, 0, 0, 0, 0, 735.833, 160.522, 0, 0, 0, 0, 353.267, 179.609, 0, 0, 0, 0, 355.567, 213.542, 0, 0, 0, 0, 731.233, 193.748, 0, 0, 0, 0, 723.567, 258.08, 0, 0, 0, 0, 356.333, 266.563, 0, 0, 0, 0, 378.567, 297.668, 0, 0, 0, 0, 705.167, 307.566, 0, 0, 0, 0, 692.133, 359.879, 0, 0, 0, 0, 370.9, 382.501, 0, 0, 0, 0, 374.733, 450.368, 0, 0, 0, 0, 707.467, 463.093, 0, 0, 0, 0, 689.833, 552.167, 0, 0, 0, 0, 364, 547.219, 0, 0, 0, 0, 357.867, 620.74, 0, 0, 0, 0, 730.467, 643.362, 0, 0, 0, 0, 341.767, 641.949, 0, 0, 0, 0, 349.433, 525.303, 0, 0, 0, 0, 712.067, 535.907, 0, 0, 0, 0, 719.733, 452.488, 0, 0, 0, 0, 380.1, 436.229, 0, 0, 0, 0, 384.7, 363.414, 0, 0, 0, 0, 713.6, 346.447, 0, 0, 0, 0, 697.5, 279.995, 0, 0, 0, 0, 341.767, 251.717, 0, 0, 0, 0, 736.6, 233.337, 0, 0, 0, 0, 730.467, 177.488, 0, 0, 0, 0, 331.8, 189.506, 0, 0, 0, 0, 334.1, 145.676, 0, 0, 0, 0, 740.433, 135.072, 0, 0, 0, 0, 724.333, 96.8972, 0, 0, 0, 0, 329.5, 96.8972)
 }
-point_count = 11
+point_count = 34
 
 [node name="TitleScreen" type="Control"]
 self_modulate = Color(0.976563, 0.904083, 0.904083, 1)
@@ -75,26 +74,26 @@ size_flags_vertical = 4
 script = ExtResource("1_yb38r")
 
 [node name="Nen" type="Sprite2D" parent="."]
-position = Vector2(858, 501)
-scale = Vector2(1.66406, 1.04102)
+position = Vector2(845.499, 454.999)
+scale = Vector2(1.67285, 0.96094)
 texture = ExtResource("2_dmkog")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.176725
-anchor_top = -0.0256945
-anchor_right = 0.518017
-anchor_bottom = 0.0876144
-offset_left = 43.4669
-offset_top = 17.892
-offset_right = 223.299
-offset_bottom = 48.4678
+anchor_left = 0.198013
+anchor_top = -0.0240604
+anchor_right = 0.539305
+anchor_bottom = 0.0892485
+offset_left = 6.31888
+offset_top = 16.2693
+offset_right = 186.151
+offset_bottom = 46.8451
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 3
 theme_override_fonts/font = ExtResource("1_uf0ll")
-theme_override_font_sizes/font_size = 86
+theme_override_font_sizes/font_size = 100
 text = "Tank Battle "
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -120,25 +119,25 @@ text = "Tên của bạn "
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-offset_left = 715.0
-offset_top = 231.0
-offset_right = 1295.0
-offset_bottom = 907.0
-theme_override_constants/separation = 43
+offset_left = 658.0
+offset_top = 156.0
+offset_right = 1285.0
+offset_bottom = 924.0
+theme_override_constants/separation = 66
 
 [node name="Setting" type="Sprite2D" parent="VBoxContainer"]
-position = Vector2(-30, 302)
-scale = Vector2(0.098, 0.089)
+position = Vector2(-37.544, 418.108)
+scale = Vector2(0.154469, 0.120672)
 texture = ExtResource("10_61xmw")
 
 [node name="Challenge" type="Sprite2D" parent="VBoxContainer"]
-position = Vector2(-34, 116)
-scale = Vector2(0.101562, 0.0917969)
+position = Vector2(-46, 142)
+scale = Vector2(0.162109, 0.131836)
 texture = ExtResource("9_tff4m")
 
 [node name="Gamepad" type="Sprite2D" parent="VBoxContainer"]
-position = Vector2(-26, 22)
-scale = Vector2(0.0908203, 0.0878906)
+position = Vector2(-47.5, 23.5)
+scale = Vector2(0.173828, 0.138672)
 texture = ExtResource("3_dmkog")
 
 [node name="mode2nguoiButton" type="Button" parent="VBoxContainer"]
@@ -147,16 +146,17 @@ size_flags_horizontal = 0
 theme_override_colors/font_hover_pressed_color = Color(0.469223, 0.746094, 0.570886, 1)
 theme_override_colors/font_hover_color = Color(0.390488, 0.636719, 0.394335, 1)
 theme_override_fonts/font = SubResource("SystemFont_2c588")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "Hai người chơi  "
 flat = true
 
 [node name="VBoxNetworkMode" type="VBoxContainer" parent="VBoxContainer/mode2nguoiButton"]
+visible = false
 layout_mode = 0
-offset_left = 268.0
-offset_top = 2.0
-offset_right = 612.0
-offset_bottom = 106.0
+offset_left = 476.0
+offset_top = -11.0
+offset_right = 820.0
+offset_bottom = 93.0
 
 [node name="Host" type="Button" parent="VBoxContainer/mode2nguoiButton/VBoxNetworkMode"]
 layout_mode = 2
@@ -164,7 +164,7 @@ size_flags_horizontal = 0
 theme_override_colors/font_hover_pressed_color = Color(0.469223, 0.746094, 0.570886, 1)
 theme_override_colors/font_hover_color = Color(0.390488, 0.636719, 0.394335, 1)
 theme_override_fonts/font = SubResource("SystemFont_2c588")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 35
 text = "Tạo phòng"
 flat = true
 
@@ -174,6 +174,7 @@ layout_mode = 2
 [node name="IPtext" type="LineEdit" parent="VBoxContainer/mode2nguoiButton/VBoxNetworkMode/HBoxNetworkMode"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 placeholder_text = "Nhập IP"
 
 [node name="Join" type="Button" parent="VBoxContainer/mode2nguoiButton/VBoxNetworkMode/HBoxNetworkMode"]
@@ -182,7 +183,7 @@ size_flags_horizontal = 0
 theme_override_colors/font_hover_pressed_color = Color(0.469223, 0.746094, 0.570886, 1)
 theme_override_colors/font_hover_color = Color(0.390488, 0.636719, 0.394335, 1)
 theme_override_fonts/font = SubResource("SystemFont_2c588")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 35
 text = "Tham gia"
 flat = true
 
@@ -192,7 +193,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_hover_pressed_color = Color(0.469223, 0.746094, 0.570886, 1)
 theme_override_colors/font_hover_color = Color(0.390488, 0.636719, 0.394335, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "Vượt ải  "
 flat = true
 
@@ -201,7 +202,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_hover_pressed_color = Color(0.469223, 0.746094, 0.570886, 1)
 theme_override_colors/font_hover_color = Color(0.390488, 0.636719, 0.394335, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "Bất tận "
 flat = true
 
@@ -210,24 +211,25 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_hover_pressed_color = Color(0.469223, 0.746094, 0.570886, 1)
 theme_override_colors/font_hover_color = Color(0.390488, 0.636719, 0.394335, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "Tùy chỉnh "
 flat = true
 
 [node name="Bonfire" type="Sprite2D" parent="VBoxContainer"]
-position = Vector2(-31, 215)
-scale = Vector2(0.0976563, 0.0957031)
+position = Vector2(-45, 282)
+scale = Vector2(0.148438, 0.129883)
 texture = ExtResource("4_iprc1")
 
 [node name="Information" type="Sprite2D" parent="VBoxContainer"]
-position = Vector2(-24, 394)
-scale = Vector2(0.132813, 0.107422)
+position = Vector2(-39, 540)
+scale = Vector2(0.167969, 0.147461)
 texture = ExtResource("8_tff4m")
 
 [node name="HuongDanButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_font_sizes/font_size = 30
+theme_override_colors/font_hover_color = Color(0.392157, 0.635294, 0.396078, 1)
+theme_override_font_sizes/font_size = 40
 text = "Hướng dẫn "
 flat = true
 
@@ -266,36 +268,14 @@ size_flags_horizontal = 0
 theme_override_colors/font_hover_pressed_color = Color(0.469223, 0.746094, 0.570886, 1)
 theme_override_colors/font_hover_color = Color(0.390488, 0.636719, 0.394335, 1)
 theme_override_fonts/font = SubResource("SystemFont_2c588")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "Xếp hạng"
 flat = true
 
 [node name="Rank" type="Sprite2D" parent="VBoxContainer"]
-position = Vector2(-35, 477)
-scale = Vector2(0.098, 0.098)
+position = Vector2(-50.456, 664.044)
+scale = Vector2(0.154469, 0.132984)
 texture = ExtResource("9_61xmw")
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 1311.0
-offset_top = 629.0
-offset_right = 1489.0
-offset_bottom = 759.0
-theme_override_constants/separation = 30
-
-[node name="LogoutButton" type="Button" parent="VBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_font_sizes/font_size = 30
-button_mask = 0
-text = " "
-flat = true
-expand_icon = true
-
-[node name="Logout" type="Sprite2D" parent="VBoxContainer2/LogoutButton"]
-position = Vector2(91, 39)
-scale = Vector2(0.119141, 0.113281)
-texture = ExtResource("5_dmkog")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_dmkog")
@@ -311,12 +291,13 @@ autoplay = "done"
 position = Vector2(379, 145)
 
 [node name="Path2D2" type="Path2D" parent="Paths"]
-position = Vector2(-88, 23)
+position = Vector2(-328, -126)
+scale = Vector2(1.30435, 1.41455)
 curve = SubResource("Curve2D_tff4m")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Paths/Path2D2"]
-position = Vector2(382, 87)
-rotation = 0.270094
+position = Vector2(329.5, 88.4139)
+rotation = -0.0155398
 
 [node name="Enemy_Tank" parent="Paths/Path2D2/PathFollow2D" instance=ExtResource("11_tff4m")]
 rotation = -0.0495546
@@ -327,8 +308,19 @@ Bullet = ExtResource("12_61xmw")
 max_speed = 175.0
 max_health = 50
 offroad_friction = 0.0
-bullet_speed = 500
+bullet_damage = 10
 gun_shots = 3
+
+[node name="LogoutButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1484.0
+offset_top = 830.0
+offset_right = 1623.0
+offset_bottom = 898.0
+theme_override_colors/font_hover_color = Color(0.392157, 0.635294, 0.396078, 1)
+theme_override_font_sizes/font_size = 35
+text = "Đăng xuất"
+flat = true
 
 [connection signal="pressed" from="VBoxContainer/mode2nguoiButton" to="." method="_on_mode_2_nguoi_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/mode2nguoiButton/VBoxNetworkMode/Host" to="." method="_on_host_pressed"]
@@ -338,4 +330,4 @@ gun_shots = 3
 [connection signal="pressed" from="VBoxContainer/TuyChinhButton" to="." method="_on_tuy_chinh_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HuongDanButton" to="." method="_on_button_HD_pressed"]
 [connection signal="pressed" from="VBoxContainer/RankButton" to="." method="_on_rank_button_pressed"]
-[connection signal="pressed" from="VBoxContainer2/LogoutButton" to="." method="_on_logout_button_pressed"]
+[connection signal="pressed" from="LogoutButton" to="." method="_on_logout_button_pressed"]

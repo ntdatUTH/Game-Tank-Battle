@@ -14,9 +14,9 @@ func _input(event):
 	if event.is_action_pressed("ui_select"):
 		GLOBALS.next_level()
 
-func _on_logout_button_pressed() -> void:
-	Firebase.Auth.logout()
-	get_tree().change_scene_to_file("res://TankBattle/scenes/databaseFirebase/Authentication.tscn")
+
+	
+	
 
 func get_lan_ip() -> String:
 	var ip_list = IP.get_local_addresses()
@@ -49,3 +49,10 @@ func _on_rank_button_pressed() -> void:
 
 func _on_mode_2_nguoi_button_pressed() -> void:
 	text_network.visible = !text_network.visible
+
+
+func _on_logout_button_pressed() -> void:
+	print("logout")
+	Firebase.Auth.logout()
+	get_tree().change_scene_to_file("res://TankBattle/scenes/databaseFirebase/Authentication.tscn")
+	

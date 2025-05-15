@@ -106,7 +106,7 @@ script = ExtResource("1_68vxb")
 gun_cooldown = 0.5
 max_health = 100
 offroad_friction = 0.2
-bullet_speed = 200
+bullet_damage = 25
 
 [node name="Body" type="Sprite2D" parent="."]
 

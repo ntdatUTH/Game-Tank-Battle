@@ -136,6 +136,9 @@ func _show_game_over_panel():
 		kills_label.position = Vector2(180, 100)
 		kills_label.add_theme_font_size_override("font_size", 30)
 		#chổ này đọc điểm của số enemy đã tiêu diệt làm bxh
+	#chổ này đọc điểm của số enemy đã tiêu diệt làm bxh
+	GLOBALS.last_score = GLOBALS.enemies_killed
+	FireBaseUploader.upload_score(GLOBALS.player_email,GLOBALS.last_score)
 		
 	# Vô hiệu hóa player và enemy
 	if GLOBALS.current_player:
@@ -161,7 +164,10 @@ func _on_menu_pressed():
 	print("Đã ấn nút restart")
 	get_tree().paused = false
 	if multiplayer.multiplayer_peer == null or multiplayer.multiplayer_peer.get_class() == "OfflineMultiplayerPeer":
+		GLOBALS.last_score = GLOBALS.enemies_killed
+		FireBaseUploader.upload_score(GLOBALS.player_email,GLOBALS.last_score)
 		GLOBALS.restart(0)
+		
 	else:
 		if multiplayer.is_server():
 			GLOBALS.restart.rpc(GLOBALS.current_level)  # Server chỉ điều khiển clients

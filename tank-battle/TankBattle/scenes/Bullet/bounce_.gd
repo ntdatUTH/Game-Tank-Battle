@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed: int =20
+@export var speed: int =100
 
 @export var damage: int = 20
 @export var lifetime: float = 5.0
@@ -20,7 +20,7 @@ func start(_position: Vector2, _direction: Vector2, _target=null):
 
 func _physics_process(delta: float) -> void:
 	# Di chuyển và xử lý va chạm
-	var collision = move_and_collide(velocity *speed *delta)
+	var collision = move_and_collide(velocity *delta)
 	if collision:
 		handle_collision(collision)
 

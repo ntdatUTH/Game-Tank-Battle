@@ -1,6 +1,7 @@
 Label
-TextureButton
 Button
+Node
+TextureButton
 Sprite2D
 CanvasLayer
 MultiplayerSynchronizer
@@ -11,4 +12,3 @@ TextEdit
 ColorRect
 TextureRect
 AnimationPlayer
-AudioStreamPlayer2D

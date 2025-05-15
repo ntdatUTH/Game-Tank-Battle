@@ -10,7 +10,6 @@ size = Vector2(17, 10)
 [node name="Player_Bullet" instance=ExtResource("1_rh63i")]
 collision_layer = 8
 script = ExtResource("2_kuuh8")
-speed = 200
 damage = 100
 
 [node name="Sprite" parent="." index="0"]
