@@ -1,7 +1,5 @@
-res://TankBattle/scenes/UI/title_screen.gd
 res://TankBattle/scenes/UI/title_screen.tscn
-res://TankBattle/scenes/Maps/BaseMap.gd
-res://TankBattle/scenes/Maps/map.gd
+res://TankBattle/scenes/Tanks/enemy_tank.gd
 res://TankBattle/scenes/Maps/map_03.tscn
 res://TankBattle/scenes/Maps/map_02.tscn
 res://TankBattle/scenes/Maps/map_01.tscn
@@ -26,11 +24,8 @@ res://TankBattle/scenes/Bullet/PlayerBullet.tscn
 res://TankBattle/scenes/Bullet/Player_Bullet.tscn
 res://TankBattle/scenes/Bullet/testbullet.tscn
 res://TankBattle/scenes/rank/bxh.tscn
-res://globals.gd
-res://TankBattle/scenes/databaseFirebase/authentication.gd
-res://TankBattle/scenes/Maps/map_04.gd
-res://TankBattle/scenes/Tanks/player.gd
-res://hud.gd
 res://TankBattle/scenes/UI/hud.tscn
-res://TankBattle/scenes/databaseFirebase/Authentication.tscn
 res://TankBattle/scenes/databaseFirebase/SignUp.tscn
+res://TankBattle/scenes/databaseFirebase/Authentication.tscn
+res://TankBattle/scenes/Tanks/kamikaze_tank.gd
+res://TankBattle/scenes/Maps/map_04.gd

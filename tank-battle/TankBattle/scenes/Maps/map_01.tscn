@@ -2674,6 +2674,7 @@ script = ExtResource("9_o7vqr")
 
 [node name="kamikaze_tank" parent="." instance=ExtResource("10_riwoc")]
 position = Vector2(478, 117)
+damage = 0
 bullet_speed = 500
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

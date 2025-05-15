@@ -1,6 +1,6 @@
 extends "res://TankBattle/scenes/Tanks/Tank.gd"
 
-@export var damage: int = 25
+@export var damage: int = 0
 @export var explosion_radius: float = 32.0
 @export var speed: float = 40.0
 

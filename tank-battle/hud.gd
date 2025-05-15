@@ -5,7 +5,8 @@ var bar_yellow = preload("res://TankBattle/kenney_top-down-tanks/PNG/mauvang.png
 var bar_texture
 
 func _ready() -> void:
-	if multiplayer.multiplayer_peer != null or multiplayer.multiplayer_peer.get_class() != "OfflineMultiplayerPeer":
+	print(multiplayer.multiplayer_peer, multiplayer.multiplayer_peer.get_class())
+	if multiplayer.multiplayer_peer != null && multiplayer.multiplayer_peer.get_class() != "OfflineMultiplayerPeer":
 		$PauseButton.texture_normal = load("res://TankBattle/scenes/UI/logout.png")
 func update_ammo(value):
 	$Margin/Container/AmmoGauge.value=value
@@ -33,8 +34,8 @@ func _on_animation_player_animation_finished(anim_name):
 var pause_panel = null
 func _on_pause_button_pressed() -> void:
 	if multiplayer.multiplayer_peer == null or multiplayer.multiplayer_peer.get_class() == "OfflineMultiplayerPeer":
-		get_tree().paused = true
 		_show_pause_panel()
+		get_tree().paused = true
 	else:
 		BaseMap._on_menu_pressed()
 
@@ -42,9 +43,10 @@ func _show_pause_panel():
 	var canvas = get_tree().current_scene.get_node("HUDlocal")
 	pause_panel = Panel.new()
 	pause_panel.name = "pause"
-	pause_panel.z_index = 12
+	pause_panel.z_index = 13
 	pause_panel.size = Vector2(600, 300)
 	pause_panel.position = Vector2(276, 174)
+	pause_panel.process_mode = Node.PROCESS_MODE_ALWAYS 
 	canvas.add_child(pause_panel)
 	
 	# Thêm label "Bạn đã chết"
@@ -60,6 +62,7 @@ func _show_pause_panel():
 	continue_button.text = "TIẾP TỤC"
 	continue_button.position = Vector2(100, 150)
 	continue_button.size = Vector2(150, 50)
+	continue_button.process_mode = Node.PROCESS_MODE_ALWAYS
 	continue_button.pressed.connect(_on_continue_pressed)
 	
 	# Thêm nút "Về menu" (X)
@@ -68,9 +71,11 @@ func _show_pause_panel():
 	menu_button.text = "VỀ MENU"
 	menu_button.position = Vector2(350, 150)
 	menu_button.size = Vector2(150, 50)
+	menu_button.process_mode = Node.PROCESS_MODE_ALWAYS
 	menu_button.pressed.connect(BaseMap._on_menu_pressed)
 
 func _on_continue_pressed():
+	print("đã chạy continue")
 	get_tree().paused = false
 	var canvas = get_tree().current_scene.get_node("HUDlocal")
-	canvas.get_node("game_over_panel").queue_free()
+	canvas.get_node("pause").queue_free()

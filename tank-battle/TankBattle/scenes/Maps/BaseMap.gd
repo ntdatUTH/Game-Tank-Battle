@@ -159,6 +159,7 @@ func _on_restart_pressed():
 
 func _on_menu_pressed():
 	print("Đã ấn nút restart")
+	get_tree().paused = false
 	if multiplayer.multiplayer_peer == null or multiplayer.multiplayer_peer.get_class() == "OfflineMultiplayerPeer":
 		GLOBALS.restart(0)
 	else:

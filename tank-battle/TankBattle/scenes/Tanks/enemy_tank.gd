@@ -60,7 +60,7 @@ func _process(delta):
 		# Kiểm tra hướng bằng góc thay vì dot product
 		if can_shoot and abs(current_angle - target_angle) > 0.9:  # ~5.7 độ
 			print("HP bot: ", health)
-			super.shoot(gun_shots, gun_spread, target)
+			shoot(gun_shots, gun_spread, target)
 			start_attack_cooldown()
 func start_attack_cooldown():
 	can_shoot = false
@@ -90,6 +90,3 @@ func take_damage(amount: int):
 func die():
 	super.explode()
 	GLOBALS.enemy_killed()
-	
-	
-	

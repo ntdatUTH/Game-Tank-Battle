@@ -3167,6 +3167,7 @@ script = ExtResource("9_tij6o")
 
 [node name="kamikaze_tank" parent="." instance=ExtResource("10_7ixab")]
 position = Vector2(478, 117)
+damage = 0
 bullet_speed = 500
 
 [node name="Paths" type="Node2D" parent="."]

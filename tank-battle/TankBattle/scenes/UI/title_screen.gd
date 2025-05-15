@@ -40,7 +40,7 @@ func _on_host_pressed() -> void:
 	MultiPlayer.host_game()
 
 func _on_join_pressed() -> void:
-	var ip = $VBoxContainer/VBoxNetworkMode/HBoxNetworkMode/IPtext.text.strip_edges()
+	var ip = $VBoxContainer/mode2nguoiButton/VBoxNetworkMode/HBoxNetworkMode/IPtext.text.strip_edges()
 	MultiPlayer.join_game(ip)
 
 func _on_rank_button_pressed() -> void:

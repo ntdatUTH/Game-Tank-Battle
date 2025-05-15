@@ -29,7 +29,7 @@ FireBaseUploader="*res://TankBattle/scenes/databaseFirebase/FireBase_uploader.gd
 [display]
 
 window/size/viewport_width=1680
-window/size/viewport_height=1050
+window/size/viewport_height=980
 
 [editor_plugins]
 
